@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IoT-B2: WiFi Manager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IoT-B2
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('wifimanager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">WiFi Manager </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Portail captif de configuration (Wifi et autres paramètres personnalisables)</p>
+<p>Le fait d'intégrer l'idenfiant (SSID) et le mode de passe du réseau WiFi dans le code du projet Arduino peut être problématique. Dans la mesure où ce code est intégré dans un objet connecté proposé à des clients, ces identifiants ne sont pas connus au moment du développement; qui plus est ils peuvent changer si on déplace l'objet, si on veut utiliser un autre réseau, ou si le mot de passe change ...</p>
+<p>WiFi Manager apporte une solution en proposant un portail captif permettant de configurer des paramètres :</p><ul>
+<li>Si les paramètres WiFi ne sont pas présents alors WiFi Manager démarre l'ESP8266 en mode Access Point et ouvre un portail captif auquel vous pouvez accéder depuis votre ordinateur ou votre téléphone. Le SSID est celui défini par AP_SSID.</li>
+<li>L'interface proposée vous permet de visualiser les SSID accessibles, d'en sélectionner un et de renseigner le mot de passe associé.</li>
+<li>Une fois validé, l'ESP8266 redémarre et tente d'accéder au SSID. S'il y arrive il est alors en mode client (STATION) et n'ouvre pas le portail de configuration. S'il n'y arrive pas il se remet en mode configuration.</li>
+</ul>
+<p>WiFi Manager offre la possibilité d'étendre la saisie de paramètres complémentaires dans le portail captif. Il est de notre ressort d'en gérer le stockage (SPIFFS, carte SD ou autre).</p>
+<p>Il subsiste une problématique : une fois la configuration faite, comment procéder à des modifications WiFi ou paramètres personnalisés ?</p><ul>
+<li>Une première solution consiste à retéléverser le sketch en précisant "Sketch + WiFi Settings" ou "All Flash
+  Contents" dans le menu "Outils/Erase Flash" du NodeMcu.</li>
+<li>Une alternative logicielle sans téléversement serait d'utiliser une fonction du type DoubleResetDetector : <br  />
+ si le bouton Reset est pressé 2 fois de suite (dans un intervalle de temps donné) alors les paramètres WiFi sont effacés ce qui a pour conséquence de redémarrer en mode portail.</li>
+</ul>
+<p>Bibliothèques à installer pour utiliser ce module :</p><ul>
+<li>WiFiManager by tzapu : <a href="https://github.com/tzapu/WiFiManager">https://github.com/tzapu/WiFiManager</a></li>
+<li>Arduino JSON by Benoit Blanchon : <a href="https://github.com/bblanchon/ArduinoJson">https://github.com/bblanchon/ArduinoJson</a></li>
+</ul>
+<p>Fichier <a class="el" href="_my_wi_fi_manager_8h.html">MyWiFiManager.h</a> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>
