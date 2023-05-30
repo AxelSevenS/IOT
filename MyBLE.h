@@ -29,8 +29,7 @@
 #include <BLEServer.h>
 
 #define SERVICE_UUID        "436f6e74-6163-7420-5472-61636b657273" // "Contact Trackers" d'ascii en hexa, ça ne sert à rien mais bon                             
-//#define DEVICE_NAME         "MaximeBui-1"                          // Nom de votre serveur BLE qui sera détecté par les autres
-#define DEVICE_NAME         "MaximeBui-2"                          // Nom de votre serveur BLE qui sera détecté par les autres
+#define DEVICE_NAME         "ESP32"                          // Nom de votre serveur BLE qui sera détecté par les autres
 
 int scanTime = 5; //In seconds
 BLEScan* pBLEScan;
@@ -69,11 +68,11 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
       if (SERVICE_UUID == advertisedDevice.getServiceUUID().toString()) {
         MYDEBUG_PRINT("-BLE client / CONTACT TRACKER trouvé : ");
         MYDEBUG_PRINTLN(advertisedDevice.getServiceUUID().toString().c_str());
-        MYDEBUG_PRINT("    -- Device Name : ");
-        MYDEBUG_PRINTLN(advertisedDevice.getName().c_str());
+        MYDEBUG_PRINT("    -- Device Address : ");
+        MYDEBUG_PRINTLN(advertisedDevice.getAddress().toString().c_str());
         MYDEBUG_PRINT("    -- Device RSSI : ");
         MYDEBUG_PRINTLN(advertisedDevice.getRSSI());
-        float ratio = (-69- advertisedDevice.getRSSI())/(10 * 2);
+        float ratio = (float)(-69- advertisedDevice.getRSSI())/(10 * 2);
         float Distance = pow(10,ratio);
         MYDEBUG_PRINT("    -- Device DISTANCE : ");
         MYDEBUG_PRINTLN(Distance);

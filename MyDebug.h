@@ -22,7 +22,7 @@
  #define MYDEBUG_PRINTDEC(x)  Serial.print (x, DEC)
  #define MYDEBUG_PRINTHEX(x)  Serial.print (x, HEX)
  #define MYDEBUG_PRINTLN(x)   Serial.println (x)
- #define MYDEBUG_PRINTF(a,b,c,d,e)    Serial.printf (a,b,c,d,e)
+ #define MYDEBUG_PRINTF    Serial.printf
 #else
  #define MYDEBUG_PRINT(x)
  #define MYDEBUG_PRINTDEC(x)
