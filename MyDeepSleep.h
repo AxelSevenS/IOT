@@ -13,6 +13,7 @@
  * 
  * Fichier \ref MyDeepSleep.h
  */
+#pragma once
 
 #define uS_TO_S_FACTOR 1000000  /* Facteur de conversion de micro secondes en secondes */
 #define TIME_TO_SLEEP  3        /* Durée d'endormissement en secondes */

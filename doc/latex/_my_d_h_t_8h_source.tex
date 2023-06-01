@@ -1,0 +1,76 @@
+\hypertarget{_my_d_h_t_8h_source}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+DHT.h}
+\mbox{\hyperlink{_my_d_h_t_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <DHT\_U.h>}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ https://github.com/adafruit/Adafruit\_Sensor}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ DHT\_PIN\ \ \ \ 33\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ PIN\ numérique\ du\ DHT}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ DHT\_TYPE\ \ \ DHT11\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Type\ de\ capteur\ DHT\ :\ DHT11\ ou\ DHT22}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ DHT\_Unified\ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}(\mbox{\hyperlink{_my_d_h_t_8h_a661d236dd49f3aef3a2cf46cf6a1405e}{DHT\_PIN}},\ \mbox{\hyperlink{_my_d_h_t_8h_abfae246a91df54e807874aa8680beccb}{DHT\_TYPE}});\ \textcolor{comment}{//\ Instantiation\ du\ DHT\ Unified}}
+\DoxyCodeLine{00032\ uint32\_t\ \mbox{\hyperlink{_my_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}}\ =\ 5000;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Délai\ entre\ 2\ mesures}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_d_h_t_8h_a3c3531d948930555e462c56d4a1541be}{setupDhtSensor}}()\{}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}.begin();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}DHT\ Unified\ Sensor"{}});}
+\DoxyCodeLine{00038\ \ \ \textcolor{comment}{//\ Information\ sur\ le\ capteur\ de\ température}}
+\DoxyCodeLine{00039\ \ \ sensor\_t\ sensor;}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}.temperature().getSensor(\&sensor);}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Temperature"{}});}
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Sensor:\ \ \ \ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.name);}
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Driver\ Ver:\ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.version);}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Unique\ ID:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.sensor\_id);}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Max\ Value:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.max\_value);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ *C"{}});}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Min\ Value:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.min\_value);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ *C"{}});}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Resolution:\ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.resolution);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ *C"{}});\ \ }
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ Information\ sur\ le\ capteur\ de\ température}}
+\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}.humidity().getSensor(\&sensor);}
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Humidity"{}});}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Sensor:\ \ \ \ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.name);}
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Driver\ Ver:\ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.version);}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Unique\ ID:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(sensor.sensor\_id);}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Max\ Value:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.max\_value);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\%"{}});}
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Min\ Value:\ \ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.min\_value);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\%"{}});}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Resolution:\ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(sensor.resolution);\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\%"{}});\ \ }
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}}\ =\ sensor.min\_delay/1000;}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}\ \ (\textcolor{stringliteral}{"{}Delay:\ \ \ "{}});\ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_my_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}});\ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ ms"{}});\ \ }
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_d_h_t_8h_a34122c2884e5bf084b28134ee0620832}{getDhtData}}()\{}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ Délai\ minimum\ entre\ 2\ mesures}}
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ Délai\ entre\ 2\ mesure\ ["{}});}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_my_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}});}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}]\ ms"{}});}
+\DoxyCodeLine{00072\ \ \ delay(\mbox{\hyperlink{_my_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ Get\ temperature\ event\ and\ print\ its\ value.}}
+\DoxyCodeLine{00075\ \ \ sensors\_event\_t\ event;\ \ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}.temperature().getEvent(\&event);}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{if}\ (isnan(event.temperature))\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ Erreur\ de\ lecture\ de\ la\ température\ du\ capteur\ DHT\ !"{}});}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ ["{}});}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(event.temperature);}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}°C]\ température\ !"{}});}
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ Get\ humidity\ event\ and\ print\ its\ value.}}
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{_my_d_h_t_8h_af2a78c24e7015e72b04cfef932f1c073}{myDht}}.humidity().getEvent(\&event);}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{if}\ (isnan(event.relative\_humidity))\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ Erreur\ de\ lecture\ de\ l'humidité\ du\ capteur\ DHT\ !"{}});}
+\DoxyCodeLine{00089\ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ ["{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(event.relative\_humidity);}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\%]\ Humidité\ !"{}});}
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ \}}
+
+\end{DoxyCode}

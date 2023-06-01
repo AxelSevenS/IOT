@@ -1,0 +1,27 @@
+\hypertarget{_my_core0_8h_source}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+Core0.h}
+\mbox{\hyperlink{_my_core0_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ TaskHandle\_t\ \mbox{\hyperlink{_my_core0_8h_aa8a74d99e32c031fea96c5a186b717ae}{Task1}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_core0_8h_a61bec60239699163c5bd2829304a7ec0}{loop2}}(\ \textcolor{keywordtype}{void}\ *\ parameter\ )}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{_my_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{loopWebServer}}();}
+\DoxyCodeLine{00024\ \ \ \ \ delay(20);}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_core0_8h_a72b18d168de0521a74065d60a8c1bd9e}{setupMyCore0}}()\{}
+\DoxyCodeLine{00029\ \ \ \textcolor{comment}{//\ Initialisation\ d'une\ tâche\ que\ nous\ allons\ mettre\ sur\ le\ Core\ 0}}
+\DoxyCodeLine{00030\ \ \ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{_my_core0_8h_a61bec60239699163c5bd2829304a7ec0}{loop2}},\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nom\ de\ la\ fonction\ associée\ à\ la\ tâche}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{stringliteral}{"{}secondLoop"{}},\ \ \ \textcolor{comment}{//\ Nom\ de\ la\ tâche}}
+\DoxyCodeLine{00033\ \ \ \ \ 10000,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taille\ mémoire\ assignée\ à\ la\ tâche}}
+\DoxyCodeLine{00034\ \ \ \ \ NULL,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mettre\ NULL\ dans\ tous\ les\ cas}}
+\DoxyCodeLine{00035\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Priorité\ de\ la\ tâche\ :\ 0\ étant\ la\ haute\ priorité.\ *IMPORTANT*\ Si\ priorité\ 1\ et\ pas\ d'activité\ sur\ la\ tâche\ alors\ l'ESP\ est\ redémarré}}
+\DoxyCodeLine{00036\ \ \ \ \ \&\mbox{\hyperlink{_my_core0_8h_aa8a74d99e32c031fea96c5a186b717ae}{Task1}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reference\ d'une\ variable\ taskHandle}}
+\DoxyCodeLine{00037\ \ \ \ \ 0);\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Choisir\ le\ core\ 0\ ou\ 1}}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}

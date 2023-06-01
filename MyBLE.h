@@ -16,25 +16,33 @@
 
  * En mode client, il est possible de scanner les équipements bluetooth et de potentiellement se connecter à eux
  * pour échanger des données.
- * 
+ *                                             
  * Les serveurs "publient" ou font la promotion de leurs services pour que les clients puissent savoir ce qu'ils
  * proposent avant de se connecter.
  * Dans notre cas, nous publierons simplement un service et un nom d'équipement. Cela sera suffisant pour savoir
  * quels sont les équipements à proximité qui proposent un service donné "Contact Tracker" et leurs noms.
  */
+#pragma once
 
 
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
+#include "MyNTP.h"
 
 #define SERVICE_UUID        "436f6e74-6163-7420-5472-61636b657273" // "Contact Trackers" d'ascii en hexa, ça ne sert à rien mais bon                             
 #define DEVICE_NAME         "ESP32"                          // Nom de votre serveur BLE qui sera détecté par les autres
 
+#define BLE_FREQ         10
+
+
 int scanTime = 5; //In seconds
 BLEScan* pBLEScan;
+Ticker MyBLETicker;
 
 int iCompteur = 0;
+
+long BLE_last_scan;
 
 /**
  * Configuration du serveur BLE
@@ -65,20 +73,102 @@ void setupBLEServer() {
  */
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {    
     void onResult(BLEAdvertisedDevice advertisedDevice) {
-      if (SERVICE_UUID == advertisedDevice.getServiceUUID().toString()) {
-        MYDEBUG_PRINT("-BLE client / CONTACT TRACKER trouvé : ");
-        MYDEBUG_PRINTLN(advertisedDevice.getServiceUUID().toString().c_str());
-        MYDEBUG_PRINT("    -- Device Address : ");
-        MYDEBUG_PRINTLN(advertisedDevice.getAddress().toString().c_str());
-        MYDEBUG_PRINT("    -- Device RSSI : ");
-        MYDEBUG_PRINTLN(advertisedDevice.getRSSI());
-        float ratio = (float)(-69- advertisedDevice.getRSSI())/(10 * 2);
-        float Distance = pow(10,ratio);
-        MYDEBUG_PRINT("    -- Device DISTANCE : ");
-        MYDEBUG_PRINTLN(Distance);
+      if (WiFi.status() != WL_CONNECTED) {
+        return;
+      }
+
+      if (SERVICE_UUID != advertisedDevice.getServiceUUID().toString()) {
+        return;
+      }
+
+      std::string address = advertisedDevice.getAddress().toString();
+      
+      MYDEBUG_PRINT("-BLE client : CONTACT Tracer trouvé : ");
+      MYDEBUG_PRINTLN(address.c_str());
+
+
+      float ratio = (float)(-69 -advertisedDevice.getRSSI())/(10 * 2);
+      float distance = pow(10,ratio);
+
+      // If the Contact Tracer is close enough, advance the "contact" timer.
+      if (distance < monitoring_distance) {
+        
+        SPIFFS.begin();
+
+        File configFile = SPIFFS.open(strConfigFile, "r");
+        DynamicJsonDocument jsonDocument(512);
+        DeserializationError error = deserializeJson(jsonDocument, configFile);
+        
+        if (error){
+          MYDEBUG_PRINT("-SPIFFS : [ERREUR : ");
+          MYDEBUG_PRINT(error.c_str());
+          MYDEBUG_PRINTLN("] Impossible de parser le JSON, création d'un nouveau fichier");
+        }
+        
+
+
+        auto monitored = jsonDocument["monitored"];
+
+        
+        auto first_contact = monitored[address]["first_contact"];
+        if ( first_contact.isNull() ) {
+          first_contact = getNTP();
+        }
+
+
+        auto total_exposure = monitored[address]["total_exposure"];
+        float exposure_time = total_exposure.as<float>();
+        float time_since_scan_millis = millis() - BLE_last_scan;
+        BLE_last_scan = millis();
+        float time_since_scan = time_since_scan_millis / (float)1000;
+
+        if ( total_exposure.isNull() ) {
+          total_exposure = time_since_scan;
+        } else {
+          total_exposure = exposure_time + time_since_scan;
+        }
+
+        exposure_time = total_exposure.as<float>();
+        if (exposure_time > (float)monitoring_time * 60) {
+          monitored[address]["contact"] = true;
+        }
+
+        if ( monitored[address]["contact"] == true && monitored[address]["status"] == "SICK" /* && userStatus == SAFE */ ) {
+          //TODO : envoyer un message à l'utilisateur pour lui dire qu'il est en contact avec un malade
+          MYDEBUG_PRINTLN("Envoi d'un message à l'utilisateur pour lui dire qu'il est en contact avec un malade");
+          userStatus = CONTACT;
+        }
+
+        configFile.close();
+        configFile = SPIFFS.open(strConfigFile, "w");
+
+        if ( !configFile ) {
+          MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en écriture");
+          configFile.close();
+          SPIFFS.end();
+          return;
+        }
+
+        if (serializeJson(jsonDocument, configFile) == 0) {
+          MYDEBUG_PRINTLN("-SPIFFS : Impossible d'écrire le JSON dans le fichier de configuration");
+        }
+
+        configFile.close();
+        SPIFFS.end();
       }
     }
 };
+
+void BLEScan() {
+  MYDEBUG_PRINTLN("-BLE Client : Scan");
+  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
+
+  MYDEBUG_PRINT("-BLE Client : Devices trouvés ");
+  MYDEBUG_PRINTLN(foundDevices.getCount());
+
+  pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
+  MYDEBUG_PRINTLN("-BLE Client : Scan terminé");
+}
 
 /**
  * Configuration du client BLE
@@ -94,7 +184,12 @@ void setupBLEClient() {
   pBLEScan->setActiveScan(true); //active scan uses more power, but get results faster
   pBLEScan->setInterval(100);
   pBLEScan->setWindow(99);  // less or equal setInterval value
+
+  BLE_last_scan = millis();
+
   MYDEBUG_PRINTLN("-BLE Client : Démarré");
+
+  // MyBLETicker.attach(BLE_FREQ, BLEScan);
 }
 
 /**
@@ -103,12 +198,5 @@ void setupBLEClient() {
  * - une fois terminé, on efface les résultats pour pouvoir recommencer tranquillement
  */
 void loopBLEClient() {
-  MYDEBUG_PRINTLN("-BLE Client : Scan");
-  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-
-  MYDEBUG_PRINT("-BLE Client : Devices trouvés ");
-  MYDEBUG_PRINTLN(foundDevices.getCount());
-
-  pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
-  MYDEBUG_PRINTLN("-BLE Client : Scan terminé");
+  BLEScan();
 }

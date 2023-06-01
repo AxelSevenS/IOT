@@ -43,46 +43,54 @@
  * 
  * Fichier \ref MyAdafruitIO.h
  */
+#pragma once
 
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
+#include "MyBLE.h"
 
 /************************* Configuration *************************************/
 // Connexion Adafruit
 #define IO_SERVER         "io.adafruit.com"
 #define IO_SERVERPORT     1883
 #define IO_USERNAME       "feur25"
-#define IO_KEY            "aio_apRF80MPKZudYpiOZ4FTBVuiXq6Y"
+#define IO_KEY            "aio_woCH11XUSWVgHDhatnxPe8B9BcZz"
 // Feeds
-#define FEED_SLIDER       "/feeds/slider"
-#define FEED_ONOFF        "/feeds/onoff"
-#define FEED_TEMPERATURE  "/feeds/temperature"
-#define FEED_HUMIDITY     "/feeds/humidity"
-#define FEED_ETATDESANTE  "/feeds/feur25/NewFeed"
-#define FEED_ES_CONTACT   "/feeds/feur25/Health"
+#define FEED_SLIDER           "/feeds/slider"
+#define FEED_ONOFF            "/feeds/onoff"
+#define FEED_TEMPERATURE      "/feeds/temperature"
+#define FEED_HUMIDITY         "/feeds/humidity"
+#define FEED_HEALTH           "/feeds/health"
+
 // Frequence d'envoi des données
-#define FEED_FREQ         5
+#define FEED_FREQ           10
+#define PROCESS_PACKETS_MS  10000
 
 /************************** Variables ****************************************/
 // Instanciation du client WiFi qui servira à se connecter au broker Adafruit
 WiFiClient client;
 // Instanciation du client Adafruit avec les informations de connexion
-Adafruit_MQTT_Client MyAdafruitMqtt(&client, IO_SERVER, IO_SERVERPORT, IO_USERNAME, IO_USERNAME, IO_KEY);
+Adafruit_MQTT_Client MyAdafruitMqtt(&client, IO_SERVER, IO_SERVERPORT, /* IO_USERNAME,  */IO_USERNAME, IO_KEY);
 // Variable de stockage de la valeur du slider
 uint32_t uiSliderValue=0;
 Ticker MyAdafruitTicker;
 
+
 /****************************** Feeds ****************************************/
 // Création des Feed auxquels nous allons souscrire :
 // Un FEED 'time' pour récupérer l'heure
-Adafruit_MQTT_Subscribe timefeed = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, "time/seconds");
-// Un FEED 'slider' pour récupérer la valeur d'un slider présent sur le dashboard
-Adafruit_MQTT_Subscribe slider = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_SLIDER, MQTT_QOS_1);
-// Un FEED 'onoff' pour récupérer l'état d'un interrupteur présent sur le dashboard
-Adafruit_MQTT_Subscribe onoffbutton = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_ONOFF, MQTT_QOS_1);
-// Un FEED 'temperature' et 'humidity' pour publier des données de télémétrie
-Adafruit_MQTT_Publish temperatureFeed = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_TEMPERATURE);
-Adafruit_MQTT_Publish humidityFeed = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_HUMIDITY);
+// Adafruit_MQTT_Publish temperatureFeed = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_TEMPERATURE);
+// Adafruit_MQTT_Publish humidityFeed = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_HUMIDITY);
+Adafruit_MQTT_Publish healthPublish = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_HEALTH);
+
+// Adafruit_MQTT_Subscribe timefeed = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, "time/seconds");
+// Adafruit_MQTT_Subscribe slider = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_SLIDER, MQTT_QOS_1);
+// Adafruit_MQTT_Subscribe onoffbutton = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_ONOFF, MQTT_QOS_1);
+Adafruit_MQTT_Subscribe health = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_HEALTH, MQTT_QOS_1);
+
+//s'abonne un l'état de santé d'un utilisateur
+// Adafruit_MQTT_Subscribe ownerHealth = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, IO_USERNAME FEED_OWNER_HEALTH, MQTT_QOS_1);
+// Adafruit_MQTT_Publish ownerHealthPublish = Adafruit_MQTT_Publish(&MyAdafruitMqtt, IO_USERNAME FEED_OWNER_HEALTH);
 
 /*************************** Sketch Code ************************************/
 int sec;
@@ -92,134 +100,143 @@ int hour;
 int timeZone = 1; // GMT+1 pour la France
 
 
+
+void healthCallback(char *data, uint16_t len){
+
+
+  char* chars_array = strtok(data, "=");
+  String address = String(chars_array);
+
+  chars_array = strtok(NULL, "=");
+  const char* status = chars_array;
+
+  // Do nothing if the callback is from this device
+  if ( String(BLEDevice::getAddress().toString().c_str()) == address ) {
+    return;
+  }
+
+  MYDEBUG_PRINT("-Adafruit : Réception des Données de Santé Utilisateur : ");
+  MYDEBUG_PRINTLN(data);
+
+
+  SPIFFS.begin();
+
+  File file = SPIFFS.open(strConfigFile, "r");
+  DynamicJsonDocument jsonDocument(512);
+  DeserializationError error = deserializeJson(jsonDocument, file);
+  
+  if (error){
+    MYDEBUG_PRINT("-SPIFFS : [ERREUR : ");
+    MYDEBUG_PRINT(error.c_str());
+    MYDEBUG_PRINTLN("] Impossible de parser le JSON, création d'un nouveau fichier");
+  }
+
+  auto monitored = jsonDocument["monitored"];
+  auto updatedUser = monitored[address];
+  if ( updatedUser["contact"] == true && status == "SICK" && updatedUser["status"] != "SICK" && userStatus == SAFE ) {
+    //TODO : envoyer un message à l'utilisateur pour lui dire qu'il est en contact avec un malade
+    MYDEBUG_PRINTLN("Envoi d'un message à l'utilisateur pour lui dire qu'il est en contact avec un malade");
+    userStatus = CONTACT;
+    jsonDocument["status"] = userStatus == SAFE ? "SAFE" : userStatus == CONTACT ? "CONTACT" : "SICK";
+  }
+  updatedUser["status"] = status;
+
+
+  file.close();
+  file = SPIFFS.open(strConfigFile, "w");
+
+  serializeJson(jsonDocument, file);
+
+  file.close();
+  SPIFFS.end();
+
+}
+
 /**
  * Connexion au broker Adafruit IO
  */
-bool connectAdafruitIO() {
+bool connectAdafruitIO(int cycles = 50) {
+
+  if (WiFi.status() != WL_CONNECTED) {
+    return false;
+  }
 
   if (MyAdafruitMqtt.connected()) {                       // Si déjà connecté, alors c'est tout bon
     return true; 
   }
-  
-  check_WiFi_connection();
 
-  MYDEBUG_PRINTLN("-AdafruitIO : Connexion au broker ... ");
+  MYDEBUG_PRINT("-AdafruitIO : Connexion au broker");
 
   int8_t ret;
-  while ((ret = MyAdafruitMqtt.connect()) != 0) {                  // Retourne 0 si déjà connecté
-    MYDEBUG_PRINT("-AdafruitIO : [ERREUR : ");
-    MYDEBUG_PRINT(MyAdafruitMqtt.connectErrorString(ret));
-    MYDEBUG_PRINT("] nouvelle tentative dans 5 secondes ...\n");
-    MyAdafruitMqtt.disconnect();                                  // Deconnexion pour être propre
-    delay(5000);                                                 // On attend 10 secondes avant de retenter le coup
+  for (int i = 0; i < cycles; i++) {
+
+    if ((ret = MyAdafruitMqtt.connect()) == 0) {
+      MYDEBUG_PRINTLN("\n-AdafruitIO : Connecté au Broker.");
+      return true;
+    }
+    MYDEBUG_PRINT(".");
+    delay(100);
   }
 
-  MYDEBUG_PRINTLN("-AdafruitIO : Connecté au Broker.");
+  MYDEBUG_PRINT("\n-AdafruitIO : [ERREUR : ");
+  MYDEBUG_PRINT(MyAdafruitMqtt.connectErrorString(ret));
+  MYDEBUG_PRINT("] Impossible de se connecter au broker ...\n");
 
-  return true;
+  MyAdafruitMqtt.disconnect();                                  // Deconnexion pour être propre
+
+  return false;
 }
 
-
-void timecallback(uint32_t current) {
-
-  // adjust to local time zone
-  current += (timeZone * 60 * 60);
-
-  // calculate current time
-  sec = current % 60;
-  current /= 60;
-  mini = current % 60;
-  current /= 60;
-  hour = current % 24;
-
-  // print hour
-  if(hour == 0 || hour == 12)
-    Serial.print("12");
-  if(hour < 12)
-    Serial.print(hour);
-  else
-    Serial.print(hour - 12);
-
-  // print mins
-  Serial.print(":");
-  if(mini < 10) Serial.print("0");
-  Serial.print(mini);
-
-  // print seconds
-  Serial.print(":");
-  if(sec < 10) Serial.print("0");
-  Serial.print(sec);
-
-  if(hour < 12)
-    Serial.println(" AM");
-  else
-    Serial.println(" PM");
-
-}
-
-/**
- * Callback associée au Slider présent sur le dashboard
- */
-void slidercallback(double uiSliderValue) {
-  MYDEBUG_PRINT("-AdafruitIO : Callback du feed slider avec la valeur ");
-  MYDEBUG_PRINTLN(uiSliderValue);
-}
-
-/**
- * Callback associée à l'interrupteur sur le dashboard
- */
-void onoffcallback(char *data, uint16_t len) {
-  MYDEBUG_PRINT("-AdafruitIO : Callback du feed onoff avec la valeur ");
-  MYDEBUG_PRINTLN(data);
-  if (!strcmp(data, "ON")){
-    MYDEBUG_PRINTLN("-AdafruitIO : J'allume");
-  }
-  else { 
-    MYDEBUG_PRINTLN("-AdafruitIO : J'éteins");
-  }
-}
 
 /**
  * Récupération et envoi des données de télémétrie
  */
 void getAndSendDataToAdafruit(){
-
-  connectAdafruitIO(); // Connexion au broker Adafruit
-
-  // Récupération des données
-  float myRandomTemp = 20+(float)random(-50,50)/10;
-  float myRandomHum = 50+(float)random(-100,100)/10;
-
+  
+  if ( !connectAdafruitIO() ) { // Connexion au broker Adafruit
+    return;
+  }
+  // connectAdafruitIO();
+  
   MYDEBUG_PRINTLN("-AdafruitIO TICKER : Envoi des données");
 
-  // Envoi des données au Broker
-  temperatureFeed.publish(myRandomTemp);
-  humidityFeed.publish(myRandomHum);
+  // float myRandomTemp = 20+(float)random(-50,50)/10;
+  // float myRandomHum = 50+(float)random(-100,100)/10;
+
+
+  if (userStatus == SAFE) {
+    return;
+  }
+
+  char* healthStatePublish;
+  const char* address = BLEDevice::getAddress().toString().c_str();
+  const char* statusDisplay = userStatus == SAFE ? "SAFE" : userStatus == CONTACT ? "CONTACT" : "SICK";
+  asprintf(&healthStatePublish, "%s=%s", address, statusDisplay);
+
+  // temperatureFeed.publish(myRandomTemp);
+  // humidityFeed.publish(myRandomHum);
+  bool healthPublishState = healthPublish.publish(healthStatePublish);
+  if ( !healthPublishState ) {
+    MYDEBUG_PRINTLN("-AdafruitIO : [ERREUR] Impossible d'envoyer les données de santé");
+  }
 }
 
 /**
- * Configuration de la connexion au borker Adafruit IO
+ * Configuration de la connexion au broker Adafruit IO
  * - Connexion WiFi
  * - Configuration de l'actuateur
  * - Configuration des callbacks
  */
 void setupAdafruitIO() {
 
-  if ( !connectAdafruitIO() ) { // Connexion au broker Adafruit
-    return;
-  }
+  // if ( !connectAdafruitIO() ) { // Connexion au broker Adafruit
+  //   return;
+  // }
 
-  // Configuration des callbacks pour les FEEDs auxquels on veut souscrire
-  //timefeed.setCallback(timecallback);
-  slider.setCallback(slidercallback);
-  onoffbutton.setCallback(onoffcallback);
-  
-  // Souscription aux FEEDs
-  MyAdafruitMqtt.subscribe(&timefeed);
-  MyAdafruitMqtt.subscribe(&slider);
-  MyAdafruitMqtt.subscribe(&onoffbutton);
+  health.setCallback(healthCallback);
+  MyAdafruitMqtt.subscribe(&health);
 
-  // MyAdafruitTicker.attach(FEED_FREQ, getAndSendDataToAdafruit);
+  MyAdafruitTicker.attach(FEED_FREQ, getAndSendDataToAdafruit);
 }
 
 /**
@@ -229,9 +246,10 @@ void setupAdafruitIO() {
  * - Maintien de la connexion en vie avec un Ping si on aucun publish télémétrie n'est fait
  */
 void loopAdafruitIO() {
-  // connectAdafruitIO();
-  MyAdafruitMqtt.processPackets(10000);
-  if(! MyAdafruitMqtt.ping()) {
+  connectAdafruitIO();
+  
+  MyAdafruitMqtt.processPackets(PROCESS_PACKETS_MS);
+  if( !MyAdafruitMqtt.ping() ) {
     MyAdafruitMqtt.disconnect();
   }
 }

@@ -1,0 +1,11 @@
+Optimisation de l\textquotesingle{}utilisation du port série en mode DEBUG.
+
+L\textquotesingle{}utilisation du port série demande des ressources, donc si on n\textquotesingle{}est pas en mode DEBUG, on peut s\textquotesingle{}en passer.~\newline
+ Ainsi tous les appels direct au port série de type Serial.\+print() ou Serial.\+println() seront remplacés par l\textquotesingle{}utilisation de macros.
+
+Si le mode debug est activé alors les macros seront remplacées par des appels au port série; sinon ils seront juste ignorés.
+
+\begin{DoxyNote}{Note}
+L\textquotesingle{}activation du mode debug se fait à l\textquotesingle{}aide de la macro MYDEBUG. Il faut donc qu\textquotesingle{}elle soit initialisée {\bfseries{avant}} le \#include de ce fichier si on veut qu\textquotesingle{}il soit pris en compte.
+\end{DoxyNote}
+Fichier \mbox{\hyperlink{_my_debug_8h}{My\+Debug.\+h}} 

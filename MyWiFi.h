@@ -1,172 +1,24 @@
+#pragma once
+
 #include <WiFi.h>         // WiFi
 
-String ap_ssid;
-String ap_password;
-
-String net_ssid;
-String net_password;
+/** 
+ * \file CTWiFi.h
+ * \page wifi WiFi
+ * \brief WiFi Connection system
+ * 
+*/
 
 bool ap_launched = false;
+Ticker MyWiFiTicker;
 
 
-
-void update_AP_config( const char* new_ap_ssid, const char* new_ap_password ) {
-  
-  if (!SPIFFS.begin(true))
-    return;
-
-  File configFile = SPIFFS.open(strConfigFile, "r");
-
-  if ( !configFile ) { // ------------------------- File can't be read
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en mode lecture");
-    configFile.close();
-    SPIFFS.end();
-    return;
-  }
-
-  DynamicJsonDocument jsonDocument(512);
-  DeserializationError error = deserializeJson(jsonDocument, configFile);
-
-  if (error){
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible de parser le JSON, création d'un nouveau fichier");
-  }
-  configFile.close();
-  configFile = SPIFFS.open(strConfigFile, "w");
-
-  if ( !configFile ) { // ------------------------- File can't be read
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en mode écriture");
-    configFile.close();
-    SPIFFS.end();
-    return;
-  }
-
-  jsonDocument["wifi"]["ap_ssid"] = new_ap_ssid;
-  ap_ssid = String(new_ap_ssid);
-
-  jsonDocument["wifi"]["ap_password"] = new_ap_password;
-  ap_password = String(new_ap_password);
-
-  if (serializeJson(jsonDocument, configFile) == 0) {
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'écrire le JSON dans le fichier de configuration");
-  }
-
-  // Fermeture du fichier
-  configFile.close();
-  SPIFFS.end();  
-
-}
-
-void update_network_config( const char* new_net_ssid, const char* new_net_password ) {
-  
-  if (!SPIFFS.begin(true))
-    return;
-
-  File configFile = SPIFFS.open(strConfigFile, "r");
-
-  if ( !configFile ) { // ------------------------- File can't be read
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en mode lecture");
-    configFile.close();
-    SPIFFS.end();
-    return;
-  }
-
-  DynamicJsonDocument jsonDocument(512);
-  DeserializationError error = deserializeJson(jsonDocument, configFile);
-
-  if (error){
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible de parser le JSON, création d'un nouveau fichier");
-  }
-  configFile.close();
-  configFile = SPIFFS.open(strConfigFile, "w");
-
-  if ( !configFile ) { // ------------------------- File can't be read
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en mode écriture");
-    configFile.close();
-    SPIFFS.end();
-    return;
-  }
-
-  jsonDocument["wifi"]["net_ssid"] = new_net_ssid;
-  net_ssid = String(new_net_ssid);
-
-  jsonDocument["wifi"]["net_password"] = new_net_password;
-  net_password = String(new_net_password);
-
-  if (serializeJson(jsonDocument, configFile) == 0) {
-    MYDEBUG_PRINTLN("-SPIFFS : Impossible d'écrire le JSON dans le fichier de configuration");
-  }
-
-  // Fermeture du fichier
-  configFile.close();
-  SPIFFS.end();  
-
-}
-
-
-
-
-void wifiScan() {
-
-  int n = WiFi.scanNetworks();
-  MYDEBUG_PRINT("Scan done | ");
-  if (n == 0) {
-      MYDEBUG_PRINTLN("no networks found");
-  } else {
-      MYDEBUG_PRINT(n);
-      MYDEBUG_PRINTLN(" networks found");
-      MYDEBUG_PRINTLN("Nr | SSID                             | RSSI | CH | Encryption");
-      for (int i = 0; i < n; ++i) {
-          // Print SSID and RSSI for each network found
-          Serial.printf("%2d",i + 1);
-          MYDEBUG_PRINT(" | ");
-          Serial.printf("%-32.32s", WiFi.SSID(i).c_str());
-          MYDEBUG_PRINT(" | ");
-          Serial.printf("%4d", WiFi.RSSI(i));
-          MYDEBUG_PRINT(" | ");
-          Serial.printf("%2d", WiFi.channel(i));
-          MYDEBUG_PRINT(" | ");
-          switch (WiFi.encryptionType(i))
-          {
-            case WIFI_AUTH_OPEN:
-                Serial.print("open");
-                break;
-            case WIFI_AUTH_WEP:
-                Serial.print("WEP");
-                break;
-            case WIFI_AUTH_WPA_PSK:
-                Serial.print("WPA");
-                break;
-            case WIFI_AUTH_WPA2_PSK:
-                Serial.print("WPA2");
-                break;
-            case WIFI_AUTH_WPA_WPA2_PSK:
-                Serial.print("WPA+WPA2");
-                break;
-            case WIFI_AUTH_WPA2_ENTERPRISE:
-                Serial.print("WPA2-EAP");
-                break;
-            case WIFI_AUTH_WPA3_PSK:
-                Serial.print("WPA3");
-                break;
-            case WIFI_AUTH_WPA2_WPA3_PSK:
-                Serial.print("WPA2+WPA3");
-                break;
-            case WIFI_AUTH_WAPI_PSK:
-                Serial.print("WAPI");
-                break;
-            default:
-                Serial.print("unknown");
-          }
-          MYDEBUG_PRINTLN();
-          delay(10);
-      }
-  }
-  MYDEBUG_PRINTLN("");
-  
-  WiFi.scanDelete();
-}
-
-
+/**
+* @brief launch_acces_point permet de créer un point d'accés de la carte esp pour permettre de la detecter sur le réseaux (Hamburger) et d'interagir avec cette dernière  
+* @param ssid Nom du point d'accés de l'esp
+* @param password Mot de passe de ce dernier
+*
+*/
 
 void launch_access_point(const char* ssid, const char* password) {
   WiFi.softAPdisconnect(true);
@@ -176,13 +28,24 @@ void launch_access_point(const char* ssid, const char* password) {
 
   update_AP_config(ssid, password);
   
-  MYDEBUG_PRINTLN("-WIFI : Access Point Démarré");
-  MYDEBUG_PRINTF("-WIFI : Connectez-vous à %s et ouvrez %s dans un navigateur web\n", ap_ssid.c_str(), WiFi.softAPIP().toString().c_str());
+  MYDEBUG_PRINTLN("-WIFI AP : Access Point Démarré");
+  MYDEBUG_PRINTF("-WIFI AP : Connectez-vous à %s et ouvrez %s dans un navigateur web\n", ap_ssid.c_str(), WiFi.softAPIP().toString().c_str());
   if ( WiFi.status() == WL_CONNECTED ) {
-    MYDEBUG_PRINTF("-WIFI : ou connectez-vous à %s et ouvrez %s\n", net_ssid.c_str(), WiFi.localIP().toString().c_str());
+    MYDEBUG_PRINTF("-WIFI AP : ou connectez-vous à %s et ouvrez %s\n", net_ssid.c_str(), WiFi.localIP().toString().c_str());
   }
 }
 
+
+/**
+ * @brief Vérifie l'état du point d'accès réseau du Contact Tracer; si il n'est pas démarré, il le démarre.\n 
+ * Pour ceci, on utilise @ref ap_launched.
+ * En conséquence, on peut changer la valeur de @ref ap_launched pour forcer un redémarrage de l'Access Point.
+ * 
+ * @return true 
+ * lorsque le Point d'accès est déjà démarré et ne redémarre donc pas.
+ * @return false 
+ * lorsque le Point d'accès n'est pas démarré et par conséquent, démarre.
+ */
 bool check_AP_state() {
   if (ap_launched) {
     return true;
@@ -196,33 +59,46 @@ bool check_AP_state() {
 
 
 
-
-bool connect_WiFi_AP(const char* ssid, const char* password) {
+/**
+* @brief connect_Wifi_network est une fonction qui sert à se connecter au Access point "Hamburger" avec l'esp
+* @param ssid id de connexion
+* @param password mot de passe de l'ap
+* @param cycles nombres de tentatives de check de la connexion 
+*
+*/
+bool connect_WiFi_network(const char* ssid, const char* password, uint cycles = 50) {
   WiFi.disconnect(true);
   WiFi.begin(ssid, password);
   
   MYDEBUG_PRINT("-WIFI : Connexion au réseau : ");
-  MYDEBUG_PRINTLN(ssid);
+  MYDEBUG_PRINT(ssid);
 
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < cycles; i++) {
     if (WiFi.status() == WL_CONNECTED) {
 
-      MYDEBUG_PRINT("-WIFI : Réussite, connecté à ");
+      MYDEBUG_PRINT("\n-WIFI : Réussite, connecté à ");
       MYDEBUG_PRINTLN(ssid);
+
       update_network_config(ssid, password);
-      ap_launched = false;
-      check_AP_state();
+      launch_access_point(ap_ssid.c_str(), ap_password.c_str());
+      
       return true;
     }
     MYDEBUG_PRINT(".");
-    delay(500);
+    delay(100);
   }
-  MYDEBUG_PRINTLN("");
-    
-  MYDEBUG_PRINTLN("-WIFI : Connexion échouée");
+  MYDEBUG_PRINTLN("\n-WIFI : Connexion échouée");
   return false;
 }
 
+/**
+ * @brief Vérifie l'état du Point d'accès réseau du Contact Tracer; si il n'est pas connecté, il tente de se connecter.\n
+ * 
+ * @return true 
+ * lorsque le Contact Tracer est déjà connecté au Point d'accès et ne fait donc rien.
+ * @return false 
+ * lorsque le Contact Tracer n'a pas réussi à se connecter.
+ */
 bool check_WiFi_connection() {
   if (WiFi.status() == WL_CONNECTED) {
     return true;
@@ -230,21 +106,24 @@ bool check_WiFi_connection() {
 
   get_config();
 
-  return connect_WiFi_AP(net_ssid.c_str(), net_password.c_str());
+  return connect_WiFi_network(net_ssid.c_str(), net_password.c_str());
 }
 
 
 
 bool try_WiFi_connect(const char* ssid, const char* password) {
   
-  bool connectionSuccess = connect_WiFi_AP(ssid, password);
+  bool connectionSuccess = connect_WiFi_network(ssid, password, 20);
 
   if ( !connectionSuccess ) {
 
-    WiFi.disconnect(true);
-    WiFi.begin(net_ssid, net_password);
+    // MYDEBUG_PRINT("-WIFI : Échec de connexion à ");
+    // MYDEBUG_PRINTLN(ssid);
     MYDEBUG_PRINT("-WIFI : connecté à ");
     MYDEBUG_PRINTLN(net_ssid);
+
+    WiFi.disconnect(true);
+    WiFi.begin(net_ssid, net_password);
 
     return false;
   }
@@ -252,21 +131,32 @@ bool try_WiFi_connect(const char* ssid, const char* password) {
   return true;
 }
 
+void WiFiTicker() {
 
-void setupWiFi(){
-  MYDEBUG_PRINTLN();
+  // check_AP_state();
+  check_WiFi_connection();
+}
+
+/**
+* @brief Mise en place du wifi (setupwifi())
+*
+*/
+void setupWiFi() {
   MYDEBUG_PRINTLN("-WIFI : Configuration ");
 
   // Configuration de la carte en mode Access Point ET Station
   WiFi.mode(WIFI_AP_STA);
 
-  check_AP_state();
+  launch_access_point(ap_ssid.c_str(), ap_password.c_str());
+  connect_WiFi_network(net_ssid.c_str(), net_password.c_str());
 
-  // Connexion à internet via la wifi configurée en mode Station
-  check_WiFi_connection();
+  MyWiFiTicker.attach(20, WiFiTicker);
+
+  // check_AP_state();
+  // check_WiFi_connection();
 }
 
 void loopWiFi() {
-  check_AP_state();
-  check_WiFi_connection();
+  // check_AP_state();
+  // check_WiFi_connection();
 }

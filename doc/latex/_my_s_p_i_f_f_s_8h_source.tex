@@ -1,0 +1,135 @@
+\hypertarget{_my_s_p_i_f_f_s_8h_source}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+SPIFFS.h}
+\mbox{\hyperlink{_my_s_p_i_f_f_s_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}SPIFFS.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}\ \ \ \textcolor{comment}{//Arduino\ JSON\ by\ Benoit\ Blanchon\ :\ https://github.com/bblanchon/ArduinoJson}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a9b651c510f4d02eda3be6d983307b59c}{strConfigFile}}\ =\ \textcolor{stringliteral}{"{}/config.json"{}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ String\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a61831dec6470ff0d496c9c3ed2c356f8}{ap\_ssid}};}
+\DoxyCodeLine{00009\ String\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a27ff3c3f9850a1e6cbb51dc6fe0a0397}{ap\_password}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ String\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{00012\ String\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}()\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ File\ configFile\ =\ SPIFFS.open(\mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a9b651c510f4d02eda3be6d983307b59c}{strConfigFile}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (\ !configFile\ )\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ lecture"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ configFile.close();}
+\DoxyCodeLine{00023\ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Lecture\ du\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{00028\ \ \ DynamicJsonDocument\ jsonDocument(512);}
+\DoxyCodeLine{00029\ \ \ DeserializationError\ error\ =\ deserializeJson(jsonDocument,\ configFile);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (error)\{}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ de\ parser\ le\ JSON,\ création\ d'un\ nouveau\ fichier"{}});}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ json\_ap\_ssid\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_ssid"{}}];}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}\ (\ !json\_ap\_ssid\ )\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ default\_ap\_ssid\ =\ \textcolor{stringliteral}{"{}ESP32\_Axel"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_ssid"{}}]\ =\ default\_ap\_ssid;}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a61831dec6470ff0d496c9c3ed2c356f8}{ap\_ssid}}\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_ssid"{}}].as<String>();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ json\_ap\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_password"{}}];}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (\ !json\_ap\_password\ )\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ default\_ap\_password\ =\ \textcolor{stringliteral}{"{}AdminSex"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_password"{}}]\ =\ default\_ap\_password;}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a27ff3c3f9850a1e6cbb51dc6fe0a0397}{ap\_password}}\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}ap\_password"{}}].as<String>();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ json\_net\_ssid\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}];}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordflow}{if}\ (\ !json\_net\_ssid\ )\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ default\_net\_ssid\ =\ \textcolor{stringliteral}{"{}Hamburger"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}]\ =\ default\_net\_ssid;}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}].as<String>();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ json\_net\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}];}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (\ !json\_net\_password\ )\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ default\_net\_password\ =\ \textcolor{stringliteral}{"{}YoLesKids"{}};}
+\DoxyCodeLine{00059\ \ \ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}]\ =\ default\_net\_password;}
+\DoxyCodeLine{00060\ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}}\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}].as<String>();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ configFile.close();}
+\DoxyCodeLine{00065\ \ \ configFile\ =\ SPIFFS.open(\mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a9b651c510f4d02eda3be6d983307b59c}{strConfigFile}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (\ !configFile\ )\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ ecriture"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ configFile.close();}
+\DoxyCodeLine{00070\ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00072\ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{if}\ (serializeJson(jsonDocument,\ configFile)\ ==\ 0)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'écrire\ le\ JSON\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ Fermeture\ du\ fichier}}
+\DoxyCodeLine{00080\ \ \ configFile.close();}
+\DoxyCodeLine{00081\ \ \ SPIFFS.end();\ \ }
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ String\ readFile(const\ char*\ path)\ \{}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Lecture\ du\ fichier\ "{}\ +\ String(path));}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ \ File\ file\ =\ SPIFFS.open(path,\ "{}r"{});}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ \ if\ (!file)\ \{}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier"{});}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \ \ \ \ return\ "{}"{};}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Lecture\ du\ fichier"{});}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \ String\ fileContent;}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ \ \ while\ (file.available())\ \{}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \ \ \ \ fileContent\ +=\ String((char)file.read());}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Lecture\ terminée"{});}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \ \ file.close();}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \ return\ fileContent;}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ String\ writeFile(const\ char*\ path,\ const\ char*\ message)\ \{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Ecriture\ du\ fichier\ "{}\ +\ String(path));}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ \ \ File\ file\ =\ SPIFFS.open(path,\ "{}w"{});}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ \ \ if\ (!file)\ \{}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier"{});}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ \ \ \ \ return\ "{}"{};}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Ecriture\ du\ fichier"{});}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ \ \ if\ (file.print(message))\ \{}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Ecriture\ terminée"{});}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \ \ \}\ else\ \{}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Erreur\ d'écriture"{});}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ \ \ file.close();}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \ \ return\ message;}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a27bf0ccf9b931786ab44e68a07cead68}{reset\_config}}()\ \{}
+\DoxyCodeLine{00119\ \ \ \textcolor{comment}{//\ delete\ the\ config\ file}}
+\DoxyCodeLine{00120\ \ \ SPIFFS.remove(\mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a9b651c510f4d02eda3be6d983307b59c}{strConfigFile}});}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setupSPIFFS}}()\{}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ SPIFFS.format();\ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Au\ besoin,\ pour\ formatter\ le\ système\ de\ fichiers}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{comment}{//\ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Montage\ du\ système\ de\ fichier"{});}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{comment}{//\ SPIFFS.begin(true);}}
+\DoxyCodeLine{00130\ \}}
+
+\end{DoxyCode}

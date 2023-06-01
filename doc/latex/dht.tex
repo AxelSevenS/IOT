@@ -1,0 +1,21 @@
+Capteur numérique Digital Humidity \& Temperature (DHT)
+
+Nous allons connecter un capteur numérique DHT11 sur la carte afin de récupérer ses données de température et d\textquotesingle{}humidité. 
+
+Branchez
+\begin{DoxyItemize}
+\item VCC sur 3V3
+\item GND sur GND ;)
+\item Data sur la pin 33
+\end{DoxyItemize}
+
+
+
+Adafruit Unified Sensor Driver \href{https://github.com/adafruit/Adafruit_Sensor}{\texttt{ https\+://github.\+com/adafruit/\+Adafruit\+\_\+\+Sensor}} Librairies à installer \+:
+\begin{DoxyItemize}
+\item Adafruit Unified Sensor by Adafruit
+\end{DoxyItemize}
+
+Délai entre 2 mesures \+: il dépend du capteur, si on n\textquotesingle{}a pas l\textquotesingle{}information (via la librairie unifiée) on le configure à 5s
+
+Fichier \mbox{\hyperlink{_my_d_h_t_8h}{My\+DHT.\+h}} 

@@ -17,6 +17,8 @@
  * 
  * Fichier \ref MyNTP.h
  */
+#pragma once
+
 
 #include <NTPClient.h>           //https://github.com/arduino-libraries/NTPClient
 #include <WiFiUdp.h>
@@ -24,20 +26,17 @@
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
 
-void getNTP(){
-  MYDEBUG_PRINT("-NTP : ");
-  // mise à jour de l'heure
+String getNTP(){
   timeClient.update();
-  // Affichage de l'heure
-  MYDEBUG_PRINTLN(timeClient.getFormattedTime());
+  return timeClient.getFormattedTime();
 
 }
 
 void setupNTP(){
   // On a besoin d'une connexion à Internet !
-  if (WiFi.status() != WL_CONNECTED){
-    setupWiFi();
-  }  
+  // if (WiFi.status() != WL_CONNECTED){
+  //   setupWiFi();
+  // }  
   timeClient.begin();
   // Nous avons 1h de décalage avec le méridien de Greenwich (Greenwich Meridian Time : GMT).
   timeClient.setTimeOffset(3600);

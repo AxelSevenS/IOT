@@ -1,0 +1,78 @@
+\hypertarget{_my_o_t_a_8h}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+OTA.h File Reference}
+\label{_my_o_t_a_8h}\index{C:/Users/spagh/OneDrive/Bureau/IoT-\/B2-\/1/MyOTA.h@{C:/Users/spagh/OneDrive/Bureau/IoT-\/B2-\/1/MyOTA.h}}
+{\ttfamily \#include $<$Arduino\+OTA.\+h$>$}\newline
+{\ttfamily \#include $<$Remote\+Debug.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_my_o_t_a_8h_abe49f9ddb5fc0a7b9c7efb64e78d8f5d}{OTA\+\_\+\+HOSTNAME}}~\char`\"{}ESP32\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_my_o_t_a_8h_a3ca40111f9b7517429f225cdf9bdb394}{OTA\+\_\+\+PASSWORD}}~\char`\"{}Mon\+Mot\+De\+Passe\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_my_o_t_a_8h_a3f6277ecef8250af87b69a095f0b496f}{generate\+Debug\+Log}} ()
+\item 
+void \mbox{\hyperlink{_my_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}{setup\+OTA}} ()
+\item 
+void \mbox{\hyperlink{_my_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}{loop\+OTA}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Remote\+Debug \mbox{\hyperlink{_my_o_t_a_8h_a5ae2f374710d648c2027c78237f5df01}{Debug}}
+\item 
+Ticker \mbox{\hyperlink{_my_o_t_a_8h_a475fa6938b6b6c13e63f71bd7ee2e7ef}{debug\+Ticker}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_my_o_t_a_8h_abe49f9ddb5fc0a7b9c7efb64e78d8f5d}\label{_my_o_t_a_8h_abe49f9ddb5fc0a7b9c7efb64e78d8f5d}} 
+\index{MyOTA.h@{MyOTA.h}!OTA\_HOSTNAME@{OTA\_HOSTNAME}}
+\index{OTA\_HOSTNAME@{OTA\_HOSTNAME}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{OTA\_HOSTNAME}{OTA\_HOSTNAME}}
+{\footnotesize\ttfamily \#define OTA\+\_\+\+HOSTNAME~\char`\"{}ESP32\char`\"{}}
+
+\mbox{\Hypertarget{_my_o_t_a_8h_a3ca40111f9b7517429f225cdf9bdb394}\label{_my_o_t_a_8h_a3ca40111f9b7517429f225cdf9bdb394}} 
+\index{MyOTA.h@{MyOTA.h}!OTA\_PASSWORD@{OTA\_PASSWORD}}
+\index{OTA\_PASSWORD@{OTA\_PASSWORD}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{OTA\_PASSWORD}{OTA\_PASSWORD}}
+{\footnotesize\ttfamily \#define OTA\+\_\+\+PASSWORD~\char`\"{}Mon\+Mot\+De\+Passe\char`\"{}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_my_o_t_a_8h_a3f6277ecef8250af87b69a095f0b496f}\label{_my_o_t_a_8h_a3f6277ecef8250af87b69a095f0b496f}} 
+\index{MyOTA.h@{MyOTA.h}!generateDebugLog@{generateDebugLog}}
+\index{generateDebugLog@{generateDebugLog}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{generateDebugLog()}{generateDebugLog()}}
+{\footnotesize\ttfamily void generate\+Debug\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction appelée par un ticker pour générer des messages de debug à différents niveaux \mbox{\Hypertarget{_my_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}\label{_my_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}} 
+\index{MyOTA.h@{MyOTA.h}!loopOTA@{loopOTA}}
+\index{loopOTA@{loopOTA}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{loopOTA()}{loopOTA()}}
+{\footnotesize\ttfamily void loop\+OTA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A chaque itération, on verifie si une mise a jour nous est envoyée. Si tel est cas, la bibliothèque Arduino\+OTA se charge de tout ! \mbox{\Hypertarget{_my_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}\label{_my_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}} 
+\index{MyOTA.h@{MyOTA.h}!setupOTA@{setupOTA}}
+\index{setupOTA@{setupOTA}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{setupOTA()}{setupOTA()}}
+{\footnotesize\ttfamily void setup\+OTA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configuration et démarrage des services OTA \& Remote Debug 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_my_o_t_a_8h_a5ae2f374710d648c2027c78237f5df01}\label{_my_o_t_a_8h_a5ae2f374710d648c2027c78237f5df01}} 
+\index{MyOTA.h@{MyOTA.h}!Debug@{Debug}}
+\index{Debug@{Debug}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{Debug}{Debug}}
+{\footnotesize\ttfamily Remote\+Debug Debug}
+
+\mbox{\Hypertarget{_my_o_t_a_8h_a475fa6938b6b6c13e63f71bd7ee2e7ef}\label{_my_o_t_a_8h_a475fa6938b6b6c13e63f71bd7ee2e7ef}} 
+\index{MyOTA.h@{MyOTA.h}!debugTicker@{debugTicker}}
+\index{debugTicker@{debugTicker}!MyOTA.h@{MyOTA.h}}
+\doxysubsubsection{\texorpdfstring{debugTicker}{debugTicker}}
+{\footnotesize\ttfamily Ticker debug\+Ticker}
+

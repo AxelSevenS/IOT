@@ -1,0 +1,22 @@
+Des composants ou capteurs peuvent être branchés sur les connecteurs de la carte. Chaque composant a ses caractéristiques, nous prendrons le plus simple \+: une LED.
+
+Brancher une LED \+:
+\begin{DoxyItemize}
+\item La patte la plus longue sur la broche 23 de l\textquotesingle{}ESP 32,
+\item La patte la plus courte sur une patte GND. Nous piloterons l\textquotesingle{}ESP32 afin qu\textquotesingle{}il envoie du courant, ou pas, sur la patte 23.
+\end{DoxyItemize}
+
+Pour gérer l\textquotesingle{}éclairage de la LED, nous avons 2 solutions \+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Numérique\char`\"{} en mode \char`\"{}\+On/\+Off\char`\"{} en mettant la patte à HIGH ou LOW.
+\item \char`\"{}\+Analogique\char`\"{} en utilisant le PWM (Pulse Width Modulation) qui permet de \char`\"{}simuler\char`\"{} un courant analogique.
+\end{DoxyItemize}
+
+Dans cet exemple \+:
+\begin{DoxyItemize}
+\item La patte de la LED est configurée en mode OUTPUT \+: on va écrire l\textquotesingle{}état sur cette patte.
+\item Lors du setup nous faisons clignoter la LED en faisant un alternance de digital\+Write HIGH et LOW sur la patte de la LED
+\item Dans la boucle nous réalisons des boucles où nous incrémentons puis décrémentons le niveau de \char`\"{}puissance\char`\"{} que nous voulons sur la patte. Ainsi on a l\textquotesingle{}impression que l\textquotesingle{}intensité lumineuse augmente puis diminue.
+\end{DoxyItemize}
+
+Fichier \mbox{\hyperlink{_my_l_e_d_8h}{My\+LED.\+h}} 

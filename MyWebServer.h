@@ -1,10 +1,14 @@
-#include <WebServer.h>
+#pragma once
+
+#include "WiFi.h"
+#include "AsyncTCP.h"
+#include "ESPAsyncWebServer.h"
 
 
-WebServer monWebServeur(80);
+AsyncWebServer monWebServeur(80);
 
 
-void handleRoot() {
+void handleRoot(AsyncWebServerRequest *request) {
 
   String htmlPage;
   htmlPage.reserve(1024);               // prevent ram fragmentation
@@ -26,16 +30,24 @@ void handleRoot() {
 
   htmlPage.replace("{ANALOG}", "analog");
   htmlPage.replace("{URL}", "url");
-  
-  monWebServeur.send(200, "text/html", htmlPage);
+
 }
 
-void handleConfig() {
+void handleConfig(AsyncWebServerRequest *request) {
 
   String htmlPage;
   htmlPage.reserve(1024);               // prevent ram fragmentation
 
   get_config();
+
+  // SPIFFS.begin();
+  // File configFile = SPIFFS.open(strConfigFile, "r");
+
+  // String config = configFile.readString();
+
+  // configFile.close();
+  // SPIFFS.end();
+
 
   htmlPage = F(
     "<!DOCTYPE HTML>"
@@ -59,67 +71,86 @@ void handleConfig() {
         "<input type='text' name='password' placeholder='Password du réseau WiFi' value='{AP_PASSWORD}'>"
         "<input type='submit' value='Se Connecter'>"
       "</form>"
+      "<form action='/monitoringConfigSubmit' method='POST'>"
+        "<h3>Paramètres de Surveillance</h3>"
+        "<input type='number' name='time' placeholder='Période de surveillance nécessaire (en minutes)' value='{MONITORING_TIME}'>"
+        "<input type='number' name='distance' placeholder='Distance de détection de Contact Tracers (en mètres)' value='{MONITORING_DISTANCE}'>"
+        "<input type='submit' value='Se Connecter'>"
+      "</form>"
+      "<br>"
+      // "<span>"
+      //   "{CONFIG_FILE}"
+      // "</span>"
     "</html>"
     "\r\n"
   );
 
-  String input_ap_ssid = ap_ssid;
-  if ( monWebServeur.hasArg("ap_ssid") ) {
-    input_ap_ssid = monWebServeur.arg("ap_ssid");
-  }
-  String input_ap_password = ap_password;
-  if ( monWebServeur.hasArg("ap_password") ) {
-    input_ap_password = monWebServeur.arg("ap_password");
-  }
-  String input_net_ssid = net_ssid;
-  if ( monWebServeur.hasArg("net_ssid") ) {
-    input_net_ssid = monWebServeur.arg("net_ssid");
-  }
-  String input_net_password = net_password;
-  if ( monWebServeur.hasArg("net_password") ) {
-    input_net_password = monWebServeur.arg("net_password");
-  }
+  String input_ap_ssid = request->hasArg("ap_ssid") ? request->arg("ap_ssid") : ap_ssid;
+
+  String input_ap_password = request->hasArg("ap_password") ? request->arg("ap_password") : ap_password;
+
+  String input_net_ssid = request->hasArg("net_ssid") ? request->arg("net_ssid") : net_ssid;
+
+  String input_net_password = request->hasArg("net_password") ? request->arg("net_password") : net_password;
+
+  String input_monitoring_time = request->hasArg("monitoring_time") ? request->arg("monitoring_time") : String(monitoring_time);
+
+  String input_monitoring_distance = request->hasArg("monitoring_distance") ? request->arg("monitoring_distance") : String(monitoring_distance);
+
+  
 
   htmlPage.replace("{STATION_SSID}", input_ap_ssid);
   htmlPage.replace("{STATION_PASSWORD}", input_ap_password);
   htmlPage.replace("{AP_SSID}", input_net_ssid);
   htmlPage.replace("{AP_PASSWORD}", input_net_password);
+  htmlPage.replace("{MONITORING_TIME}", String(input_monitoring_time));
+  htmlPage.replace("{MONITORING_DISTANCE}", String(input_monitoring_distance));
   
-  monWebServeur.send(200, "text/html", htmlPage);
+
+  request->send(200, "text/html", htmlPage);
 }
 
-void handleResetConfigSubmit() {
+void handleResetConfigSubmit(AsyncWebServerRequest *request) {
   reset_config();
+  request->redirect("config");
 
-  monWebServeur.sendHeader("Location", "/config", true);  
-  monWebServeur.send(302, "text/plain", "");
+  ESP.restart();
 }
 
-void handleStationConfigSubmit() {
+void handleMonitoringConfigSubmit(AsyncWebServerRequest *request) {
 
   // On récupère les paramètres de la requête
-  String ssid = monWebServeur.arg("ssid");
-  String password = monWebServeur.arg("password");
+  float time = atof(request->arg("time").c_str());
+  float distance = atof(request->arg("distance").c_str());
+
+  update_monitoring_config(time, distance);
+
+  request->redirect("config");
+}
+
+void handleStationConfigSubmit(AsyncWebServerRequest *request) {
+
+  // On récupère les paramètres de la requête
+  String ssid = request->arg("ssid");
+  String password = request->arg("password");
 
   launch_access_point(ssid.c_str(), password.c_str());
 
-  monWebServeur.sendHeader("Location", "/config", true);  
-  monWebServeur.send(302, "text/plain", "");
+  request->redirect("config");
 }
 
-void handleAPConfigSubmit() {
+void handleAPConfigSubmit(AsyncWebServerRequest *request) {
 
   // On récupère les paramètres de la requête
-  String ssid = monWebServeur.arg("ssid");
-  String password = monWebServeur.arg("password");
+  String ssid = request->arg("ssid");
+  String password = request->arg("password");
 
   try_WiFi_connect(ssid.c_str(), password.c_str());
   
-  monWebServeur.sendHeader("Location", "/config", true);  
-  monWebServeur.send(302, "text/plain", "");
+  request->redirect("config");
 }
 
-void handleScan() {
+void handleScan(AsyncWebServerRequest *request) {
   
   MYDEBUG_PRINTLN("-WEBSERVER : requete scan");
 
@@ -159,7 +190,7 @@ void handleScan() {
       String ssid = WiFi.SSID(i);
       String network = F(
         "<li>"
-          "<a href='/config?net_ssid={SSID}&net_password='>{SSID}</a>"
+          "<a href='config?net_ssid={SSID}&net_password='>{SSID}</a>"
         "</li>"
       );
       network.replace("{SSID}", ssid);
@@ -170,19 +201,12 @@ void handleScan() {
 
   out.replace("{NETWORKS}", networks);
 
-  // Envoi de la page HTML
-  monWebServeur.send(200, "text/html", out);
-
+  request->send(200, "text/html", out);
 }
 
 
 
 void setupWebServer(){
-  // // On a besoin d'une connexion WiFi !
-  // if ( WiFi.status() != WL_CONNECTED ) { 
-  //   setupWiFi(); // Connexion WiFi
-  // }
-  check_AP_state();
 
   MYDEBUG_PRINTLN("-WEBSERVER : Démarrage");
 
@@ -200,5 +224,5 @@ void setupWebServer(){
 
 
 void loopWebServer(void) {
-  monWebServeur.handleClient();
+  // monWebServeur.handleClient();
 }

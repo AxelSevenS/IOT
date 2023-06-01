@@ -80,6 +80,7 @@
  * 
  * Fichier \ref MyOTA.h
  */
+#pragma once
 
 #include <ArduinoOTA.h>
 #include <RemoteDebug.h>

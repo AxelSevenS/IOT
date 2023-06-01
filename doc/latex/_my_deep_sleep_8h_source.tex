@@ -1,0 +1,18 @@
+\hypertarget{_my_deep_sleep_8h_source}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+Deep\+Sleep.h}
+\mbox{\hyperlink{_my_deep_sleep_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ uS\_TO\_S\_FACTOR\ 1000000\ \ }\textcolor{comment}{/*\ Facteur\ de\ conversion\ de\ micro\ secondes\ en\ secondes\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TIME\_TO\_SLEEP\ \ 3\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Durée\ d'endormissement\ en\ secondes\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ RTC\_DATA\_ATTR\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_my_deep_sleep_8h_a22ebbc698373afce094b495bf7605750}{bootCount}}\ =\ 0;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_deep_sleep_8h_a76d8759ee792df79e50888562cb18e0e}{setupDeepSleep}}()\{}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{_my_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DEEPSLEEP\ :\ "{}});}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_my_deep_sleep_8h_a22ebbc698373afce094b495bf7605750}{bootCount}}++);}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/DEEPSLEEP\ :\ DeepSleep\ pendant\ 3\ secondes"{}});}
+\DoxyCodeLine{00026\ \ \ esp\_sleep\_enable\_timer\_wakeup(\mbox{\hyperlink{_my_deep_sleep_8h_a9ab2ab36cf2973ccccb6d819989e4b04}{TIME\_TO\_SLEEP}}\ *\ \mbox{\hyperlink{_my_deep_sleep_8h_a628c12ff2a1ac4b14a41f021723b2558}{uS\_TO\_S\_FACTOR}});}
+\DoxyCodeLine{00027\ \ \ esp\_deep\_sleep\_start();}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}

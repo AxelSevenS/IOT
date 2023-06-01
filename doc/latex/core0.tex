@@ -1,0 +1,7 @@
+L\textquotesingle{}ESP32 dispose d\textquotesingle{}un microprocesseur dual core \+: Core 0 et Core 1. 
+
+Le code Arduino tourne par défaut sur le core 1. Nous allons voir comment affecter une tâche pour qu\textquotesingle{}elle tourne sur le core 0 en parrallèle du core 1.
+
+Dans cet exemple nous créer une tâche qui va gérer les requêtes reçues par le serveur web et l\textquotesingle{}affecter au core 0, délestant ainsi que Core 1 de cette tâche, apportant potentiellement plus de réactivité pour l\textquotesingle{}utilisateur.
+
+Fichier \mbox{\hyperlink{_my_core0_8h}{My\+Core0.\+h}} 

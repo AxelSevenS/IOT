@@ -1,0 +1,47 @@
+Adafruit IO Platform.
+
+\doxysubsection*{Adafruit IO}
+
+Nous allons utiliser la plateforme Adafruit IO en guise de première approche de MQTT. Pour ce faire, installez la bibliothèque \char`\"{}\+Adafruit IO Arduino\char`\"{} ainsi que toutes ses dépendances.
+\begin{DoxyItemize}
+\item Rendez vous sur la plateforme \+: \href{https://io.adafruit.com/}{\texttt{ https\+://io.\+adafruit.\+com/}}
+\item Enregistrez vous \+: \href{https://accounts.adafruit.com/users/sign_up}{\texttt{ https\+://accounts.\+adafruit.\+com/users/sign\+\_\+up}}
+\item Une fois connecté, récupérez votre Aadafruit Key en cliquant sur \char`\"{}\+My Key\char`\"{}
+\item Copier vos identifiants pour Arduino (IO\+\_\+\+USERNAME et IO\+\_\+\+KEY) et coller dans la section configuration ci-\/dessous
+\item Dans la page des Feeds (topics MQTT), créer les Feeds suivants, sans les rattacher à un groupe \+:
+\begin{DoxyItemize}
+\item slider
+\item onoff
+\item temperature
+\item humidity
+\end{DoxyItemize}
+
+Adafruit a défini la notion de Feeds qui est utilisé indifféremment pour des attributs et des données de télémétrie MQTT.
+\item Dans la page des Dashboards, créer un dashboard et éditer le. Dans celui-\/ci, ajouter les \char`\"{}blocks\char`\"{} suivants\+:
+\begin{DoxyItemize}
+\item Un Slider associé au feed slider
+\item Un Toggle associé au feed onoff, en laissant les valeurs par défaut (\char`\"{}\+ON\char`\"{} et \char`\"{}\+OFF\char`\"{})
+\item Un Indicator associé au feed onoff, en indiquant la condition \char`\"{}=\+ON\char`\"{}
+\item un Line Chart associé aux feeds temperature et humidity
+\end{DoxyItemize}
+\item Tester le code en le téléversant
+\item Installer l\textquotesingle{}application IFTTT sur votre téléphone mobile
+\begin{DoxyItemize}
+\item Tester différentes actions possibles avec Adafruit IO
+\begin{DoxyItemize}
+\item If this \+: Buton widget / Button press
+\item Then that \+: Adafruit / Send data to Adafruit IO. Sélectionner votre feed et renseigner la valeur que vous voulez transmettre (ON par exemple) A noter que vous pouvez ajouter des \char`\"{}ingrédients\char`\"{} qui sont d\textquotesingle{}autres données qui sont à votre disposition (du téléphone ou depuis le service appelé en \char`\"{}\+If this\char`\"{}.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Documentation sur l\textquotesingle{}API MQTT \+: \href{https://learn.adafruit.com/adafruit-io/mqtt-api}{\texttt{ https\+://learn.\+adafruit.\+com/adafruit-\/io/mqtt-\/api}} Voici un exemple de clients qui utilisent l\textquotesingle{}API MQTT \+: \href{https://learn.adafruit.com/desktop-mqtt-client-for-adafruit-io/overview}{\texttt{ https\+://learn.\+adafruit.\+com/desktop-\/mqtt-\/client-\/for-\/adafruit-\/io/overview}} Vous pouvez aussi utiliser la REST API pour intéragir avec la plateforme Adafruit IO.
+
+\doxysubsection*{Bibliothèque à installer}
+
+Pour utiliser l\textquotesingle{}API MQTT d\textquotesingle{}Adafruit, installer \+:
+\begin{DoxyItemize}
+\item Adafruit MQTT library by Adafruit \+: \href{https://github.com/adafruit/Adafruit_MQTT_Library}{\texttt{ https\+://github.\+com/adafruit/\+Adafruit\+\_\+\+MQTT\+\_\+\+Library}}
+\end{DoxyItemize}
+
+Fichier \mbox{\hyperlink{_my_adafruit_i_o_8h}{My\+Adafruit\+IO.\+h}} 

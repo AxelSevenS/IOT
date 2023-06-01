@@ -1,0 +1,209 @@
+\hypertarget{_my_web_server_8h_source}{}\doxysection{C\+:/\+Users/spagh/\+One\+Drive/\+Bureau/\+Io\+T-\/\+B2-\/1/\+My\+Web\+Server.h}
+\mbox{\hyperlink{_my_web_server_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <WebServer.h>}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ WebServer\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}(80);}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_a8427468f39342a1990703e9f5ce7fd29}{handleRoot}}()\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ String\ htmlPage;}
+\DoxyCodeLine{00010\ \ \ htmlPage.reserve(1024);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prevent\ ram\ fragmentation}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \textcolor{comment}{//\ htmlPage\ =\ readFile("{}/index.html"{});}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ htmlPage\ =\ F(}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{stringliteral}{"{}<html>"{}}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h1>"{}}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Analog\ input:\ \ \{ANALOG\}"{}}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h1>"{}}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h2>"{}}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Request\ URL\ :\ \ \{URL\}"{}}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h2>"{}}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{00025\ \ \ );}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{ANALOG\}"{}},\ \textcolor{stringliteral}{"{}analog"{}});}
+\DoxyCodeLine{00028\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{URL\}"{}},\ \textcolor{stringliteral}{"{}url"{}});}
+\DoxyCodeLine{00029\ \ \ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ htmlPage);}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_a26b99cccf6c7e87054577b293e709733}{handleConfig}}()\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ String\ htmlPage;}
+\DoxyCodeLine{00036\ \ \ htmlPage.reserve(1024);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prevent\ ram\ fragmentation}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ htmlPage\ =\ F(}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{stringliteral}{"{}<html>"{}}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h2>"{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Configuration\ de\ la\ carte\ :\ "{}}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h2>"{}}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/resetConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Réinitialiser\ la\ Configuration'>"{}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/stationConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ de\ la\ Carte</h3>"{}}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='ssid'\ placeholder='SSID\ de\ la\ carte'\ value='\{STATION\_SSID\}'>"{}}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ de\ la\ carte'\ value='\{STATION\_PASSWORD\}'>"{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/apConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ du\ réseau\ WiFi</h3>"{}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='ssid'\ placeholder='SSID\ du\ réseau\ WiFi'\ value='\{AP\_SSID\}'>"{}}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ du\ réseau\ WiFi'\ value='\{AP\_PASSWORD\}'>"{}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Se\ Connecter'>"{}}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{00064\ \ \ );}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ String\ input\_ap\_ssid\ =\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a61831dec6470ff0d496c9c3ed2c356f8}{ap\_ssid}};}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.hasArg(\textcolor{stringliteral}{"{}ap\_ssid"{}})\ )\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ input\_ap\_ssid\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}ap\_ssid"{}});}
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \ \ String\ input\_ap\_password\ =\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a27ff3c3f9850a1e6cbb51dc6fe0a0397}{ap\_password}};}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.hasArg(\textcolor{stringliteral}{"{}ap\_password"{}})\ )\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ input\_ap\_password\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}ap\_password"{}});}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ \ \ String\ input\_net\_ssid\ =\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.hasArg(\textcolor{stringliteral}{"{}net\_ssid"{}})\ )\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ input\_net\_ssid\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}net\_ssid"{}});}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ \ \ String\ input\_net\_password\ =\ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.hasArg(\textcolor{stringliteral}{"{}net\_password"{}})\ )\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ input\_net\_password\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}net\_password"{}});}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{STATION\_SSID\}"{}},\ input\_ap\_ssid);}
+\DoxyCodeLine{00084\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{STATION\_PASSWORD\}"{}},\ input\_ap\_password);}
+\DoxyCodeLine{00085\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_SSID\}"{}},\ input\_net\_ssid);}
+\DoxyCodeLine{00086\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_PASSWORD\}"{}},\ input\_net\_password);}
+\DoxyCodeLine{00087\ \ \ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ htmlPage);}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_a555800fedf80c5491cd55158bdee6379}{handleResetConfigSubmit}}()\ \{}
+\DoxyCodeLine{00092\ \ \ \mbox{\hyperlink{_my_s_p_i_f_f_s_8h_a27bf0ccf9b931786ab44e68a07cead68}{reset\_config}}();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.sendHeader(\textcolor{stringliteral}{"{}Location"{}},\ \textcolor{stringliteral}{"{}/config"{}},\ \textcolor{keyword}{true});\ \ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(302,\ \textcolor{stringliteral}{"{}text/plain"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_aa3c38e53c703613e4e77e3cd41fdb9bd}{handleStationConfigSubmit}}()\ \{}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{00101\ \ \ String\ ssid\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}ssid"{}});}
+\DoxyCodeLine{00102\ \ \ String\ password\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{_my_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}{launch\_access\_point}}(ssid.c\_str(),\ password.c\_str());}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.sendHeader(\textcolor{stringliteral}{"{}Location"{}},\ \textcolor{stringliteral}{"{}/config"{}},\ \textcolor{keyword}{true});\ \ }
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(302,\ \textcolor{stringliteral}{"{}text/plain"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_a0198f97cf38f58ac1a92258d83a0156f}{handleAPConfigSubmit}}()\ \{}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{00113\ \ \ String\ ssid\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}ssid"{}});}
+\DoxyCodeLine{00114\ \ \ String\ password\ =\ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.arg(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{_my_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}{try\_WiFi\_connect}}(ssid.c\_str(),\ password.c\_str());}
+\DoxyCodeLine{00117\ \ \ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.sendHeader(\textcolor{stringliteral}{"{}Location"{}},\ \textcolor{stringliteral}{"{}/config"{}},\ \textcolor{keyword}{true});\ \ }
+\DoxyCodeLine{00119\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(302,\ \textcolor{stringliteral}{"{}text/plain"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_a91570557840a9ab55b048c9a360571d7}{handleScan}}()\ \{}
+\DoxyCodeLine{00123\ \ \ }
+\DoxyCodeLine{00124\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ requete\ scan"{}});}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{comment}{//\ La\ carte\ scanne\ les\ réseaux\ WiFi\ à\ proximité}}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{int}\ n\ =\ WiFi.scanNetworks();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{comment}{//\ Construction\ de\ la\ page\ HTML\ de\ réponse}}
+\DoxyCodeLine{00130\ \ \ String\ out\ =\ F(}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{stringliteral}{"{}<html>"{}}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<head>"{}}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<meta\ http-\/equiv='refresh'\ content='5'/>"{}}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<title>Ynov\ -\/\ Projet\ IoT\ B2</title>"{}}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<style>"{}}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}body\ \{\ background-\/color:\ \#cccccc;\ font-\/family:\ Arial,\ Helvetica,\ Sans-\/Serif;\ Color:\ \#000088;\ \}"{}}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</style>"{}}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</head>"{}}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<body>"{}}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h1>"{}}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Page\ de\ Scan"{}}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h1>"{}}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<ul>"{}}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{NETWORKS\}"{}}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</ul>"{}}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</body>"{}}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{00151\ \ \ );}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{comment}{//\ Intégration\ des\ réseaux\ WiFi\ trouvés\ dans\ la\ page\ HTML}}
+\DoxyCodeLine{00154\ \ \ String\ networks\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ 0)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ networks\ =\ \textcolor{stringliteral}{"{}-\/\ AUCUN\ réseau\ WiFi\ trouvé\ -\/"{}};}
+\DoxyCodeLine{00157\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ String\ ssid\ =\ WiFi.SSID(i);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ String\ network\ =\ F(}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<li>"{}}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<a\ href='/config?net\_ssid=\{SSID\}\&net\_password='>\{SSID\}</a>"{}}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</li>"{}}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ );}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ network.replace(\textcolor{stringliteral}{"{}\{SSID\}"{}},\ ssid);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ networks\ +=\ network;}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ out.replace(\textcolor{stringliteral}{"{}\{NETWORKS\}"{}},\ networks);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{comment}{//\ Envoi\ de\ la\ page\ HTML}}
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ out);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_ada2454c68167b49ab4f42817be2b4959}{setupWebServer}}()\{}
+\DoxyCodeLine{00181\ \ \ \textcolor{comment}{//\ //\ On\ a\ besoin\ d'une\ connexion\ WiFi\ !}}
+\DoxyCodeLine{00182\ \ \ \textcolor{comment}{//\ if\ (\ WiFi.status()\ !=\ WL\_CONNECTED\ )\ \{\ }}
+\DoxyCodeLine{00183\ \ \ \textcolor{comment}{//\ \ \ setupWiFi();\ //\ Connexion\ WiFi}}
+\DoxyCodeLine{00184\ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{_my_wi_fi_8h_aba7acb281ac9938c1d6ea74cb0ff28b7}{check\_AP\_state}}();}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \mbox{\hyperlink{_my_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ Démarrage"{}});}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \textcolor{comment}{//\ Configuration\ de\ mon\ serveur\ web}}
+\DoxyCodeLine{00190\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_my_web_server_8h_a8427468f39342a1990703e9f5ce7fd29}{handleRoot}});}
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/scan"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_my_web_server_8h_a91570557840a9ab55b048c9a360571d7}{handleScan}});}
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/config"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_my_web_server_8h_a26b99cccf6c7e87054577b293e709733}{handleConfig}});}
+\DoxyCodeLine{00193\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/resetConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_my_web_server_8h_a555800fedf80c5491cd55158bdee6379}{handleResetConfigSubmit}});}
+\DoxyCodeLine{00194\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/stationConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_my_web_server_8h_aa3c38e53c703613e4e77e3cd41fdb9bd}{handleStationConfigSubmit}});}
+\DoxyCodeLine{00195\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.on(\textcolor{stringliteral}{"{}/apConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_my_web_server_8h_a0198f97cf38f58ac1a92258d83a0156f}{handleAPConfigSubmit}});}
+\DoxyCodeLine{00196\ \ \ \textcolor{comment}{//\ monWebServeur.onNotFound(handle\_NotFound);}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.begin();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Démarrage\ du\ serveur}}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_my_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{loopWebServer}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00203\ \ \ \mbox{\hyperlink{_my_web_server_8h_af977ed1be5e6ba1bf56aaaf72457c4e0}{monWebServeur}}.handleClient();}
+\DoxyCodeLine{00204\ \}}
+
+\end{DoxyCode}
