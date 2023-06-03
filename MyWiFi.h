@@ -1,16 +1,10 @@
 #pragma once
 
-#include <WiFi.h>         // WiFi
+#include <WiFi.h>
+#include <Ticker.h>
 
-/** 
- * \file CTWiFi.h
- * \page wifi WiFi
- * \brief WiFi Connection system
- * 
-*/
 
 bool ap_launched = false;
-Ticker MyWiFiTicker;
 
 
 /**
@@ -19,17 +13,16 @@ Ticker MyWiFiTicker;
 * @param password Mot de passe de ce dernier
 *
 */
-
 void launch_access_point(const char* ssid, const char* password) {
   WiFi.softAPdisconnect(true);
   WiFi.softAP(ssid, password);
 
   ap_launched = true;
 
-  update_AP_config(ssid, password);
+  update_device_config(ssid, password);
   
   MYDEBUG_PRINTLN("-WIFI AP : Access Point Démarré");
-  MYDEBUG_PRINTF("-WIFI AP : Connectez-vous à %s et ouvrez %s dans un navigateur web\n", ap_ssid.c_str(), WiFi.softAPIP().toString().c_str());
+  MYDEBUG_PRINTF("-WIFI AP : Connectez-vous à %s et ouvrez %s dans un navigateur web\n", device_name.c_str(), WiFi.softAPIP().toString().c_str());
   if ( WiFi.status() == WL_CONNECTED ) {
     MYDEBUG_PRINTF("-WIFI AP : ou connectez-vous à %s et ouvrez %s\n", net_ssid.c_str(), WiFi.localIP().toString().c_str());
   }
@@ -53,19 +46,24 @@ bool check_AP_state() {
 
   get_config();
 
-  launch_access_point(ap_ssid.c_str(), ap_password.c_str());
+  launch_access_point(device_name.c_str(), device_password.c_str());
   return false;
 }
 
 
 
 /**
-* @brief connect_Wifi_network est une fonction qui sert à se connecter au Access point "Hamburger" avec l'esp
-* @param ssid id de connexion
-* @param password mot de passe de l'ap
-* @param cycles nombres de tentatives de check de la connexion 
-*
-*/
+ * @brief connect_Wifi_network est une fonction qui sert à se connecter au Access point "Hamburger" avec l'esp
+ * 
+ * @param ssid id de connexion
+ * @param password mot de passe de l'ap
+ * @param cycles nombres de tentatives de check de la connexion 
+ *
+ * @return true
+ * lorsque la connexion est réussie
+ * @return false
+ * lorsque la connexion est échouée
+ */
 bool connect_WiFi_network(const char* ssid, const char* password, uint cycles = 50) {
   WiFi.disconnect(true);
   WiFi.begin(ssid, password);
@@ -79,8 +77,8 @@ bool connect_WiFi_network(const char* ssid, const char* password, uint cycles = 
       MYDEBUG_PRINT("\n-WIFI : Réussite, connecté à ");
       MYDEBUG_PRINTLN(ssid);
 
-      update_network_config(ssid, password);
-      launch_access_point(ap_ssid.c_str(), ap_password.c_str());
+      // update_network_config(ssid, password);
+      // launch_access_point(device_name.c_str(), device_password.c_str());
       
       return true;
     }
@@ -109,16 +107,25 @@ bool check_WiFi_connection() {
   return connect_WiFi_network(net_ssid.c_str(), net_password.c_str());
 }
 
-
-
+/**
+ * @brief Tente de se connecter au réseau WiFi avec les identifiants fournis en paramètre.\n
+ * Si la connexion échoue, le Contact Tracer se reconnecte au réseau WiFi configuré dans le fichier de configuration.
+ * 
+ * @param ssid
+ * @param password
+ * 
+ * @return true
+ * lorsque la connexion est réussie
+ * 
+ * @return false
+ * lorsque la connexion est échouée
+ */
 bool try_WiFi_connect(const char* ssid, const char* password) {
   
   bool connectionSuccess = connect_WiFi_network(ssid, password, 20);
 
   if ( !connectionSuccess ) {
 
-    // MYDEBUG_PRINT("-WIFI : Échec de connexion à ");
-    // MYDEBUG_PRINTLN(ssid);
     MYDEBUG_PRINT("-WIFI : connecté à ");
     MYDEBUG_PRINTLN(net_ssid);
 
@@ -132,31 +139,44 @@ bool try_WiFi_connect(const char* ssid, const char* password) {
 }
 
 void WiFiTicker() {
-
-  // check_AP_state();
   check_WiFi_connection();
 }
 
 /**
-* @brief Mise en place du wifi (setupwifi())
-*
-*/
+ * Configuration du wifi de l'esp
+ * - Mode AP + Station
+ * - Connexion au réseau
+ */
 void setupWiFi() {
   MYDEBUG_PRINTLN("-WIFI : Configuration ");
 
   // Configuration de la carte en mode Access Point ET Station
   WiFi.mode(WIFI_AP_STA);
 
-  launch_access_point(ap_ssid.c_str(), ap_password.c_str());
+  // launch_access_point(device_name.c_str(), device_password.c_str());
   connect_WiFi_network(net_ssid.c_str(), net_password.c_str());
 
-  MyWiFiTicker.attach(20, WiFiTicker);
+  AddNetworkCredentialsChangedCallback([](const char* ssid, const char* password) {
+    MYDEBUG_PRINTLN("-WIFI NET : Nouveaux identifiants de connexion reçus");
+    try_WiFi_connect(net_ssid.c_str(), net_password.c_str());
+  });
+  AddDeviceCredentialsChangedCallback([](const char* ssid, const char* password) {
+    MYDEBUG_PRINTLN("-WIFI AP : Nouveaux identifiants reçus");
+    launch_access_point(device_name.c_str(), device_password.c_str());
+  });
 
-  // check_AP_state();
-  // check_WiFi_connection();
+  // onNetCredentialsChanged += [](const char* ssid, const char* password) {
+  //   MYDEBUG_PRINTLN("-WIFI NET : Nouveaux identifiants de connexion reçus");
+  //   try_WiFi_connect(net_ssid.c_str(), net_password.c_str());
+  // };
+  // onDeviceCredentialsChanged += [](const char* ssid, const char* password) {
+  //   MYDEBUG_PRINTLN("-WIFI AP : Nouveaux identifiants reçus");
+  //   launch_access_point(device_name.c_str(), device_password.c_str());
+  // };
+
+  myTicker.attach(20, WiFiTicker);
+
 }
 
 void loopWiFi() {
-  // check_AP_state();
-  // check_WiFi_connection();
 }

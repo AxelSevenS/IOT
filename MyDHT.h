@@ -1,28 +1,3 @@
-/**
- * \file MyDHT.h
- * \page dht Capteur de température et d'humidité
- * \brief Capteur numérique Digital Humidity & Temperature (DHT)
- * 
- * Nous allons connecter un capteur numérique DHT11 sur la carte afin de récupérer ses données
- * de température et d'humidité.
- * \image html ESP32-DHT.webp
- * 
- * Branchez 
- * - VCC sur 3V3
- * - GND sur GND ;)
- * - Data sur la pin 33
- * 
- * \image html ESP32-ESP21PINTOUT.png
- * 
- * Adafruit Unified Sensor Driver https://github.com/adafruit/Adafruit_Sensor
- * Librairies à installer :
- * - Adafruit Unified Sensor by Adafruit
- * 
- * Délai entre 2 mesures : il dépend du capteur, si on n'a pas l'information (via la librairie unifiée) on le configure à 5s
- * 
- * Fichier \ref MyDHT.h
- */
-
 #include <DHT_U.h>                     // https://github.com/adafruit/Adafruit_Sensor
 
 #define DHT_PIN    33                  // PIN numérique du DHT

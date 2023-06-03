@@ -1,68 +1,73 @@
-/**
- * \file MyBLE.h
- * \page ble Bluetooth Low Energy
- * 
- * Dans le cadre de ce cours de découverte de l'IoT nous utiliserons les fonctionnalités de base du BLE, dans un mode
- * potentiellement dégradé. L'idée est que vous preniez simplement la main sur le module BLE et que vous l'intégriez
- * à l'ensemble du projet.
- * 
- * En mode serveur chaque équipement BLE
- * - Permet d'être vu par les autres équipements BLE,
- * - Propose différents services,
- * - Chaque service propose différentes caractéristiques en mode lecture ou écriture.
- * Il existe une nomenclature des services et caractéristiques, que nous n'utiliserons pas ici.
- * 
-*   \image  html ESP32-ble-bulletin-board-model.png
-
- * En mode client, il est possible de scanner les équipements bluetooth et de potentiellement se connecter à eux
- * pour échanger des données.
- *                                             
- * Les serveurs "publient" ou font la promotion de leurs services pour que les clients puissent savoir ce qu'ils
- * proposent avant de se connecter.
- * Dans notre cas, nous publierons simplement un service et un nom d'équipement. Cela sera suffisant pour savoir
- * quels sont les équipements à proximité qui proposent un service donné "Contact Tracker" et leurs noms.
- */
 #pragma once
 
 
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
-#include "MyNTP.h"
+#include <Ticker.h>
+#include "OtherDevices.h"
 
-#define SERVICE_UUID        "436f6e74-6163-7420-5472-61636b657273" // "Contact Trackers" d'ascii en hexa, ça ne sert à rien mais bon                             
-#define DEVICE_NAME         "ESP32"                          // Nom de votre serveur BLE qui sera détecté par les autres
+
+
+/************************* Configuration *************************************/
+#define SERVICE_UUID        "774320e9-e25a-455c-9230-b1758c4cfa12"                            
+// #define DEVICE_NAME         "ESP32"
 
 #define BLE_FREQ         10
+#define BLE_SCAN_TIME    5
 
 
-int scanTime = 5; //In seconds
+/************************** Variables ****************************************/
 BLEScan* pBLEScan;
+BLEServer* pServer;
+BLEService* pService;
+BLEAdvertising* pAdvertising;
 Ticker MyBLETicker;
 
-int iCompteur = 0;
-
+// int iCompteur = 0;
+/**
+ * @brief le temps de processeur du dernier scan
+ * 
+ * @remark On utilise cette variable pour augmenter le temps d'interaction avec un device dans le fichier de monitoring
+*/
 long BLE_last_scan;
 
 /**
- * Configuration du serveur BLE
- * - Initialisation du serveur avec un nom unique
- *   Ce nom doit être le même que celui qui vous servira pour vous abonner en MQTT !
- * - Démarrage du serveur en mode advertising pour publier ses informations : nom et service
- */
-void setupBLEServer() {
+ * @brief Démarrage du serveur BLE\n
+ * On remet à zéro le serveur, le service et l'advertising
+ * 
+ * @param device_name Nom du device BLE
+*/
+void start_BLE_server(const char* device_name) {
+
   MYDEBUG_PRINT("-BLE : Démarrage du serveur sous le nom : ");
-  MYDEBUG_PRINTLN(DEVICE_NAME);
+  MYDEBUG_PRINTLN(device_name);
 
-  BLEDevice::init(DEVICE_NAME);
-  BLEServer *pServer = BLEDevice::createServer();
-  BLEService *pService = pServer->createService(SERVICE_UUID);
+  BLEDevice::init(device_name);
 
+  // On remet à zéro le serveur, le service et l'advertising
+  if (pServer) {
+    pServer->removeService(pService);
+  } else {
+    pServer = BLEDevice::createServer();
+  }
+
+  if (pService) {
+    pService->stop();
+  }
+  pService = pServer->createService(SERVICE_UUID);
   pService->start();
-  BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
+
+  if (pAdvertising) {
+    pAdvertising->stop();
+    // pAdvertising->clearData();
+    // pAdvertising->clearScanResponse();
+  }
+  pAdvertising = BLEDevice::getAdvertising();
   pAdvertising->addServiceUUID(SERVICE_UUID);
+  pAdvertising->setScanResponse(true);
+
   BLEDevice::startAdvertising();
-  MYDEBUG_PRINTLN("-BLE : Serveur démarré");
 }
 
 /**
@@ -70,6 +75,7 @@ void setupBLEServer() {
  * Dans notre cas, on vérifie si son service UUID est celui que nous recherchons.
  * Si c'est le cas, on récupère son nom et le niveau de puissance (RSSI)
  * qui nous permet de calculer une distance approximative
+ * On éffectue ensuite une interaction avec le device
  */
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {    
     void onResult(BLEAdvertisedDevice advertisedDevice) {
@@ -82,9 +88,12 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
       }
 
       std::string address = advertisedDevice.getAddress().toString();
+      std::string name = advertisedDevice.getName();
       
       MYDEBUG_PRINT("-BLE client : CONTACT Tracer trouvé : ");
-      MYDEBUG_PRINTLN(address.c_str());
+      MYDEBUG_PRINT(address.c_str());
+      MYDEBUG_PRINT(" | Nom : ");
+      MYDEBUG_PRINTLN(name.c_str());
 
 
       float ratio = (float)(-69 -advertisedDevice.getRSSI())/(10 * 2);
@@ -93,81 +102,39 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
       // If the Contact Tracer is close enough, advance the "contact" timer.
       if (distance < monitoring_distance) {
         
-        SPIFFS.begin();
-
-        File configFile = SPIFFS.open(strConfigFile, "r");
-        DynamicJsonDocument jsonDocument(512);
-        DeserializationError error = deserializeJson(jsonDocument, configFile);
-        
-        if (error){
-          MYDEBUG_PRINT("-SPIFFS : [ERREUR : ");
-          MYDEBUG_PRINT(error.c_str());
-          MYDEBUG_PRINTLN("] Impossible de parser le JSON, création d'un nouveau fichier");
-        }
-        
-
-
-        auto monitored = jsonDocument["monitored"];
-
-        
-        auto first_contact = monitored[address]["first_contact"];
-        if ( first_contact.isNull() ) {
-          first_contact = getNTP();
-        }
-
-
-        auto total_exposure = monitored[address]["total_exposure"];
-        float exposure_time = total_exposure.as<float>();
-        float time_since_scan_millis = millis() - BLE_last_scan;
+        device_interact(address.c_str(), name.c_str(), BLE_last_scan);
         BLE_last_scan = millis();
-        float time_since_scan = time_since_scan_millis / (float)1000;
 
-        if ( total_exposure.isNull() ) {
-          total_exposure = time_since_scan;
-        } else {
-          total_exposure = exposure_time + time_since_scan;
-        }
-
-        exposure_time = total_exposure.as<float>();
-        if (exposure_time > (float)monitoring_time * 60) {
-          monitored[address]["contact"] = true;
-        }
-
-        if ( monitored[address]["contact"] == true && monitored[address]["status"] == "SICK" /* && userStatus == SAFE */ ) {
-          //TODO : envoyer un message à l'utilisateur pour lui dire qu'il est en contact avec un malade
-          MYDEBUG_PRINTLN("Envoi d'un message à l'utilisateur pour lui dire qu'il est en contact avec un malade");
-          userStatus = CONTACT;
-        }
-
-        configFile.close();
-        configFile = SPIFFS.open(strConfigFile, "w");
-
-        if ( !configFile ) {
-          MYDEBUG_PRINTLN("-SPIFFS : Impossible d'ouvrir le fichier en écriture");
-          configFile.close();
-          SPIFFS.end();
-          return;
-        }
-
-        if (serializeJson(jsonDocument, configFile) == 0) {
-          MYDEBUG_PRINTLN("-SPIFFS : Impossible d'écrire le JSON dans le fichier de configuration");
-        }
-
-        configFile.close();
-        SPIFFS.end();
       }
     }
 };
 
+/**
+ * Scan BLE
+ * - On lance le scan
+ * - On récupère les résultats
+ * - On vide les résultats
+ */
 void BLEScan() {
-  MYDEBUG_PRINTLN("-BLE Client : Scan");
-  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
+  BLEScanResults foundDevices = pBLEScan->start(BLE_SCAN_TIME, false);
+  // MYDEBUG_PRINTLN(foundDevices.getCount());
 
-  MYDEBUG_PRINT("-BLE Client : Devices trouvés ");
-  MYDEBUG_PRINTLN(foundDevices.getCount());
+  pBLEScan->clearResults();
+}
 
-  pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
-  MYDEBUG_PRINTLN("-BLE Client : Scan terminé");
+
+/**
+ * Configuration du serveur BLE
+ * - Initialisation du serveur
+ * - Initialisation du service
+ * - Initialisation de l'advertising
+*/
+void setupBLEServer() {
+  MYDEBUG_PRINTLN("-BLE Server : Démarrage");
+  get_config();
+
+  start_BLE_server(device_name.c_str());
+  MYDEBUG_PRINTLN("-BLE Server : Démarré");
 }
 
 /**
@@ -178,7 +145,8 @@ void BLEScan() {
  */
 void setupBLEClient() {
   MYDEBUG_PRINTLN("-BLE Client : Démarrage");
-  BLEDevice::init("");
+
+  BLEDevice::init(device_name.c_str());
   pBLEScan = BLEDevice::getScan(); //create new scan
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
   pBLEScan->setActiveScan(true); //active scan uses more power, but get results faster
@@ -187,15 +155,23 @@ void setupBLEClient() {
 
   BLE_last_scan = millis();
 
-  MYDEBUG_PRINTLN("-BLE Client : Démarré");
 
-  // MyBLETicker.attach(BLE_FREQ, BLEScan);
+  AddDeviceCredentialsChangedCallback([](const char* ssid, const char* password) {
+    MYDEBUG_PRINTLN("-BLE Client : Nouveau SSID reçu");
+    start_BLE_server(ssid);
+  });
+
+  // onDeviceCredentialsChanged += [](const char* ssid, const char* password) {
+  //   MYDEBUG_PRINTLN("-BLE Client : Nouveau SSID reçu");
+  //   start_BLE_server(ssid);
+  // };
+
+  MYDEBUG_PRINTLN("-BLE Client : Démarré");
 }
 
 /**
- * Loop du client BLE qui va scanner les devices à proximité
- * - on limite le temps de scan à scanTime secondes pour ne pas bloquer la carte
- * - une fois terminé, on efface les résultats pour pouvoir recommencer tranquillement
+ * Boucle du client BLE
+ * - On lance le scan
  */
 void loopBLEClient() {
   BLEScan();
