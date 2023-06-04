@@ -1,0 +1,84 @@
+\hypertarget{_c_t_health_8h_source}{}\doxysection{CTHealth.\+h}
+\mbox{\hyperlink{_c_t_health_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_config_8h}{CTConfig.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ DEFAULT\_USER\_STATUS\ \ \ \ \ \ \ \ \ "{}HEALTHY"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ \{}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ =\ 2,}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ =\ 1,}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}}\ =\ 0}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ void(*\mbox{\hyperlink{_c_t_health_8h_a470ec3a50d63fd143de8a394f8528c79}{HealthCallback}})(\mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ status);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ std::vector<HealthCallback>\ \mbox{\hyperlink{_c_t_health_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}{onHealthStatusChangedCallbacks}};}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_health_8h_a4d1d0c1b448dd04198cd6c375f6a494d}{AddHealthStatusChangedCallback}}(\mbox{\hyperlink{_c_t_health_8h_a470ec3a50d63fd143de8a394f8528c79}{HealthCallback}}\ callback)\ \{}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{_c_t_health_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}{onHealthStatusChangedCallbacks}}.push\_back(callback);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_health_8h_ab8d141abb41fc2ce25dea6a3640ae564}{InvokeHealthStatusChangedCallbacks}}(\mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ status)\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ callback\ :\ \mbox{\hyperlink{_c_t_health_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}{onHealthStatusChangedCallbacks}})\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ callback(status);}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_health_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{bool}\ healthStatusChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ !=\ new\_health\_status\ )\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ healthStatusChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00068\ \ \ \}}
+\DoxyCodeLine{00069\ \ \ jsonDocument[\textcolor{stringliteral}{"{}status"{}}]\ =\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ :\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}CONTACT"{}}\ :\ \textcolor{stringliteral}{"{}SICK"{}};}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ new\_health\_status;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (\ healthStatusChanged\ )\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{_c_t_health_8h_ab8d141abb41fc2ce25dea6a3640ae564}{InvokeHealthStatusChangedCallbacks}}(\mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}});}
+\DoxyCodeLine{00074\ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_health_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status\ )\ \{}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_health\_status](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{_c_t_health_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(new\_health\_status,\ jsonDocument);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ void\ get\_health\_status(\ JsonDocument\&\ jsonDocument\ )\ \{}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ \ \ auto\ json\_status\ =\ jsonDocument["{}status"{}];}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ \ \ if\ (\ json\_status.isNull()\ ||\ json\_status\ ==\ "{}"{}\ )\ \{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Pas\ de\ statut\ dans\ le\ fichier\ de\ configuration"{});}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ \ \ \ \ json\_status\ =\ DEFAULT\_USER\_STATUS;}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ \ \ HealthStatus\ new\_health\_status\ =\ json\_status\ ==\ "{}HEALTHY"{}\ ?\ HEALTHY\ :\ json\_status\ ==\ "{}CONTACT"{}\ ?\ CONTACT\ :\ SICK;}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ \ update\_health\_status(new\_health\_status,\ jsonDocument);}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ void\ get\_health\_status()\ \{}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ \ \ read\_write\_file(\ CONFIG\_FILE\_PATH,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ \ \ \ \ get\_health\_status(jsonDocument);}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ \ \ \}\ );}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \}}}
+
+\end{DoxyCode}

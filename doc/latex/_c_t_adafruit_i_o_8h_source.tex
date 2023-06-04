@@ -1,0 +1,146 @@
+\hypertarget{_c_t_adafruit_i_o_8h_source}{}\doxysection{CTAdafruit\+IO.\+h}
+\mbox{\hyperlink{_c_t_adafruit_i_o_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Adafruit\_MQTT.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Adafruit\_MQTT\_Client.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_ticker_8h}{CTTicker.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_b_l_e_8h}{CTBLE.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_health_8h}{CTHealth.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_monitoring_8h}{CTMonitoring.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*************************\ Configuration\ *************************************/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Connexion\ Adafruit}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ IO\_SERVER\ \ \ \ \ \ \ \ \ "{}io.adafruit.com"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ IO\_SERVERPORT\ \ \ \ \ 1883}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ IO\_USERNAME\ \ \ \ \ \ \ "{}feur25"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ IO\_KEY\ \ \ \ \ \ \ \ \ \ \ \ "{}aio\_RXfy55Uv98VWiia7sMK1s40v7oGx"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ FEED\_FREQ\ \ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ PROCESS\_PACKETS\_MS\ \ 10000}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ FEED\_HEALTH\ \ \ \ \ \ \ \ \ \ \ "{}/feeds/health"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/**************************\ Variables\ ****************************************/}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Instanciation\ du\ client\ WiFi\ qui\ servira\ à\ se\ connecter\ au\ broker\ Adafruit}}
+\DoxyCodeLine{00037\ WiFiClient\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_abb9eff2964ef905b08e636f0bf58e442}{client}};}
+\DoxyCodeLine{00038\ Adafruit\_MQTT\_Client\ MyAdafruitMqtt(\&\mbox{\hyperlink{_c_t_adafruit_i_o_8h_abb9eff2964ef905b08e636f0bf58e442}{client}},\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_aa448b06fc30ff8f397a9de01b53d29ba}{IO\_SERVER}},\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a1a1097e8e3bc4621d7a168018df5fac9}{IO\_SERVERPORT}},\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\_USERNAME}},\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a2379b5675f95d4d8c7e0a273b4d6f07c}{IO\_KEY}});}
+\DoxyCodeLine{00039\ uint32\_t\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a244d12ee1babb263a43de149b60bb70d}{uiSliderValue}}=0;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/******************************\ Feeds\ ****************************************/}}
+\DoxyCodeLine{00043\ Adafruit\_MQTT\_Publish\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a8f04cbcb66ca1238589fe7aa79d6e13a}{healthPublish}}\ =\ Adafruit\_MQTT\_Publish(\&MyAdafruitMqtt,\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\_USERNAME}}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\_HEALTH}});}
+\DoxyCodeLine{00044\ Adafruit\_MQTT\_Subscribe\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}{health}}\ =\ Adafruit\_MQTT\_Subscribe(\&MyAdafruitMqtt,\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\_USERNAME}}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\_HEALTH}},\ MQTT\_QOS\_1);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{/***************************\ Sketch\ Code\ ************************************/}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a90c2ace84e5523d06b7162ea5928acc1}{sec}};}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae612f94d9137165cbbeab354f62608e6}{mini}};}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a15df9ba285cfd842f284025f904edc9c}{hour}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a04e3be435248bf42067beed524d79fcb}{timeZone}}\ =\ 1;\ \textcolor{comment}{//\ GMT+1\ pour\ la\ France}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a10c4e1f88c3e2d8d6c660ae18cefa0a8}{healthCallback}}(\textcolor{keywordtype}{char}\ *data,\ uint16\_t\ len)\{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/Adafruit\ :\ Réception\ des\ Données\ de\ Santé\ Utilisateur\ :\ "{}});}
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(data);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{char}*\ chars\_array\ =\ strtok(data,\ \textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{00066\ \ \ String\ address\ =\ String(chars\_array);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ chars\_array\ =\ strtok(NULL,\ \textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ status\ =\ chars\_array;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ Do\ nothing\ if\ the\ callback\ is\ from\ this\ device}}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (\ String(BLEDevice::getAddress().toString().c\_str())\ ==\ address\ )\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00074\ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}{update\_device\_status}}(address.c\_str(),\ status);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}{connectAdafruitIO}}(\textcolor{keywordtype}{int}\ cycles\ =\ 50)\ \{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{if}\ (MyAdafruitMqtt.connected())\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/AdafruitIO\ :\ Connexion\ au\ broker"{}});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ int8\_t\ ret;}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cycles;\ i++)\ \{}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ ((ret\ =\ MyAdafruitMqtt.connect())\ ==\ 0)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\(\backslash\)n-\/AdafruitIO\ :\ Connecté\ au\ Broker."{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ delay(100);}}
+\DoxyCodeLine{00107\ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\(\backslash\)n-\/AdafruitIO\ :\ [ERREUR\ :\ "{}});}
+\DoxyCodeLine{00110\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(MyAdafruitMqtt.connectErrorString(ret));}
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}]\ Impossible\ de\ se\ connecter\ au\ broker\(\backslash\)n"{}});}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ MyAdafruitMqtt.disconnect();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a33455634acfb414263155e68a0adb6ea}{getAndSendDataToAdafruit}}()\{}
+\DoxyCodeLine{00123\ \ \ }
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}{connectAdafruitIO}}()\ )\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \}}
+\DoxyCodeLine{00127\ \ \ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{char}*\ healthStatePublish;}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ address\ =\ BLEDevice::getAddress().toString().c\_str();}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ statusDisplay\ =\ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ :\ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}CONTACT"{}}\ :\ \textcolor{stringliteral}{"{}SICK"{}};}
+\DoxyCodeLine{00132\ \ \ asprintf(\&healthStatePublish,\ \textcolor{stringliteral}{"{}\%s=\%s"{}},\ address,\ statusDisplay);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/AdafruitIO\ TICKER\ :\ Envoi\ des\ données\ :\ "{}});}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(healthStatePublish);}
+\DoxyCodeLine{00136\ \ \ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{bool}\ healthPublishState\ =\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a8f04cbcb66ca1238589fe7aa79d6e13a}{healthPublish}}.publish(healthStatePublish);}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{if}\ (\ !healthPublishState\ )\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/AdafruitIO\ :\ [ERREUR]\ Impossible\ d'envoyer\ les\ données\ de\ santé"{}});}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a2bd8fd38c73deae3c895f6b385a48d46}{setupAdafruitIO}}()\ \{}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}{health}}.setCallback(\mbox{\hyperlink{_c_t_adafruit_i_o_8h_a10c4e1f88c3e2d8d6c660ae18cefa0a8}{healthCallback}});}
+\DoxyCodeLine{00152\ \ \ MyAdafruitMqtt.subscribe(\&\mbox{\hyperlink{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}{health}});}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \mbox{\hyperlink{_c_t_ticker_8h_afb3489134709c30e0c4aeaa50f03a2e8}{myTicker}}.attach(\mbox{\hyperlink{_c_t_adafruit_i_o_8h_ab3a3c16d29fe1a9d97e6948e2b6c2db9}{FEED\_FREQ}},\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a33455634acfb414263155e68a0adb6ea}{getAndSendDataToAdafruit}});}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a60adf60c8e35331ff6104bcc69158c1b}{loopAdafruitIO}}()\ \{}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}{connectAdafruitIO}}())\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00166\ \ \ \}}
+\DoxyCodeLine{00167\ \ \ }
+\DoxyCodeLine{00168\ \ \ MyAdafruitMqtt.processPackets(\mbox{\hyperlink{_c_t_adafruit_i_o_8h_ac9ccb08ce364bafa0c0bfaf3b2b2bd38}{PROCESS\_PACKETS\_MS}});}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordflow}{if}(\ !MyAdafruitMqtt.ping()\ )\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ MyAdafruitMqtt.disconnect();}
+\DoxyCodeLine{00171\ \ \ \}}
+\DoxyCodeLine{00172\ \}}
+
+\end{DoxyCode}

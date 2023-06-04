@@ -1,0 +1,73 @@
+\hypertarget{_c_t_other_devices_8h}{}\doxysection{CTOther\+Devices.\+h File Reference}
+\label{_c_t_other_devices_8h}\index{CTOtherDevices.h@{CTOtherDevices.h}}
+{\ttfamily \#include \char`\"{}CTSPIFFS.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTNTP.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\+\_\+contact\+\_\+if\+\_\+device\+\_\+is\+\_\+sick}} (Json\+Document \&monitoring\+Document, File \&monitoring\+File, const char $\ast$other\+Device\+Address)
+\begin{DoxyCompactList}\small\item\em Vérifie si le device est marqué comme malade dans le fichier de monitoring et met à jour le status de l\textquotesingle{}utilisateur si c\textquotesingle{}est le cas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_other_devices_8h_a8f573b385e7f440e6119242b60955024}{update\+\_\+device\+\_\+status}} (const char $\ast$address, const char $\ast$status)
+\begin{DoxyCompactList}\small\item\em Met à jour le status d\textquotesingle{}un device dans le fichier de monitoring. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_other_devices_8h_a9c0620d07f42f8309e4fd488ec9b5349}{device\+\_\+interact}} (const char $\ast$address, const char $\ast$name, long last\+\_\+contact)
+\begin{DoxyCompactList}\small\item\em Effectue une \char`\"{}interaction\char`\"{} avec un device, c\textquotesingle{}est à dire met à jour son nom, son temps d\textquotesingle{}exposition et son statut dans le fichier de monitoring~\newline
+Si le temps d\textquotesingle{}exposition est supérieur à la durée de surveillance, le device est marqué pour surveillance rapprochée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}\label{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}} 
+\index{CTOtherDevices.h@{CTOtherDevices.h}!become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}}
+\index{become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}!CTOtherDevices.h@{CTOtherDevices.h}}
+\doxysubsubsection{\texorpdfstring{become\_contact\_if\_device\_is\_sick()}{become\_contact\_if\_device\_is\_sick()}}
+{\footnotesize\ttfamily void become\+\_\+contact\+\_\+if\+\_\+device\+\_\+is\+\_\+sick (\begin{DoxyParamCaption}\item[{Json\+Document \&}]{monitoring\+Document,  }\item[{File \&}]{monitoring\+File,  }\item[{const char $\ast$}]{other\+Device\+Address }\end{DoxyParamCaption})}
+
+
+
+Vérifie si le device est marqué comme malade dans le fichier de monitoring et met à jour le status de l\textquotesingle{}utilisateur si c\textquotesingle{}est le cas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em monitoring\+Document} & \\
+\hline
+{\em monitoring\+File} & \\
+\hline
+{\em other\+Device\+Address} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_other_devices_8h_a9c0620d07f42f8309e4fd488ec9b5349}\label{_c_t_other_devices_8h_a9c0620d07f42f8309e4fd488ec9b5349}} 
+\index{CTOtherDevices.h@{CTOtherDevices.h}!device\_interact@{device\_interact}}
+\index{device\_interact@{device\_interact}!CTOtherDevices.h@{CTOtherDevices.h}}
+\doxysubsubsection{\texorpdfstring{device\_interact()}{device\_interact()}}
+{\footnotesize\ttfamily void device\+\_\+interact (\begin{DoxyParamCaption}\item[{const char $\ast$}]{address,  }\item[{const char $\ast$}]{name,  }\item[{long}]{last\+\_\+contact }\end{DoxyParamCaption})}
+
+
+
+Effectue une \char`\"{}interaction\char`\"{} avec un device, c\textquotesingle{}est à dire met à jour son nom, son temps d\textquotesingle{}exposition et son statut dans le fichier de monitoring~\newline
+Si le temps d\textquotesingle{}exposition est supérieur à la durée de surveillance, le device est marqué pour surveillance rapprochée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & \\
+\hline
+{\em name} & \\
+\hline
+{\em last\+\_\+contact} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_other_devices_8h_a8f573b385e7f440e6119242b60955024}\label{_c_t_other_devices_8h_a8f573b385e7f440e6119242b60955024}} 
+\index{CTOtherDevices.h@{CTOtherDevices.h}!update\_device\_status@{update\_device\_status}}
+\index{update\_device\_status@{update\_device\_status}!CTOtherDevices.h@{CTOtherDevices.h}}
+\doxysubsubsection{\texorpdfstring{update\_device\_status()}{update\_device\_status()}}
+{\footnotesize\ttfamily void update\+\_\+device\+\_\+status (\begin{DoxyParamCaption}\item[{const char $\ast$}]{address,  }\item[{const char $\ast$}]{status }\end{DoxyParamCaption})}
+
+
+
+Met à jour le status d\textquotesingle{}un device dans le fichier de monitoring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & \\
+\hline
+{\em status} & \\
+\hline
+\end{DoxyParams}

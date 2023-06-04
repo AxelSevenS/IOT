@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['debug_0',['Debug',['../debug.html',1,'']]],
-  ['deep_20sleep_1',['Deep Sleep',['../deepsleep.html',1,'']]]
+  ['my_20project_0',['My Project',['../index.html',1,'']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['update_5fap_5fconfig_0',['update_AP_config',['../_my_wi_fi_8h.html#ae400ae51f7a2d1d2b05c1fc5306ccda1',1,'MyWiFi.h']]],
-  ['update_5fnetwork_5fconfig_1',['update_network_config',['../_my_wi_fi_8h.html#aca4d32969813a506087c4c345cce2d08',1,'MyWiFi.h']]]
+  ['read_5ffile_0',['read_file',['../_c_t_s_p_i_f_f_s_8h.html#a39fd0f11f322eee62ec68ea8b943a3b0',1,'CTSPIFFS.h']]],
+  ['read_5fwrite_5ffile_1',['read_write_file',['../_c_t_s_p_i_f_f_s_8h.html#a9ef2b136ef02f28bef1a20eba7e875c7',1,'CTSPIFFS.h']]],
+  ['reset_5ffile_2',['reset_file',['../_c_t_s_p_i_f_f_s_8h.html#ab6fbcd645daba57cb879da18e7fd7e72',1,'CTSPIFFS.h']]]
 ];

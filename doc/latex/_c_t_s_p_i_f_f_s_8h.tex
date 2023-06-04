@@ -1,0 +1,128 @@
+\hypertarget{_c_t_s_p_i_f_f_s_8h}{}\doxysection{CTSPIFFS.\+h File Reference}
+\label{_c_t_s_p_i_f_f_s_8h}\index{CTSPIFFS.h@{CTSPIFFS.h}}
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$SPIFFS.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}CTDebug.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef const std\+::function$<$ void(Json\+Document \&, File \&)$>$ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\+\_\+file}} (const char $\ast$file\+Name, \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} \&read\+Function)
+\begin{DoxyCompactList}\small\item\em Permet de lire dans un fichier SPIFFS.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\+\_\+write\+\_\+file}} (const char $\ast$file\+Name, \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} write\+Function)
+\begin{DoxyCompactList}\small\item\em Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{display\+\_\+file}} (const char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}afficher les contenus du fichier passé en paramètre de façon formattée.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\+\_\+file}} (const char $\ast$file\+Path)
+\begin{DoxyCompactList}\small\item\em Permet de réinitialiser le fichier de configuration.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setup\+SPIFFS}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}\label{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!FileReadFunction@{FileReadFunction}}
+\index{FileReadFunction@{FileReadFunction}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{FileReadFunction}{FileReadFunction}}
+{\footnotesize\ttfamily typedef const std\+::function$<$void(Json\+Document\&, File\&)$>$ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}\label{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!display\_file@{display\_file}}
+\index{display\_file@{display\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{display\_file()}{display\_file()}}
+{\footnotesize\ttfamily void display\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Permet d\textquotesingle{}afficher les contenus du fichier passé en paramètre de façon formattée.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}\label{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!read\_file@{read\_file}}
+\index{read\_file@{read\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{read\_file()}{read\_file()}}
+{\footnotesize\ttfamily void read\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name,  }\item[{\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} \&}]{read\+Function }\end{DoxyParamCaption})}
+
+
+
+Permet de lire dans un fichier SPIFFS.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Le fichier est ouvert en mode lecture.~\newline
+Les contenus du fichier sont passés à la fonction read\+Function sous forme de Json\+Document.~\newline
+ 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em read\+Function} & La fonction qui va lire dans le fichier de config. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}\label{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!read\_write\_file@{read\_write\_file}}
+\index{read\_write\_file@{read\_write\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{read\_write\_file()}{read\_write\_file()}}
+{\footnotesize\ttfamily void read\+\_\+write\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name,  }\item[{\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}}]{write\+Function }\end{DoxyParamCaption})}
+
+
+
+Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Le fichier est ouvert en mode lecture et écriture.~\newline
+Les contenus du fichier sont passés à la fonction write\+Function sous forme de Json\+Document.~\newline
+ 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & Le nom du fichier à lire et écrire. \\
+\hline
+{\em write\+Function} & La fonction qui va écrire dans le fichier de config. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}\label{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!reset\_file@{reset\_file}}
+\index{reset\_file@{reset\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{reset\_file()}{reset\_file()}}
+{\footnotesize\ttfamily void reset\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Permet de réinitialiser le fichier de configuration.~\newline
+. 
+
+Cette fonction supprime le fichier de configuration présent dans la mémoire (SPIFFS) de la carte.~\newline
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}\label{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!setupSPIFFS@{setupSPIFFS}}
+\index{setupSPIFFS@{setupSPIFFS}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{setupSPIFFS()}{setupSPIFFS()}}
+{\footnotesize\ttfamily void setup\+SPIFFS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configuration du système de fichiers SPIFFS
+\begin{DoxyItemize}
+\item Formatage du système de fichiers (OPTIONNEL)
+\item Lecture du fichier de configuration 
+\end{DoxyItemize}

@@ -1,0 +1,79 @@
+\hypertarget{_c_t_other_devices_8h_source}{}\doxysection{CTOther\+Devices.\+h}
+\mbox{\hyperlink{_c_t_other_devices_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_n_t_p_8h}{CTNTP.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ otherDeviceAddress)\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{comment}{//\ si\ le\ device\ est\ marqué\ pour\ surveillance\ rapprochée\ et\ qu'il\ est\ malade,\ marquer\ l'utilisateur\ comme\ contact}}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{if}\ (\ monitoringDocument[otherDeviceAddress][\textcolor{stringliteral}{"{}close\_monitoring"{}}]\ ==\ \textcolor{keyword}{true}\ \&\&\ monitoringDocument[otherDeviceAddress][\textcolor{stringliteral}{"{}status"{}}]\ ==\ \textcolor{stringliteral}{"{}SICK"{}}\ \&\&\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ )\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//TODO\ :\ envoyer\ un\ message\ à\ l'utilisateur\ pour\ lui\ dire\ qu'il\ est\ en\ contact\ avec\ un\ malade}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_c_t_health_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}},\ monitoringDocument);}
+\DoxyCodeLine{00020\ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_other_devices_8h_a8f573b385e7f440e6119242b60955024}{update\_device\_status}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ address,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ status)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [=](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{auto}\ otherDevice\ =\ monitoringDocument[address];}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}DEVICE\ :\ Updated\ status\ of\ "{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(otherDevice.as<String>().c\_str());}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(status);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ mise\ à\ jour\ de\ l'état\ du\ device\ dans\ le\ fichier\ de\ config}}
+\DoxyCodeLine{00041\ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}status"{}}]\ =\ \textcolor{stringliteral}{"{}TEST"{}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(monitoringDocument,\ monitoringFile,\ address);}
+\DoxyCodeLine{00044\ \ \ \});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_other_devices_8h_a9c0620d07f42f8309e4fd488ec9b5349}{device\_interact}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ address,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{long}\ last\_contact)\ \{}
+\DoxyCodeLine{00058\ \ \ }
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}DEVICE\ :\ Interacted\ with\ "{}});}
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(name);}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [=](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{auto}\ otherDevice\ =\ monitoringDocument[address];}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ mettre\ à\ jour\ le\ nom\ du\ device\ à\ chaque\ interaction,\ car\ il\ peut\ changer}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !otherDevice[\textcolor{stringliteral}{"{}name"{}}].isNull()\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}name"{}}]\ =\ name;}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ si\ c'est\ la\ première\ fois\ qu'on\ rencontre\ le\ device,\ assigner\ le\ temps\ de\ première\ rencontre}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{auto}\ first\_contact\ =\ otherDevice[\textcolor{stringliteral}{"{}first\_contact"{}}];}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ first\_contact.isNull()\ )\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ first\_contact\ =\ getNTP();}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ mettre\ à\ jour\ le\ temps\ d'exposition}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{auto}\ total\_exposure\ =\ otherDevice[\textcolor{stringliteral}{"{}total\_exposure"{}}];}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ exposure\_time\ =\ total\_exposure.as<\textcolor{keywordtype}{float}>();}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ time\_since\_last\_contact\ =\ (millis()\ -\/\ last\_contact)\ /\ 1000.0;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ total\_exposure.isNull()\ )\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ total\_exposure\ =\ time\_since\_last\_contact;}
+\DoxyCodeLine{00083\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ total\_exposure\ =\ exposure\_time\ +\ time\_since\_last\_contact;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ exposure\_time\ =\ total\_exposure.as<\textcolor{keywordtype}{float}>();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ marquer\ le\ device\ pour\ surveillance\ rapprochée\ si\ le\ temps\ d'exposition\ est\ supérieur\ à\ la\ durée\ de\ surveillance}}
+\DoxyCodeLine{00089\ \ \ \ \ if\ (exposure\_time\ >\ (\textcolor{keywordtype}{float})\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ *\ 60)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}close\_monitoring"{}}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{_c_t_other_devices_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(monitoringDocument,\ monitoringFile,\ address);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}}
+
+\end{DoxyCode}

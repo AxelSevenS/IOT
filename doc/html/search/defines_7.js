@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['time_5fto_5fsleep_0',['TIME_TO_SLEEP',['../_my_deep_sleep_8h.html#a9ab2ab36cf2973ccccb6d819989e4b04',1,'MyDeepSleep.h']]]
+  ['process_5fpackets_5fms_0',['PROCESS_PACKETS_MS',['../_c_t_adafruit_i_o_8h.html#ac9ccb08ce364bafa0c0bfaf3b2b2bd38',1,'CTAdafruitIO.h']]]
 ];

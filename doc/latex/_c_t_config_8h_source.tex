@@ -1,0 +1,97 @@
+\hypertarget{_c_t_config_8h_source}{}\doxysection{CTConfig.\+h}
+\mbox{\hyperlink{_c_t_config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_debug_8h}{CTDebug.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ CONFIG\_FILE\_PATH\ \ \ \ \ \ \ \ \ \ \ \ "{}/config.json"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/***************************\ Default\ Values\ ************************************/}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ DEFAULT\_PASSWORD\ \ \ \ \ \ \ \ \ \ \ \ "{}contacttracer"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/***************************\ Configuration\ Variables\ ************************************/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{typedef}\ void(*\mbox{\hyperlink{_c_t_config_8h_ae6a3e8332fa73ffda1fb93b04817f802}{CredentialsCallback}})(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ String\ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
+\DoxyCodeLine{00031\ String\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ std::vector<CredentialsCallback>\ \mbox{\hyperlink{_c_t_config_8h_a75ad50aeb7a689d1d0d8451bf056d267}{onDeviceCredentialsChangedCallbacks}};}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_a22604d8f8e901fe1b2464e9fa2ac0641}{AddDeviceCredentialsChangedCallback}}(\mbox{\hyperlink{_c_t_config_8h_ae6a3e8332fa73ffda1fb93b04817f802}{CredentialsCallback}}\ callback)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{_c_t_config_8h_a75ad50aeb7a689d1d0d8451bf056d267}{onDeviceCredentialsChangedCallbacks}}.push\_back(callback);}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}{InvokeDeviceCredentialsChangedCallbacks}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ callback\ :\ \mbox{\hyperlink{_c_t_config_8h_a75ad50aeb7a689d1d0d8451bf056d267}{onDeviceCredentialsChangedCallbacks}})\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ callback(name,\ password);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{bool}\ deviceCredentialsChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_name,\ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}\ =\ String(new\_device\_name);}
+\DoxyCodeLine{00065\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}]\ =\ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_password,\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}\ =\ String(new\_device\_password);}
+\DoxyCodeLine{00071\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}]\ =\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (\ deviceCredentialsChanged\ )\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ onDeviceCredentialsChanged(device\_name.c\_str(),\ device\_password.c\_str());}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{_c_t_config_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}{InvokeDeviceCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str());}
+\DoxyCodeLine{00076\ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password\ )\ \{}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [\&new\_device\_name,\ \&new\_device\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{_c_t_config_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(new\_device\_name,\ new\_device\_password,\ jsonDocument);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_abdcbeedc8532f1b5a397b776f55dcf28}{get\_device\_config}}(\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{auto}\ json\_name\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}];}
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordflow}{if}\ (\ json\_name.isNull()\ )\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ nom\ de\ device\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ json\_name\ =\ \textcolor{stringliteral}{"{}ContactTracer\ "{}}\ +\ String(random(0xffff),\ HEX);}
+\DoxyCodeLine{00114\ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{auto}\ json\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}];}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{if}\ (\ json\_password.isNull()\ )\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ json\_password\ =\ \mbox{\hyperlink{_c_t_config_8h_aed73c581e6bbc30c6b8d3809c4c9db6c}{DEFAULT\_PASSWORD}};}
+\DoxyCodeLine{00120\ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \mbox{\hyperlink{_c_t_config_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(json\_name.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ json\_password.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ jsonDocument);}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00139\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_config_8h_abdcbeedc8532f1b5a397b776f55dcf28}{get\_device\_config}}()\ \{}
+\DoxyCodeLine{00140\ \ \ }
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{_c_t_config_8h_abdcbeedc8532f1b5a397b776f55dcf28}{get\_device\_config}}(jsonDocument);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \});}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \}}
+
+\end{DoxyCode}

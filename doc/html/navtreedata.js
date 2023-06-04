@@ -24,28 +24,32 @@
 */
 var NAVTREE =
 [
-  [ "Trio d'Hommes Forts", "index.html", [
-    [ "Adafruit IO", "adafruitio.html", null ],
-    [ "Bluetooth Low Energy", "ble.html", null ],
-    [ "Utilisation du Core 0", "core0.html", null ],
+  [ "My Project", "index.html", [
+    [ "Adafruit IO", "_adafruit_i_o.html", null ],
+    [ "CTBLE", "_c_t_b_l_e.html", null ],
+    [ "CTConfig.h", "_c_t_config_8h.html", null ],
     [ "Debug", "debug.html", null ],
-    [ "Deep Sleep", "deepsleep.html", null ],
-    [ "Capteur de température et d'humidité", "dht.html", null ],
-    [ "LED & PWM", "led.html", null ],
-    [ "Network Time Protocol (NTP)", "ntp.html", null ],
-    [ "Over The Air & Remote Debug", "ota.html", null ],
-    [ "WiFi", "wifi.html", null ],
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
+    [ "CTHealth", "_c_t_health.html", null ],
+    [ "CTLED", "_c_t_l_e_d.html", null ],
+    [ "CTMonitoring", "_c_t_monitoring.html", null ],
+    [ "CTNTP.h", "_c_t_n_t_p_8h.html", null ],
+    [ "CTOTA", "_c_t_o_t_a.html", null ],
+    [ "CTSPIFFS", "_c_t_s_p_i_f_f_s.html", null ],
+    [ "CTTicker", "_c_t_ticker.html", null ],
+    [ "CTWebServer.h", "_c_t_web_server_8h.html", null ],
+    [ "CTWiFi.h", "_c_t_wi_fi_8h.html", null ],
+    [ "Data Structures", "annotated.html", [
+      [ "Data Structures", "annotated.html", "annotated_dup" ],
+      [ "Data Structure Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
+      [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
@@ -56,7 +60,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_documentation_8h.html"
+"_adafruit_i_o.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

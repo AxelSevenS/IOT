@@ -1,0 +1,77 @@
+\hypertarget{_c_t_o_t_a_8h_source}{}\doxysection{CTOTA.\+h}
+\mbox{\hyperlink{_c_t_o_t_a_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <ArduinoOTA.h>}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \#include\ <RemoteDebug.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_ticker_8h}{CTTicker.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_config_8h}{CTConfig.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ RemoteDebug\ Debug;}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Ticker\ debugTicker;}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ *\ Fonction\ appelée\ par\ un\ ticker\ pour\ générer\ des\ messages\ de\ debug\ à\ différents\ niveaux}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ void\ generateDebugLog()\{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ rdebugVln("{}-\/Remote\ DEBUG\ :\ Message\ VERBOSE"{});}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ rdebugDln("{}-\/Remote\ DEBUG\ :\ Message\ DEBUG"{});}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ rdebugIln("{}-\/Remote\ DEBUG\ :\ Message\ INFO"{});}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ rdebugWln("{}-\/Remote\ DEBUG\ :\ Message\ WARNING"{});}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ rdebugEln("{}-\/Remote\ DEBUG\ :\ Message\ ERROR"{});}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}{start\_OTA}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ hostname,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ ArduinoOTA.setHostname(hostname);}
+\DoxyCodeLine{00040\ \ \ ArduinoOTA.setPassword(password);}
+\DoxyCodeLine{00041\ \ \ ArduinoOTA.begin();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{comment}{//\ Debug.begin(hostname);}}
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ Debug.setPassword(password);}}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}{setupOTA}}()\{}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [](JsonDocument\&\ configDocument,\ File\&\ configFile)\ \{}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ String\ json\_device\_name\ =\ (configDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}]).as<String>();}
+\DoxyCodeLine{00058\ \ \ \ \ String\ json\_device\_password\ =\ (configDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}]).as<String>();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}{start\_OTA}}(json\_device\_name.c\_str(),\ json\_device\_password.c\_str());}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{_c_t_config_8h_a22604d8f8e901fe1b2464e9fa2ac0641}{AddDeviceCredentialsChangedCallback}}([](\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}OTA\ :\ Nouveaux\ identifiants\ reçus"{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}{start\_OTA}}(name,\ password);}
+\DoxyCodeLine{00067\ \ \ \});}
+\DoxyCodeLine{00068\ \ \ }
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ onDeviceCredentialsChanged\ +=\ [](const\ char*\ ssid,\ const\ char*\ password)\ \{}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}OTA\ :\ Nouveaux\ identifiants\ reçus"{});}}
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ \ \ start\_OTA(ssid,\ password);}}
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ Debug.setResetCmdEnabled(true);}}
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ Debug.showColors(true);}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//\ Debug.setSerialEnabled(true);}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ myTicker.attach(2,\ generateDebugLog);}}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}{loopOTA}}()\{}
+\DoxyCodeLine{00086\ \ \ ArduinoOTA.handle();}
+\DoxyCodeLine{00087\ \ \ \textcolor{comment}{//\ Debug.handle();}}
+\DoxyCodeLine{00088\ \}}
+
+\end{DoxyCode}

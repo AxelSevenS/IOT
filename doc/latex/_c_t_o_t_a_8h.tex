@@ -1,0 +1,36 @@
+\hypertarget{_c_t_o_t_a_8h}{}\doxysection{CTOTA.\+h File Reference}
+\label{_c_t_o_t_a_8h}\index{CTOTA.h@{CTOTA.h}}
+{\ttfamily \#include $<$Arduino\+OTA.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}CTTicker.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTSPIFFS.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTConfig.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}{start\+\_\+\+OTA}} (const char $\ast$hostname, const char $\ast$password)
+\item 
+void \mbox{\hyperlink{_c_t_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}{setup\+OTA}} ()
+\item 
+void \mbox{\hyperlink{_c_t_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}{loop\+OTA}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}\label{_c_t_o_t_a_8h_a0a7b89215a7124910c33d8335bbc3105}} 
+\index{CTOTA.h@{CTOTA.h}!loopOTA@{loopOTA}}
+\index{loopOTA@{loopOTA}!CTOTA.h@{CTOTA.h}}
+\doxysubsubsection{\texorpdfstring{loopOTA()}{loopOTA()}}
+{\footnotesize\ttfamily void loop\+OTA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A chaque itération, on verifie si une mise a jour nous est envoyée. Si tel est cas, la bibliothèque Arduino\+OTA se charge de tout ! \mbox{\Hypertarget{_c_t_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}\label{_c_t_o_t_a_8h_a4f09d92897fdf84125059cf3bb5a55d5}} 
+\index{CTOTA.h@{CTOTA.h}!setupOTA@{setupOTA}}
+\index{setupOTA@{setupOTA}!CTOTA.h@{CTOTA.h}}
+\doxysubsubsection{\texorpdfstring{setupOTA()}{setupOTA()}}
+{\footnotesize\ttfamily void setup\+OTA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configuration et démarrage des services OTA \& Remote Debug \mbox{\Hypertarget{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}\label{_c_t_o_t_a_8h_a8d7f631f773d0934111f6b4d0082e832}} 
+\index{CTOTA.h@{CTOTA.h}!start\_OTA@{start\_OTA}}
+\index{start\_OTA@{start\_OTA}!CTOTA.h@{CTOTA.h}}
+\doxysubsubsection{\texorpdfstring{start\_OTA()}{start\_OTA()}}
+{\footnotesize\ttfamily void start\+\_\+\+OTA (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hostname,  }\item[{const char $\ast$}]{password }\end{DoxyParamCaption})}
+

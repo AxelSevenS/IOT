@@ -2,29 +2,27 @@
 
 // ------------------------------------------------------------------------------------------------
 // MODULES
-#include "MyDebug.h"        // Debug
-#include "MyDeepSleep.h"    // Deep Sleep
-#include "MyTicker.h"       // Tickers
-#include "Events.h"         // Events
+// #include "CTDebug.h"        // Debug
+// #include "CTTicker.h"       // Tickers
+// #include "CTEvents.h"       // Events
 
-#include "MySPIFFS.h"       // Flash File System
-#include "MyWiFi.h"         // WiFi
-#include "MyWebServer.h"    // Serveur Web
-#include "MyNTP.h"          // Network Time Protocol
-#include "MyAdafruitIO.h"   // Adafruit MQTT
-#include "MyBLE.h"          // BLE
-#include "MyOTA.h"          // Over the air
-//#include "MyLED.h"          // LED
-//#include "MyDHT.h"          // Capteur de température et humidité
-//#include "MyCore0.h"        // Utilisation du Core 0
+#include "CTSPIFFS.h"       // Flash File System
+#include "CTWiFi.h"         // WiFi
+#include "CTWebServer.h"    // Serveur Web
+#include "CTNTP.h"          // Network Time Protocol
+#include "CTAdafruitIO.h"   // Adafruit MQTT
+#include "CTBLE.h"          // BLE
+#include "CTOTA.h"          // Over the air
+//#include "CTLED.h"          // LED
+//#include "CTDHT.h"          // Capteur de température et humidité
 
 
 void setup() {
-  setupDebug();
+  // setupDebug();
   // setupDeepSleep();
   // setupTicker();
 
-  MYDEBUG_PRINTLN("------------------- SETUP");
+  // MYDEBUG_PRINTLN("------------------- SETUP");
   setupSPIFFS();
   setupWiFi();
   setupWebServer();

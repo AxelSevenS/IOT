@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['task1_0',['Task1',['../_my_core0_8h.html#aa8a74d99e32c031fea96c5a186b717ae',1,'MyCore0.h']]],
-  ['temperaturefeed_1',['temperatureFeed',['../_my_adafruit_i_o_8h.html#ab04605efed2dfe3887cdc1c8cfa1b2d8',1,'MyAdafruitIO.h']]],
-  ['timefeed_2',['timefeed',['../_my_adafruit_i_o_8h.html#a83b7ff6a142c27ffdbfe683e2613939d',1,'MyAdafruitIO.h']]],
-  ['timezone_3',['timeZone',['../_my_adafruit_i_o_8h.html#a04e3be435248bf42067beed524d79fcb',1,'MyAdafruitIO.h']]]
+  ['uislidervalue_0',['uiSliderValue',['../_c_t_adafruit_i_o_8h.html#a244d12ee1babb263a43de149b60bb70d',1,'CTAdafruitIO.h']]],
+  ['user_5fstatus_1',['user_status',['../_c_t_health_8h.html#af62606a4cab2472ff56d785a56edbac6',1,'CTHealth.h']]]
 ];

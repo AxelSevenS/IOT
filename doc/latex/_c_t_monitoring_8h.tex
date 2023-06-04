@@ -1,0 +1,232 @@
+\hypertarget{_c_t_monitoring_8h}{}\doxysection{CTMonitoring.\+h File Reference}
+\label{_c_t_monitoring_8h}\index{CTMonitoring.h@{CTMonitoring.h}}
+{\ttfamily \#include \char`\"{}vector\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTSPIFFS.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTConfig.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTNTP.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_t_monitoring_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\+\_\+\+FILE\+\_\+\+PATH}}~\char`\"{}/monitoring.\+json\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_monitoring_8h_a52d0a760f4e14cbc43b78f0195aa4f54}{DEFAULT\+\_\+\+MONITORING\+\_\+\+TIME}}~5.\+0
+\item 
+\#define \mbox{\hyperlink{_c_t_monitoring_8h_ab8d765931e29251d615e430da725cba8}{DEFAULT\+\_\+\+MONITORING\+\_\+\+DISTANCE}}~5.\+0
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{Monitoring\+Callback}}) (float time, float distance)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_accb1e048b0cd2decc56a4e05d10c103f}{Add\+Monitoring\+Config\+Changed\+Callback}} (\mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{Monitoring\+Callback}} callback)
+\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_abfff2434b8a48c07b933997bdb768010}{Invoke\+Monitoring\+Config\+Changed\+Callbacks}} (float time, float distance)
+\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\+\_\+contact\+\_\+if\+\_\+device\+\_\+is\+\_\+sick}} (Json\+Document \&monitoring\+Document, File \&monitoring\+File, const char $\ast$other\+Device\+Address)
+\begin{DoxyCompactList}\small\item\em Vérifie si le device est marqué comme malade dans le fichier de monitoring et met à jour le status de l\textquotesingle{}utilisateur si c\textquotesingle{}est le cas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}{update\+\_\+device\+\_\+status}} (const char $\ast$address, const char $\ast$status)
+\begin{DoxyCompactList}\small\item\em Met à jour le status d\textquotesingle{}un device dans le fichier de monitoring. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}{device\+\_\+interact}} (const char $\ast$address, const char $\ast$name, long last\+\_\+contact)
+\begin{DoxyCompactList}\small\item\em Effectue une \char`\"{}interaction\char`\"{} avec un device, c\textquotesingle{}est à dire met à jour son nom, son temps d\textquotesingle{}exposition et son statut dans le fichier de monitoring~\newline
+Si le temps d\textquotesingle{}exposition est supérieur à la durée de surveillance, le device est marqué pour surveillance rapprochée. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}{update\+\_\+monitoring\+\_\+config}} (float new\+\_\+time, float new\+\_\+distance, Json\+Document \&json\+Document)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_monitoring_8h_ae2fbce3ef77355e7c2a94cd55df9e558}{update\+\_\+monitoring\+\_\+config}} (float new\+\_\+time, float new\+\_\+distance)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}} = 5.\+0
+\item 
+float \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}} = 5.\+0
+\item 
+std\+::vector$<$ \mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{Monitoring\+Callback}} $>$ \mbox{\hyperlink{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}{on\+Monitoring\+Config\+Changed\+Callbacks}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_c_t_monitoring_8h_ab8d765931e29251d615e430da725cba8}\label{_c_t_monitoring_8h_ab8d765931e29251d615e430da725cba8}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!DEFAULT\_MONITORING\_DISTANCE@{DEFAULT\_MONITORING\_DISTANCE}}
+\index{DEFAULT\_MONITORING\_DISTANCE@{DEFAULT\_MONITORING\_DISTANCE}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MONITORING\_DISTANCE}{DEFAULT\_MONITORING\_DISTANCE}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MONITORING\+\_\+\+DISTANCE~5.\+0}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_a52d0a760f4e14cbc43b78f0195aa4f54}\label{_c_t_monitoring_8h_a52d0a760f4e14cbc43b78f0195aa4f54}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!DEFAULT\_MONITORING\_TIME@{DEFAULT\_MONITORING\_TIME}}
+\index{DEFAULT\_MONITORING\_TIME@{DEFAULT\_MONITORING\_TIME}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MONITORING\_TIME}{DEFAULT\_MONITORING\_TIME}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MONITORING\+\_\+\+TIME~5.\+0}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_a933da68cd083941c80a7418829fbc225}\label{_c_t_monitoring_8h_a933da68cd083941c80a7418829fbc225}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!MONITORING\_FILE\_PATH@{MONITORING\_FILE\_PATH}}
+\index{MONITORING\_FILE\_PATH@{MONITORING\_FILE\_PATH}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{MONITORING\_FILE\_PATH}{MONITORING\_FILE\_PATH}}
+{\footnotesize\ttfamily \#define MONITORING\+\_\+\+FILE\+\_\+\+PATH~\char`\"{}/monitoring.\+json\char`\"{}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}\label{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!MonitoringCallback@{MonitoringCallback}}
+\index{MonitoringCallback@{MonitoringCallback}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{MonitoringCallback}{MonitoringCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Monitoring\+Callback) (float time, float distance)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_monitoring_8h_accb1e048b0cd2decc56a4e05d10c103f}\label{_c_t_monitoring_8h_accb1e048b0cd2decc56a4e05d10c103f}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!AddMonitoringConfigChangedCallback@{AddMonitoringConfigChangedCallback}}
+\index{AddMonitoringConfigChangedCallback@{AddMonitoringConfigChangedCallback}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{AddMonitoringConfigChangedCallback()}{AddMonitoringConfigChangedCallback()}}
+{\footnotesize\ttfamily void Add\+Monitoring\+Config\+Changed\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{Monitoring\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}\label{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}}
+\index{become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{become\_contact\_if\_device\_is\_sick()}{become\_contact\_if\_device\_is\_sick()}}
+{\footnotesize\ttfamily void become\+\_\+contact\+\_\+if\+\_\+device\+\_\+is\+\_\+sick (\begin{DoxyParamCaption}\item[{Json\+Document \&}]{monitoring\+Document,  }\item[{File \&}]{monitoring\+File,  }\item[{const char $\ast$}]{other\+Device\+Address }\end{DoxyParamCaption})}
+
+
+
+Vérifie si le device est marqué comme malade dans le fichier de monitoring et met à jour le status de l\textquotesingle{}utilisateur si c\textquotesingle{}est le cas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em monitoring\+Document} & \\
+\hline
+{\em monitoring\+File} & \\
+\hline
+{\em other\+Device\+Address} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}\label{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!device\_interact@{device\_interact}}
+\index{device\_interact@{device\_interact}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{device\_interact()}{device\_interact()}}
+{\footnotesize\ttfamily void device\+\_\+interact (\begin{DoxyParamCaption}\item[{const char $\ast$}]{address,  }\item[{const char $\ast$}]{name,  }\item[{long}]{last\+\_\+contact }\end{DoxyParamCaption})}
+
+
+
+Effectue une \char`\"{}interaction\char`\"{} avec un device, c\textquotesingle{}est à dire met à jour son nom, son temps d\textquotesingle{}exposition et son statut dans le fichier de monitoring~\newline
+Si le temps d\textquotesingle{}exposition est supérieur à la durée de surveillance, le device est marqué pour surveillance rapprochée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & \\
+\hline
+{\em name} & \\
+\hline
+{\em last\+\_\+contact} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_monitoring_8h_abfff2434b8a48c07b933997bdb768010}\label{_c_t_monitoring_8h_abfff2434b8a48c07b933997bdb768010}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!InvokeMonitoringConfigChangedCallbacks@{InvokeMonitoringConfigChangedCallbacks}}
+\index{InvokeMonitoringConfigChangedCallbacks@{InvokeMonitoringConfigChangedCallbacks}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{InvokeMonitoringConfigChangedCallbacks()}{InvokeMonitoringConfigChangedCallbacks()}}
+{\footnotesize\ttfamily void Invoke\+Monitoring\+Config\+Changed\+Callbacks (\begin{DoxyParamCaption}\item[{float}]{time,  }\item[{float}]{distance }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}\label{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!update\_device\_status@{update\_device\_status}}
+\index{update\_device\_status@{update\_device\_status}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{update\_device\_status()}{update\_device\_status()}}
+{\footnotesize\ttfamily void update\+\_\+device\+\_\+status (\begin{DoxyParamCaption}\item[{const char $\ast$}]{address,  }\item[{const char $\ast$}]{status }\end{DoxyParamCaption})}
+
+
+
+Met à jour le status d\textquotesingle{}un device dans le fichier de monitoring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & \\
+\hline
+{\em status} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_monitoring_8h_ae2fbce3ef77355e7c2a94cd55df9e558}\label{_c_t_monitoring_8h_ae2fbce3ef77355e7c2a94cd55df9e558}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!update\_monitoring\_config@{update\_monitoring\_config}}
+\index{update\_monitoring\_config@{update\_monitoring\_config}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{update\_monitoring\_config()}{update\_monitoring\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void update\+\_\+monitoring\+\_\+config (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+time,  }\item[{float}]{new\+\_\+distance }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le temps de monitoring est alors stocké dans la variable \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}};~\newline
+et la distance de monitoring dans \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & Le nouveau temps de monitoring. \\
+\hline
+{\em new\+\_\+distance} & La nouvelle distance de monitoring. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}\label{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!update\_monitoring\_config@{update\_monitoring\_config}}
+\index{update\_monitoring\_config@{update\_monitoring\_config}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{update\_monitoring\_config()}{update\_monitoring\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void update\+\_\+monitoring\+\_\+config (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+time,  }\item[{float}]{new\+\_\+distance,  }\item[{Json\+Document \&}]{json\+Document }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le temps de monitoring est alors stocké dans la variable \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}};~\newline
+et la distance de monitoring dans \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction n\textquotesingle{}ouvre pas de document JSON, elle utilise celui passé en paramètre.
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & Le nouveau temps de monitoring. \\
+\hline
+{\em new\+\_\+distance} & La nouvelle distance de monitoring. \\
+\hline
+{\em json\+Document} & Le document JSON qui contient les données de Surveillance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}\label{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!monitoring\_distance@{monitoring\_distance}}
+\index{monitoring\_distance@{monitoring\_distance}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{monitoring\_distance}{monitoring\_distance}}
+{\footnotesize\ttfamily float monitoring\+\_\+distance = 5.\+0}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}\label{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!monitoring\_time@{monitoring\_time}}
+\index{monitoring\_time@{monitoring\_time}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{monitoring\_time}{monitoring\_time}}
+{\footnotesize\ttfamily float monitoring\+\_\+time = 5.\+0}
+
+\mbox{\Hypertarget{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}\label{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}} 
+\index{CTMonitoring.h@{CTMonitoring.h}!onMonitoringConfigChangedCallbacks@{onMonitoringConfigChangedCallbacks}}
+\index{onMonitoringConfigChangedCallbacks@{onMonitoringConfigChangedCallbacks}!CTMonitoring.h@{CTMonitoring.h}}
+\doxysubsubsection{\texorpdfstring{onMonitoringConfigChangedCallbacks}{onMonitoringConfigChangedCallbacks}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{Monitoring\+Callback}}$>$ on\+Monitoring\+Config\+Changed\+Callbacks}
+

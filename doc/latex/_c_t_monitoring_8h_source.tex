@@ -1,0 +1,165 @@
+\hypertarget{_c_t_monitoring_8h_source}{}\doxysection{CTMonitoring.\+h}
+\mbox{\hyperlink{_c_t_monitoring_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}vector"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#include\ <ArduinoJson.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_config_8h}{CTConfig.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_n_t_p_8h}{CTNTP.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MONITORING\_FILE\_PATH\ \ \ \ \ \ \ \ "{}/monitoring.json"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_TIME\ \ \ \ \ 5.0}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_DISTANCE\ 5.0}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ void(*\mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{MonitoringCallback}})(\textcolor{keywordtype}{float}\ time,\ \textcolor{keywordtype}{float}\ distance);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ 5.0;}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ 5.0;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ std::vector<MonitoringCallback>\ \mbox{\hyperlink{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}{onMonitoringConfigChangedCallbacks}};}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_accb1e048b0cd2decc56a4e05d10c103f}{AddMonitoringConfigChangedCallback}}(\mbox{\hyperlink{_c_t_monitoring_8h_a6e787587d39e130862e17729ef1bb919}{MonitoringCallback}}\ callback)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}{onMonitoringConfigChangedCallbacks}}.push\_back(callback);}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_abfff2434b8a48c07b933997bdb768010}{InvokeMonitoringConfigChangedCallbacks}}(\textcolor{keywordtype}{float}\ time,\ \textcolor{keywordtype}{float}\ distance)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ callback\ :\ \mbox{\hyperlink{_c_t_monitoring_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}{onMonitoringConfigChangedCallbacks}})\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ callback(time,\ distance);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ otherDeviceAddress)\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ si\ le\ device\ est\ marqué\ pour\ surveillance\ rapprochée\ et\ qu'il\ est\ malade,\ marquer\ l'utilisateur\ comme\ contact}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (\ monitoringDocument[otherDeviceAddress][\textcolor{stringliteral}{"{}close\_monitoring"{}}]\ ==\ \textcolor{keyword}{true}\ \&\&\ monitoringDocument[otherDeviceAddress][\textcolor{stringliteral}{"{}status"{}}]\ ==\ \textcolor{stringliteral}{"{}SICK"{}}\ \&\&\ \mbox{\hyperlink{_c_t_health_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ )\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//TODO\ :\ envoyer\ un\ message\ à\ l'utilisateur\ pour\ lui\ dire\ qu'il\ est\ en\ contact\ avec\ un\ malade}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{_c_t_health_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\mbox{\hyperlink{_c_t_health_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}},\ monitoringDocument);}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}{update\_device\_status}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ address,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ status)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_monitoring_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [=](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{auto}\ otherDevice\ =\ monitoringDocument[address];}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}DEVICE\ :\ Updated\ status\ of\ "{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(otherDevice.as<String>().c\_str());}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(status);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ mise\ à\ jour\ de\ l'état\ du\ device\ dans\ le\ fichier\ de\ config}}
+\DoxyCodeLine{00077\ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}status"{}}]\ =\ \textcolor{stringliteral}{"{}TEST"{}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(monitoringDocument,\ monitoringFile,\ address);}
+\DoxyCodeLine{00080\ \ \ \});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}{device\_interact}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ address,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{long}\ last\_contact)\ \{}
+\DoxyCodeLine{00094\ \ \ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}DEVICE\ :\ Interacted\ with\ "{}});}
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(name);}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_monitoring_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [=](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{auto}\ otherDevice\ =\ monitoringDocument[address];}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ mettre\ à\ jour\ le\ nom\ du\ device\ à\ chaque\ interaction,\ car\ il\ peut\ changer}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !otherDevice[\textcolor{stringliteral}{"{}name"{}}].isNull()\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}name"{}}]\ =\ name;}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ si\ c'est\ la\ première\ fois\ qu'on\ rencontre\ le\ device,\ assigner\ le\ temps\ de\ première\ rencontre}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{auto}\ first\_contact\ =\ otherDevice[\textcolor{stringliteral}{"{}first\_contact"{}}];}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ first\_contact.isNull()\ )\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ first\_contact\ =\ getNTP();}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ mettre\ à\ jour\ le\ temps\ d'exposition}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{auto}\ total\_exposure\ =\ otherDevice[\textcolor{stringliteral}{"{}total\_exposure"{}}];}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{float}\ exposure\_time\ =\ total\_exposure.as<\textcolor{keywordtype}{float}>();}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ time\_since\_last\_contact\ =\ (millis()\ -\/\ last\_contact)\ /\ 1000.0;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ total\_exposure.isNull()\ )\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ total\_exposure\ =\ time\_since\_last\_contact;}
+\DoxyCodeLine{00119\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ total\_exposure\ =\ exposure\_time\ +\ time\_since\_last\_contact;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ exposure\_time\ =\ total\_exposure.as<\textcolor{keywordtype}{float}>();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ marquer\ le\ device\ pour\ surveillance\ rapprochée\ si\ le\ temps\ d'exposition\ est\ supérieur\ à\ la\ durée\ de\ surveillance}}
+\DoxyCodeLine{00125\ \ \ \ \ if\ (exposure\_time\ >\ (\textcolor{keywordtype}{float})\mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ *\ 60)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ otherDevice[\textcolor{stringliteral}{"{}close\_monitoring"{}}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\_contact\_if\_device\_is\_sick}}(monitoringDocument,\ monitoringFile,\ address);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{bool}\ monitoringConfigChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ !=\ new\_time\ )\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00156\ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ new\_time;}
+\DoxyCodeLine{00158\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}time"{}}]\ =\ \mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ !=\ new\_distance\ )\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ new\_distance;}
+\DoxyCodeLine{00164\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}distance"{}}]\ =\ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{if}\ (\ monitoringConfigChanged\ )\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ onMonitoringConfigChanged(monitoring\_time,\ monitoring\_distance);}}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_abfff2434b8a48c07b933997bdb768010}{InvokeMonitoringConfigChangedCallbacks}}(\mbox{\hyperlink{_c_t_monitoring_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}},\ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}});}
+\DoxyCodeLine{00169\ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00186\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance\ )\ \{}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_time,\ new\_distance](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_a815477802f44ab1daceaf844828f13fa}{update\_monitoring\_config}}(new\_time,\ new\_distance,\ jsonDocument);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{comment}{//\ void\ get\_monitoring\_config(\ JsonDocument\&\ jsonDocument\ )\ \{}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ \ \ auto\ json\_monitoring\_time\ =\ jsonDocument["{}monitoring"{}]["{}time"{}];}}
+\DoxyCodeLine{00199\ \textcolor{comment}{//\ \ \ if\ (\ json\_monitoring\_time.isNull()\ )\ \{}}
+\DoxyCodeLine{00200\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Pas\ d'intervalle\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{});}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ \ \ \ \ json\_monitoring\_time\ =\ DEFAULT\_MONITORING\_TIME;}}
+\DoxyCodeLine{00202\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ \ \ auto\ json\_monitoring\_distance\ =\ jsonDocument["{}monitoring"{}]["{}distance"{}];}}
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ \ \ if\ (\ json\_monitoring\_distance.isNull()\ )\ \{}}
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Pas\ de\ distance\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{});}}
+\DoxyCodeLine{00207\ \textcolor{comment}{//\ \ \ \ \ json\_monitoring\_distance\ =\ DEFAULT\_MONITORING\_DISTANCE;}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ \ \ update\_monitoring\_config(json\_monitoring\_time.as<float>(),\ json\_monitoring\_distance.as<float>(),\ jsonDocument);}}
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ void\ get\_monitoring\_config()\ \{}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//\ \ \ read\_write\_file(\ CONFIG\_FILE\_PATH,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}}
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ \ \ \ \ get\_monitoring\_config(jsonDocument);}}
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ \ \ \}\ );}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ \}}}
+
+\end{DoxyCode}

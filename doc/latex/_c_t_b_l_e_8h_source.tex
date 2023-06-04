@@ -1,0 +1,141 @@
+\hypertarget{_c_t_b_l_e_8h_source}{}\doxysection{CTBLE.\+h}
+\mbox{\hyperlink{_c_t_b_l_e_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <BLEDevice.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <BLEUtils.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <BLEServer.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_ticker_8h}{CTTicker.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_monitoring_8h}{CTMonitoring.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*************************\ Configuration\ *************************************/}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SERVICE\_UUID\ \ \ \ \ \ \ \ "{}774320e9-\/e25a-\/455c-\/9230-\/b1758c4cfa12"{}}\ \ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ BLE\_FREQ\ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ BLE\_SCAN\_TIME\ \ \ \ 5}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/**************************\ Variables\ ****************************************/}}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}{BLEScan}}*\ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}};}
+\DoxyCodeLine{00035\ BLEServer*\ \mbox{\hyperlink{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}{pServer}};}
+\DoxyCodeLine{00036\ BLEService*\ \mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}};}
+\DoxyCodeLine{00037\ BLEAdvertising*\ \mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ int\ iCompteur\ =\ 0;}}
+\DoxyCodeLine{00045\ \textcolor{comment}{}\textcolor{keywordtype}{long}\ \mbox{\hyperlink{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}{BLE\_last\_scan}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}{start\_BLE\_server}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}})\ \{}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/BLE\ :\ Démarrage\ du\ serveur\ sous\ le\ nom\ :\ "{}});}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ BLEDevice::init(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ On\ remet\ à\ zéro\ le\ serveur,\ le\ service\ et\ l'advertising}}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}{pServer}})\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}{pServer}}-\/>removeService(\mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}});}
+\DoxyCodeLine{00063\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}{pServer}}\ =\ BLEDevice::createServer();}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}})\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}}-\/>stop();}
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}}\ =\ \mbox{\hyperlink{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}{pServer}}-\/>createService(\mbox{\hyperlink{_c_t_b_l_e_8h_a445125ee8c34695376c85f10b38844d6}{SERVICE\_UUID}});}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}{pService}}-\/>start();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}}-\/>stop();}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ pAdvertising-\/>clearData();}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ pAdvertising-\/>clearScanResponse();}}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}}\ =\ BLEDevice::getAdvertising();}
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}}-\/>addServiceUUID(\mbox{\hyperlink{_c_t_b_l_e_8h_a445125ee8c34695376c85f10b38844d6}{SERVICE\_UUID}});}
+\DoxyCodeLine{00080\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}{pAdvertising}}-\/>setScanResponse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ BLEDevice::startAdvertising();}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_my_advertised_device_callbacks}{MyAdvertisedDeviceCallbacks}}:\ \textcolor{keyword}{public}\ BLEAdvertisedDeviceCallbacks\ \{\ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ onResult(BLEAdvertisedDevice\ advertisedDevice)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_b_l_e_8h_a445125ee8c34695376c85f10b38844d6}{SERVICE\_UUID}}\ !=\ advertisedDevice.getServiceUUID().toString())\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ std::string\ address\ =\ advertisedDevice.getAddress().toString();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ std::string\ name\ =\ advertisedDevice.getName();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/BLE\ client\ :\ CONTACT\ Tracer\ trouvé\ :\ "{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(address.c\_str());}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nom\ :\ "{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(name.c\_str());}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ratio\ =\ (float)(-\/69\ -\/advertisedDevice.getRSSI())/(10\ *\ 2);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance\ =\ pow(10,ratio);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ Contact\ Tracer\ is\ close\ enough,\ advance\ the\ "{}contact"{}\ timer.}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ <\ \mbox{\hyperlink{_c_t_monitoring_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}})\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}{device\_interact}}(address.c\_str(),\ name.c\_str(),\ \mbox{\hyperlink{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}{BLE\_last\_scan}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}{BLE\_last\_scan}}\ =\ millis();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00130\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}{BLEScan}}()\ \{}
+\DoxyCodeLine{00131\ \ \ BLEScanResults\ foundDevices\ =\ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>start(\mbox{\hyperlink{_c_t_b_l_e_8h_a7d0fce2820b99d4d2818bf0c58f65fcb}{BLE\_SCAN\_TIME}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00132\ \ \ \textcolor{comment}{//\ MYDEBUG\_PRINTLN(foundDevices.getCount());}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>clearResults();}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_b_l_e_8h_a9f20df24b485bb3f7d2ae06c5de40e7b}{setupBLEServer}}()\ \{}
+\DoxyCodeLine{00145\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/BLE\ Server\ :\ Démarrage"{}});}
+\DoxyCodeLine{00146\ \ \ \mbox{\hyperlink{_c_t_config_8h_abdcbeedc8532f1b5a397b776f55dcf28}{get\_device\_config}}();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}{start\_BLE\_server}}(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str());}
+\DoxyCodeLine{00149\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/BLE\ Server\ :\ Démarré"{}});}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00158\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_b_l_e_8h_a6893deddb9ac5085c42040e53d9f8095}{setupBLEClient}}()\ \{}
+\DoxyCodeLine{00159\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/BLE\ Client\ :\ Démarrage"{}});}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ BLEDevice::init(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str());}
+\DoxyCodeLine{00162\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}\ =\ BLEDevice::getScan();\ \textcolor{comment}{//create\ new\ scan}}
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>setAdvertisedDeviceCallbacks(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_my_advertised_device_callbacks}{MyAdvertisedDeviceCallbacks}}());}
+\DoxyCodeLine{00164\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>setActiveScan(\textcolor{keyword}{true});\ \textcolor{comment}{//active\ scan\ uses\ more\ power,\ but\ get\ results\ faster}}
+\DoxyCodeLine{00165\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>setInterval(100);}
+\DoxyCodeLine{00166\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}{pBLEScan}}-\/>setWindow(99);\ \ \textcolor{comment}{//\ less\ or\ equal\ setInterval\ value}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}{BLE\_last\_scan}}\ =\ millis();}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{_c_t_config_8h_a22604d8f8e901fe1b2464e9fa2ac0641}{AddDeviceCredentialsChangedCallback}}([](\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/BLE\ Client\ :\ Nouveau\ SSID\ reçu"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}{start\_BLE\_server}}(ssid);}
+\DoxyCodeLine{00174\ \ \ \});}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{comment}{//\ onDeviceCredentialsChanged\ +=\ [](const\ char*\ ssid,\ const\ char*\ password)\ \{}}
+\DoxyCodeLine{00177\ \ \ \textcolor{comment}{//\ \ \ MYDEBUG\_PRINTLN("{}-\/BLE\ Client\ :\ Nouveau\ SSID\ reçu"{});}}
+\DoxyCodeLine{00178\ \ \ \textcolor{comment}{//\ \ \ start\_BLE\_server(ssid);}}
+\DoxyCodeLine{00179\ \ \ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/BLE\ Client\ :\ Démarré"{}});}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_b_l_e_8h_ab639259f1b5cebfe4d21689af80aabe8}{loopBLEClient}}()\ \{}
+\DoxyCodeLine{00189\ \ \ \mbox{\hyperlink{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}{BLEScan}}();}
+\DoxyCodeLine{00190\ \}}
+
+\end{DoxyCode}

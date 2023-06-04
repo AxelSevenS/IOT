@@ -1,0 +1,102 @@
+\hypertarget{_c_t_s_p_i_f_f_s_8h_source}{}\doxysection{CTSPIFFS.\+h}
+\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}\ \ \ \textcolor{comment}{//Arduino\ JSON\ by\ Benoit\ Blanchon\ :\ https://github.com/bblanchon/ArduinoJson}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <SPIFFS.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_debug_8h}{CTDebug.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ std::function<void(JsonDocument\&,\ File\&)>\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\&\ readFunction)\ \{}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ de\ monter\ le\ système\ de\ fichiers"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ File\ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_READ);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ lecture"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{00044\ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ DynamicJsonDocument\ jsonDocument(512);}
+\DoxyCodeLine{00049\ \ \ DeserializationError\ error\ =\ deserializeJson(jsonDocument,\ jsonFile);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (error)\{}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ [ERREUR\ :\ "{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(error.c\_str());}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}]\ Impossible\ de\ parser\ le\ JSON\ dans\ le\ fichier\ :\ "{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(jsonFile.name());}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ readFunction(jsonDocument,\ jsonFile);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ jsonFile.close();}
+\DoxyCodeLine{00061\ \ \ SPIFFS.end();\ \ }
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\ writeFunction)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [fileName,\ writeFunction](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{00077\ \ \ \ \ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_WRITE);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ écriture"{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ writeFunction(jsonDocument,\ jsonFile);\ }
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (serializeJson(jsonDocument,\ jsonFile)\ ==\ 0)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'écrire\ le\ JSON\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \});}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{display\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName)\ \{}
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ String\ json\_text;}
+\DoxyCodeLine{00109\ \ \ \ \ serializeJsonPretty(jsonDocument,\ json\_text);}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Contenu\ du\ fichier\ "{}});}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(jsonFile.name());}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ :"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(json\_text);}
+\DoxyCodeLine{00114\ \ \ \});}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filePath)\ \{}
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00125\ \ \ }
+\DoxyCodeLine{00126\ \ \ SPIFFS.remove(filePath);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ SPIFFS.end();}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setupSPIFFS}}()\{}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{comment}{//\ SPIFFS.format();\ ///\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Au\ besoin,\ pour\ formatter\ le\ système\ de\ fichiers}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \textcolor{comment}{//\ get\_config();}}
+\DoxyCodeLine{00141\ \}}
+
+\end{DoxyCode}

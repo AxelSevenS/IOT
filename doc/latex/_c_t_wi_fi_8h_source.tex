@@ -1,0 +1,208 @@
+\hypertarget{_c_t_wi_fi_8h_source}{}\doxysection{CTWi\+Fi.\+h}
+\mbox{\hyperlink{_c_t_wi_fi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <WiFi.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_ticker_8h}{CTTicker.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_config_8h}{CTConfig.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSPIFFS.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_SSID\ \ \ \ \ \ \ \ \ \ \ \ "{}Hamburger"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_PASSWORD\ \ \ \ \ \ \ \ "{}YoLesKids"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\_launched}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ String\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{00025\ String\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ std::vector<CredentialsCallback>\ \mbox{\hyperlink{_c_t_wi_fi_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}{onNetworkCredentialsChangedCallbacks}};}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a3d5d2a1946d191159f8b0464f1433d49}{AddNetworkCredentialsChangedCallback}}(\mbox{\hyperlink{_c_t_config_8h_ae6a3e8332fa73ffda1fb93b04817f802}{CredentialsCallback}}\ callback)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}{onNetworkCredentialsChangedCallbacks}}.push\_back(callback);}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_af3122acf35aec8ec7344c98757eb17b6}{InvokeNetworkCredentialsChangedCallbacks}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ callback\ :\ \mbox{\hyperlink{_c_t_wi_fi_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}{onNetworkCredentialsChangedCallbacks}})\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ callback(name,\ password);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{bool}\ networkCredentialsChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_ssid,\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}\ =\ String(new\_net\_ssid);}
+\DoxyCodeLine{00060\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}]\ =\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_password,\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}}\ =\ String(new\_net\_password);}
+\DoxyCodeLine{00066\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}]\ =\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{if}\ (\ networkCredentialsChanged\ )\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_af3122acf35aec8ec7344c98757eb17b6}{InvokeNetworkCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
+\DoxyCodeLine{00070\ \ \ \}}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password\ )\ \{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_config_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_net\_ssid,\ new\_net\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(new\_net\_ssid,\ new\_net\_password,\ jsonDocument);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \});\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ *\ @brief\ Permet\ d'obtenir\ le\ SSID\ et\ le\ mot\ de\ Passe\ du\ point\ d'accès\ réseau\ et\ mettre\ ces\ infos\ dans\ un\ json.\ }}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ *\ @param\ jsonDocument\ Le\ document\ JSON\ qui\ contient\ la\ configuration\ Réseau.}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ */}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ void\ get\_network\_config(\ JsonDocument\&\ jsonDocument\ )\ \{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ \ \ auto\ json\_net\_ssid\ =\ jsonDocument["{}wifi"{}]["{}net\_ssid"{}];}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ \ \ if\ (\ json\_net\_ssid.isNull()\ )\ \{}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Pas\ de\ SSID\ NET\ dans\ le\ fichier\ de\ configuration"{});}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ \ \ \ \ json\_net\_ssid\ =\ DEFAULT\_NET\_SSID;}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ \ auto\ json\_net\_password\ =\ jsonDocument["{}wifi"{}]["{}net\_password"{}];}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ \ \ if\ (\ json\_net\_password.isNull()\ )\ \{}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ \ \ \ \ MYDEBUG\_PRINTLN("{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ NET\ dans\ le\ fichier\ de\ configuration"{});}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \ \ \ \ json\_net\_password\ =\ DEFAULT\_NET\_PASSWORD;}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ \ \ update\_network\_config(json\_net\_ssid.as<const\ char*>(),\ json\_net\_password.as<const\ char*>(),\ jsonDocument);}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ *@brief\ appelle\ la\ fonction\ get\_network\_config\ avec\ le\ document\ Json\ passé\ en\ paramètre.}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ *@param\ jsonDocument\ Le\ document\ JSON\ qui\ contient\ la\ configuration\ Réseau.\ }}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ *\ }}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ *}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ */}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ void\ get\_network\_config()\ \{}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ \ read\_write\_file(CONFIG\_FILE\_PATH,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ \ \ \ get\_network\_config(jsonDocument);}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ \ \});}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00137\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}{launch\_access\_point}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00138\ \ \ WiFi.softAPdisconnect(\textcolor{keyword}{true});}
+\DoxyCodeLine{00139\ \ \ WiFi.softAP(ssid,\ password);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\_launched}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{_c_t_config_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(ssid,\ password);}
+\DoxyCodeLine{00144\ \ \ }
+\DoxyCodeLine{00145\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WIFI\ AP\ :\ Access\ Point\ Démarré"{}});}
+\DoxyCodeLine{00146\ \ \ MYDEBUG\_PRINTF3(\textcolor{stringliteral}{"{}-\/WIFI\ AP\ :\ Connectez-\/vous\ à\ \%s\ et\ ouvrez\ \%s\ dans\ un\ navigateur\ web\(\backslash\)n"{}},\ \mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ WiFi.softAPIP().toString().c\_str());}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordflow}{if}\ (\ WiFi.status()\ ==\ WL\_CONNECTED\ )\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ MYDEBUG\_PRINTF3(\textcolor{stringliteral}{"{}-\/WIFI\ AP\ :\ ou\ connectez-\/vous\ à\ \%s\ et\ ouvrez\ \%s\(\backslash\)n"{}},\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ WiFi.localIP().toString().c\_str());}
+\DoxyCodeLine{00149\ \ \ \}}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_wi_fi_8h_aba7acb281ac9938c1d6ea74cb0ff28b7}{check\_AP\_state}}()\ \{}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\_launched}})\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00166\ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \mbox{\hyperlink{_c_t_config_8h_abdcbeedc8532f1b5a397b776f55dcf28}{get\_device\_config}}();}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}{launch\_access\_point}}(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str());}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}{connect\_WiFi\_network}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password,\ uint\ cycles\ =\ 50)\ \{}
+\DoxyCodeLine{00190\ \ \ WiFi.disconnect(\textcolor{keyword}{true});}
+\DoxyCodeLine{00191\ \ \ WiFi.begin(ssid,\ password);}
+\DoxyCodeLine{00192\ \ \ }
+\DoxyCodeLine{00193\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/WIFI\ :\ Connexion\ au\ réseau\ :\ "{}});}
+\DoxyCodeLine{00194\ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(ssid);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cycles;\ i++)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ ==\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\(\backslash\)n-\/WIFI\ :\ Réussite,\ connecté\ à\ "{}});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(ssid);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00205\ \ \ \ \ delay(100);}
+\DoxyCodeLine{00206\ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\(\backslash\)n-\/WIFI\ :\ Connexion\ échouée"{}});}
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00219\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a4e5b01da019ba4bd3017834f0a6bb112}{check\_WiFi\_connection}}()\ \{}
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ ==\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00222\ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{comment}{//\ get\_network\_config();}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}{connect\_WiFi\_network}}(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00242\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}{try\_WiFi\_connect}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00243\ \ \ }
+\DoxyCodeLine{00244\ \ \ \textcolor{keywordtype}{bool}\ connectionSuccess\ =\ \mbox{\hyperlink{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}{connect\_WiFi\_network}}(ssid,\ password,\ 20);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{keywordflow}{if}\ (\ !connectionSuccess\ )\ \{}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/WIFI\ :\ connecté\ à\ "{}});}
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}});}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ WiFi.disconnect(\textcolor{keyword}{true});}
+\DoxyCodeLine{00252\ \ \ \ \ WiFi.begin(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}},\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}});}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00255\ \ \ \}}
+\DoxyCodeLine{00256\ \ \ }
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00258\ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_aab0860be730eccbf7b6ffee4b3f1ccde}{WiFiTicker}}()\ \{}
+\DoxyCodeLine{00261\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a4e5b01da019ba4bd3017834f0a6bb112}{check\_WiFi\_connection}}();}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00269\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_ad2a97dbe5f144cd247e3b15c6af7c767}{setupWiFi}}()\ \{}
+\DoxyCodeLine{00270\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WIFI\ :\ Configuration\ "{}});}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \textcolor{comment}{//\ Configuration\ de\ la\ carte\ en\ mode\ Access\ Point\ ET\ Station}}
+\DoxyCodeLine{00273\ \ \ WiFi.mode(WIFI\_AP\_STA);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{comment}{//\ launch\_access\_point(device\_name.c\_str(),\ device\_password.c\_str());}}
+\DoxyCodeLine{00276\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}{connect\_WiFi\_network}}(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a3d5d2a1946d191159f8b0464f1433d49}{AddNetworkCredentialsChangedCallback}}([](\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WIFI\ NET\ :\ Nouveaux\ identifiants\ de\ connexion\ reçus"{}});}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}{try\_WiFi\_connect}}(\mbox{\hyperlink{_c_t_wi_fi_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_wi_fi_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
+\DoxyCodeLine{00281\ \ \ \});}
+\DoxyCodeLine{00282\ \ \ \mbox{\hyperlink{_c_t_config_8h_a22604d8f8e901fe1b2464e9fa2ac0641}{AddDeviceCredentialsChangedCallback}}([](\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password)\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WIFI\ AP\ :\ Nouveaux\ identifiants\ reçus"{}});}
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}{launch\_access\_point}}(\mbox{\hyperlink{_c_t_config_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ \mbox{\hyperlink{_c_t_config_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str());}
+\DoxyCodeLine{00285\ \ \ \});}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \mbox{\hyperlink{_c_t_ticker_8h_afb3489134709c30e0c4aeaa50f03a2e8}{myTicker}}.attach(20,\ \mbox{\hyperlink{_c_t_wi_fi_8h_aab0860be730eccbf7b6ffee4b3f1ccde}{WiFiTicker}});}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_wi_fi_8h_aba38344f17126728216ffe0135b2e892}{loopWiFi}}()\ \{}
+\DoxyCodeLine{00292\ \}}
+
+\end{DoxyCode}
