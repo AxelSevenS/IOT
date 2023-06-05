@@ -1,0 +1,145 @@
+.TH "CTWebServer.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTWebServer.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'WiFi\&.h'\fP
+.br
+\fC#include 'AsyncTCP\&.h'\fP
+.br
+\fC#include 'ESPAsyncWebServer\&.h'\fP
+.br
+\fC#include 'CTSpiffs\&.h'\fP
+.br
+
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "AsyncWebServer \fBasyncWebServer\fP (80)"
+.br
+.ti -1c
+.RI "void \fBhandleConfig\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la page de configuration\&. "
+.ti -1c
+.RI "void \fBhandleResetConfigSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de réinitialisation de la configuration\&. "
+.ti -1c
+.RI "void \fBhandleResetMonitoringSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de réinitialisation de la surveillance\&. "
+.ti -1c
+.RI "void \fBhandleMonitoringConfigSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de configuration du système de surveillance\&. "
+.ti -1c
+.RI "void \fBhandleDeviceConfigSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de configuration des identifiants de la carte\&. "
+.ti -1c
+.RI "void \fBhandleNetConfigSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de configuration des identifiants du réseau WiFi\&. "
+.ti -1c
+.RI "void \fBhandleUpdateHealthStateSubmit\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la demande de configuration de l'état de santé "
+.ti -1c
+.RI "void \fBhandleScan\fP (AsyncWebServerRequest *request)"
+.br
+.RI "Traitement de la page de scan des réseaux WiFi\&. "
+.ti -1c
+.RI "void \fBsetupWebServer\fP ()"
+.br
+.ti -1c
+.RI "void \fBloopWebServer\fP (void)"
+.br
+.in -1c
+.SH "Documentation des fonctions"
+.PP 
+.SS "AsyncWebServer asyncWebServer (80)"
+
+.SS "void handleConfig (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la page de configuration\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Cette page permet de configurer les identifiants de la carte, du point d'accès réseau, du système de surveillance, de réinitialiser la configuration et de renseigner son état de santé 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB25\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleDeviceConfigSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de configuration des identifiants de la carte\&. 
+.PP
+Définition à la ligne \fB210\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleMonitoringConfigSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de configuration du système de surveillance\&. 
+.PP
+Définition à la ligne \fB195\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleNetConfigSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de configuration des identifiants du réseau WiFi\&. 
+.PP
+Définition à la ligne \fB226\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleResetConfigSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de réinitialisation de la configuration\&. 
+.PP
+Définition à la ligne \fB173\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleResetMonitoringSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de réinitialisation de la surveillance\&. 
+.PP
+Définition à la ligne \fB184\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleScan (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la page de scan des réseaux WiFi\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction est appelée à chaque rafraichissement de la page\\ lorsqu'on clique sur le SSID du réseau WiFi auquel on souhaite se connecter, on est redirigé vers la page de configuration du réseau WiFi avec le SSID pré-rempli 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB257\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void handleUpdateHealthStateSubmit (AsyncWebServerRequest * request)"
+
+.PP
+Traitement de la demande de configuration de l'état de santé 
+.PP
+Définition à la ligne \fB241\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void loopWebServer (void)"
+
+.PP
+Définition à la ligne \fB341\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SS "void setupWebServer ()"
+Configuration du serveur web
+.IP "\(bu" 2
+Définition des routes
+.IP "\(bu" 2
+Démarrage du serveur 
+.PP
+
+.PP
+Définition à la ligne \fB317\fP du fichier \fBCTWebServer\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

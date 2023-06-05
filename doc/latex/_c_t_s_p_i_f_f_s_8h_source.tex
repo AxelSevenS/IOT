@@ -1,353 +1,353 @@
 \hypertarget{_c_t_s_p_i_f_f_s_8h_source}{}\doxysection{CTSPIFFS.\+h}
-\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{Go to the documentation of this file.}}
+\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{Aller à la documentation de ce fichier.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}\ \ \ \textcolor{comment}{//Arduino\ JSON\ by\ Benoit\ Blanchon\ :\ https://github.com/bblanchon/ArduinoJson}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}SPIFFS.h"{}}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_events_8h}{CTEvents.h}}"{}}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{comment}{/***************************\ Files\ ************************************/}}
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ CONFIG\_FILE\_PATH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}/config.json"{}}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MONITORING\_FILE\_PATH\ \ \ \ \ \ \ \ \ \ \ \ "{}/monitoring.json"{}}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{comment}{/***************************\ Default\ Values\ ************************************/}}
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DEFAULT\_PASSWORD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}contacttracer"{}}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_SSID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Hamburger"{}}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_PASSWORD\ \ \ \ \ \ \ \ \ \ \ \ "{}YoLesKids"{}}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_TIME\ \ \ \ \ \ \ \ \ 5.0}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_DISTANCE\ \ \ \ \ 5.0}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DEFAULT\_TEMPERATURE\_THRESHOLD\ \ \ 40.0}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ DEFAULT\_USER\_STATUS\ \ \ \ \ \ \ \ \ \ \ \ \ "{}HEALTHY"{}}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ std::function<void(JsonDocument\&,\ File\&)>\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{comment}{/***************************\ Configuration\ Variables\ ************************************/}}
-\DoxyCodeLine{00049\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
-\DoxyCodeLine{00050\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
-\DoxyCodeLine{00053\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ 5.0;}
-\DoxyCodeLine{00059\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ 5.0;}
-\DoxyCodeLine{00060\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ =\ 40.0;}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00072\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\&\ readFunction)\ \{}
-\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))\ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ de\ monter\ le\ système\ de\ fichiers"{}});}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00076\ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ File\ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_READ);}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ lecture"{}});}
-\DoxyCodeLine{00082\ \ \ \ \ jsonFile.close();}
-\DoxyCodeLine{00083\ \ \ \ \ SPIFFS.end();}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00085\ \ \ \}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ DynamicJsonDocument\ jsonDocument(512);}
-\DoxyCodeLine{00088\ \ \ DeserializationError\ error\ =\ deserializeJson(jsonDocument,\ jsonFile);}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{if}\ (error)\{}
-\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ [ERREUR\ :\ "{}});}
-\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(error.c\_str());}
-\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}]\ Impossible\ de\ parser\ le\ JSON\ dans\ le\ fichier\ :\ "{}});}
-\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(jsonFile.name());}
-\DoxyCodeLine{00095\ \ \ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ readFunction(jsonDocument,\ jsonFile);}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ jsonFile.close();}
-\DoxyCodeLine{00100\ \ \ SPIFFS.end();\ \ }
-\DoxyCodeLine{00101\ \}}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\ writeFunction)\ \{}
-\DoxyCodeLine{00113\ \ \ \ \ }
-\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [fileName,\ writeFunction](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00115\ \ \ \ \ jsonFile.close();}
-\DoxyCodeLine{00116\ \ \ \ \ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_WRITE);}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ écriture"{}});}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ jsonFile.close();}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ SPIFFS.end();}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00123\ \ \ \ \ \}}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ writeFunction(jsonDocument,\ jsonFile);\ }
-\DoxyCodeLine{00127\ \ \ \ \ }
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (serializeJson(jsonDocument,\ jsonFile)\ ==\ 0)\ \{}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'écrire\ le\ JSON\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00131\ \ \ \ \ \}}
-\DoxyCodeLine{00132\ \ \ \});}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00134\ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00146\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{bool}\ deviceCredentialsChanged\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_name,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str())\ !=\ 0\ )\ \{}
-\DoxyCodeLine{00151\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00152\ \ \ \}}
-\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}\ =\ String(new\_device\_name);}
-\DoxyCodeLine{00154\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
-\DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_password,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str())\ !=\ 0\ )\ \{}
-\DoxyCodeLine{00157\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00158\ \ \ \}}
-\DoxyCodeLine{00159\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}\ =\ String(new\_device\_password);}
-\DoxyCodeLine{00160\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{if}\ (\ deviceCredentialsChanged\ )\ \{}
-\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ Nom\ d'appareil\ :\ "{}});}
-\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
-\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouveau\ Mot\ de\ Passe\ :\ "{}});}
-\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}});}
-\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}{InvokeDeviceCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str());}
-\DoxyCodeLine{00168\ \ \ \}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \}}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00186\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password\ )\ \{}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [\&new\_device\_name,\ \&new\_device\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(new\_device\_name,\ new\_device\_password,\ jsonDocument);}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \ \ \});}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \}}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
-\DoxyCodeLine{00210\ \ \ \textcolor{keywordtype}{bool}\ networkCredentialsChanged\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_ssid,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
-\DoxyCodeLine{00213\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00214\ \ \ \}}
-\DoxyCodeLine{00215\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}\ =\ String(new\_net\_ssid);}
-\DoxyCodeLine{00216\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_password,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
-\DoxyCodeLine{00219\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00220\ \ \ \}}
-\DoxyCodeLine{00221\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}}\ =\ String(new\_net\_password);}
-\DoxyCodeLine{00222\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{if}\ (\ networkCredentialsChanged\ )\ \{}
-\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ SSID\ :\ "{}});}
-\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}});}
-\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouveau\ Mot\ de\ Passe\ Réseau\ :\ "{}});}
-\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}});}
-\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_af3122acf35aec8ec7344c98757eb17b6}{InvokeNetworkCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
-\DoxyCodeLine{00230\ \ \ \}}
-\DoxyCodeLine{00231\ \}}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00246\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password\ )\ \{}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_net\_ssid,\ new\_net\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00249\ }
-\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(new\_net\_ssid,\ new\_net\_password,\ jsonDocument);}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00252\ \ \ \});\ }
-\DoxyCodeLine{00253\ }
-\DoxyCodeLine{00254\ \}}
-\DoxyCodeLine{00255\ }
-\DoxyCodeLine{00269\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance,\ \textcolor{keywordtype}{float}\ new\_temperature,\ JsonDocument\&\ jsonDocument\ )\ \{}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00271\ \ \ \textcolor{keywordtype}{bool}\ monitoringConfigChanged\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00272\ }
-\DoxyCodeLine{00273\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ !=\ new\_time\ )\ \{}
-\DoxyCodeLine{00274\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00275\ \ \ \}}
-\DoxyCodeLine{00276\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ new\_time;}
-\DoxyCodeLine{00277\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}time"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}};}
-\DoxyCodeLine{00278\ }
-\DoxyCodeLine{00279\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ !=\ new\_distance\ )\ \{}
-\DoxyCodeLine{00280\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00281\ \ \ \}}
-\DoxyCodeLine{00282\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ new\_distance;}
-\DoxyCodeLine{00283\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}distance"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}};}
-\DoxyCodeLine{00284\ }
-\DoxyCodeLine{00285\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ !=\ new\_temperature\ )\ \{}
-\DoxyCodeLine{00286\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00287\ \ \ \}}
-\DoxyCodeLine{00288\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ =\ new\_temperature;}
-\DoxyCodeLine{00289\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}temperature"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}};}
-\DoxyCodeLine{00290\ }
-\DoxyCodeLine{00291\ \ \ \textcolor{keywordflow}{if}\ (\ monitoringConfigChanged\ )\ \{}
-\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ temps\ de\ surveillance:\ "{}});}
-\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}});}
-\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouvelle\ distance\ de\ surveillance:\ "{}});}
-\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}});}
-\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouvelle\ Temperature\ Seuil:\ "{}});}
-\DoxyCodeLine{00297\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}});}
-\DoxyCodeLine{00298\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_ad21548f09beb0751e154481f85152d04}{InvokeMonitoringConfigChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}});}
-\DoxyCodeLine{00299\ \ \ \}}
-\DoxyCodeLine{00300\ }
-\DoxyCodeLine{00301\ \}}
-\DoxyCodeLine{00302\ }
-\DoxyCodeLine{00316\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance,\ \textcolor{keywordtype}{float}\ new\_temperature\ )\ \{}
-\DoxyCodeLine{00317\ }
-\DoxyCodeLine{00318\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_time,\ new\_distance,\ new\_temperature](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00319\ }
-\DoxyCodeLine{00320\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(new\_time,\ new\_distance,\ new\_temperature,\ jsonDocument);}
-\DoxyCodeLine{00321\ }
-\DoxyCodeLine{00322\ \ \ \});}
-\DoxyCodeLine{00323\ }
-\DoxyCodeLine{00324\ \}}
-\DoxyCodeLine{00325\ }
-\DoxyCodeLine{00337\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status,\ JsonDocument\&\ jsonDocument\ )\ \{}
-\DoxyCodeLine{00338\ }
-\DoxyCodeLine{00339\ \ \ \textcolor{keywordtype}{bool}\ healthStatusChanged\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00340\ }
-\DoxyCodeLine{00341\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ !=\ new\_health\_status\ )\ \{}
-\DoxyCodeLine{00342\ \ \ \ \ healthStatusChanged\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00343\ \ \ \}}
-\DoxyCodeLine{00344\ \ \ jsonDocument[\textcolor{stringliteral}{"{}status"{}}]\ =\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ :\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}CONTACT"{}}\ :\ \textcolor{stringliteral}{"{}SICK"{}};}
-\DoxyCodeLine{00345\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ new\_health\_status;}
-\DoxyCodeLine{00346\ }
-\DoxyCodeLine{00347\ \ \ \textcolor{keywordflow}{if}\ (\ healthStatusChanged\ )\ \{}
-\DoxyCodeLine{00348\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ Status\ de\ Santé:\ "{}});}
-\DoxyCodeLine{00349\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}Sain"{}}\ :\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}Cas\ Contact"{}}\ :\ \textcolor{stringliteral}{"{}Malade"{}});}
-\DoxyCodeLine{00350\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_ab8d141abb41fc2ce25dea6a3640ae564}{InvokeHealthStatusChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}});}
-\DoxyCodeLine{00351\ \ \ \}}
-\DoxyCodeLine{00352\ }
-\DoxyCodeLine{00353\ \}}
-\DoxyCodeLine{00354\ }
-\DoxyCodeLine{00366\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status\ )\ \{}
-\DoxyCodeLine{00367\ }
-\DoxyCodeLine{00368\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_health\_status](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00369\ }
-\DoxyCodeLine{00370\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(new\_health\_status,\ jsonDocument);}
-\DoxyCodeLine{00371\ }
-\DoxyCodeLine{00372\ \ \ \});}
-\DoxyCodeLine{00373\ }
-\DoxyCodeLine{00374\ \}}
-\DoxyCodeLine{00375\ }
-\DoxyCodeLine{00376\ }
-\DoxyCodeLine{00385\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{display\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName)\ \{}
-\DoxyCodeLine{00386\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00387\ \ \ \ \ String\ json\_text;}
-\DoxyCodeLine{00388\ \ \ \ \ serializeJsonPretty(jsonDocument,\ json\_text);}
-\DoxyCodeLine{00389\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Contenu\ du\ fichier\ "{}});}
-\DoxyCodeLine{00390\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(jsonFile.name());}
-\DoxyCodeLine{00391\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ :"{}});}
-\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(json\_text);}
-\DoxyCodeLine{00393\ \ \ \});}
-\DoxyCodeLine{00394\ \}}
-\DoxyCodeLine{00395\ }
-\DoxyCodeLine{00409\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}()\ \{}
-\DoxyCodeLine{00410\ \ \ }
-\DoxyCodeLine{00411\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
-\DoxyCodeLine{00412\ }
-\DoxyCodeLine{00413\ }
-\DoxyCodeLine{00414\ \ \ \ \ \textcolor{comment}{//\ On\ récupère\ les\ données\ du\ fichier\ de\ configuration\ et\ on\ les\ stocke\ dans\ les\ variables\ globales}}
-\DoxyCodeLine{00415\ \ \ \ \ \textcolor{comment}{//\ Si\ une\ donnée\ n'est\ pas\ présente\ dans\ le\ fichier,\ on\ lui\ attribue\ une\ valeur\ par\ défaut}}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00417\ }
-\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keyword}{auto}\ json\_name\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}];}
-\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_name.isNull()\ )\ \{}
-\DoxyCodeLine{00420\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ nom\ de\ device\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00421\ \ \ \ \ \ \ json\_name\ =\ \textcolor{stringliteral}{"{}ContactTracer\ "{}}\ +\ String(random(0xffff),\ HEX);}
-\DoxyCodeLine{00422\ \ \ \ \ \}}
-\DoxyCodeLine{00423\ }
-\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{auto}\ json\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}];}
-\DoxyCodeLine{00425\ \ \ \ \ if\ (\ json\_password.isNull()\ )\ \{}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ json\_password\ =\ DEFAULT\_PASSWORD;}
-\DoxyCodeLine{00428\ \ \ \ \ \}}
-\DoxyCodeLine{00429\ }
-\DoxyCodeLine{00430\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(json\_name.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ json\_password.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ jsonDocument);}
-\DoxyCodeLine{00431\ }
-\DoxyCodeLine{00432\ }
-\DoxyCodeLine{00433\ }
-\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keyword}{auto}\ json\_status\ =\ jsonDocument[\textcolor{stringliteral}{"{}status"{}}];}
-\DoxyCodeLine{00435\ \ \ \ \ if\ (\ json\_status.isNull()\ ||\ json\_status\ ==\ \textcolor{stringliteral}{"{}"{}}\ )\ \{}
-\DoxyCodeLine{00436\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ statut\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00437\ \ \ \ \ \ \ json\_status\ =\ DEFAULT\_USER\_STATUS;}
-\DoxyCodeLine{00438\ \ \ \ \ \}}
-\DoxyCodeLine{00439\ }
-\DoxyCodeLine{00440\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status\ =\ json\_status\ ==\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ ?\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ :\ json\_status\ ==\ \textcolor{stringliteral}{"{}CONTACT"{}}\ ?\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ :\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}};}
-\DoxyCodeLine{00441\ }
-\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(new\_health\_status,\ jsonDocument);}
-\DoxyCodeLine{00443\ }
-\DoxyCodeLine{00444\ }
-\DoxyCodeLine{00445\ }
-\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keyword}{auto}\ json\_net\_ssid\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}];}
-\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_net\_ssid.isNull()\ )\ \{}
-\DoxyCodeLine{00448\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ SSID\ NET\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00449\ \ \ \ \ \ \ json\_net\_ssid\ =\ DEFAULT\_NET\_SSID;}
-\DoxyCodeLine{00450\ \ \ \ \ \}}
-\DoxyCodeLine{00451\ }
-\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keyword}{auto}\ json\_net\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}];}
-\DoxyCodeLine{00453\ \ \ \ \ if\ (\ json\_net\_password.isNull()\ )\ \{}
-\DoxyCodeLine{00454\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ NET\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00455\ \ \ \ \ \ \ json\_net\_password\ =\ DEFAULT\_NET\_PASSWORD;}
-\DoxyCodeLine{00456\ \ \ \ \ \}}
-\DoxyCodeLine{00457\ }
-\DoxyCodeLine{00458\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(json\_net\_ssid.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ json\_net\_password.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ jsonDocument);}
-\DoxyCodeLine{00459\ }
-\DoxyCodeLine{00460\ \ \ \ \ }
-\DoxyCodeLine{00461\ }
-\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{auto}\ json\_monitoring\_time\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}time"{}}];}
-\DoxyCodeLine{00463\ \ \ \ \ if\ (\ json\_monitoring\_time.isNull()\ )\ \{}
-\DoxyCodeLine{00464\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ d'intervalle\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00465\ \ \ \ \ \ \ json\_monitoring\_time\ =\ DEFAULT\_MONITORING\_TIME;}
-\DoxyCodeLine{00466\ \ \ \ \ \}}
-\DoxyCodeLine{00467\ }
-\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keyword}{auto}\ json\_monitoring\_distance\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}distance"{}}];}
-\DoxyCodeLine{00469\ \ \ \ \ if\ (\ json\_monitoring\_distance.isNull()\ )\ \{}
-\DoxyCodeLine{00470\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ distance\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00471\ \ \ \ \ \ \ json\_monitoring\_distance\ =\ DEFAULT\_MONITORING\_DISTANCE;}
-\DoxyCodeLine{00472\ \ \ \ \ \}}
-\DoxyCodeLine{00473\ }
-\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keyword}{auto}\ json\_temperature\_threshold\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}temperature"{}}];}
-\DoxyCodeLine{00475\ \ \ \ \ if\ (\ json\_temperature\_threshold.isNull()\ )\ \{}
-\DoxyCodeLine{00476\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ Seuil\ de\ Temperature\ dans\ le\ fichier\ de\ configuration"{}});}
-\DoxyCodeLine{00477\ \ \ \ \ \ \ json\_temperature\_threshold\ =\ DEFAULT\_TEMPERATURE\_THRESHOLD;}
-\DoxyCodeLine{00478\ \ \ \ \ \}}
-\DoxyCodeLine{00479\ }
-\DoxyCodeLine{00480\ }
-\DoxyCodeLine{00481\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(json\_monitoring\_time.as<\textcolor{keywordtype}{float}>(),\ json\_monitoring\_distance.as<\textcolor{keywordtype}{float}>(),\ json\_temperature\_threshold.as<\textcolor{keywordtype}{float}>(),\ jsonDocument);}
-\DoxyCodeLine{00482\ }
-\DoxyCodeLine{00483\ \ \ \});}
-\DoxyCodeLine{00484\ }
-\DoxyCodeLine{00485\ \}}
-\DoxyCodeLine{00486\ }
-\DoxyCodeLine{00492\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filePath)\ \{}
-\DoxyCodeLine{00493\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))}
-\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00495\ \ \ }
-\DoxyCodeLine{00496\ \ \ SPIFFS.remove(filePath);}
-\DoxyCodeLine{00497\ }
-\DoxyCodeLine{00498\ \ \ SPIFFS.end();}
-\DoxyCodeLine{00499\ \}}
-\DoxyCodeLine{00500\ }
-\DoxyCodeLine{00506\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setupSPIFFS}}()\{}
-\DoxyCodeLine{00507\ }
-\DoxyCodeLine{00508\ \ \ \textcolor{comment}{//\ SPIFFS.format();\ ///\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Au\ besoin,\ pour\ formatter\ le\ système\ de\ fichiers}}
-\DoxyCodeLine{00509\ }
-\DoxyCodeLine{00510\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
-\DoxyCodeLine{00511\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00020}00020\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}\ \ \ \textcolor{comment}{//Arduino\ JSON\ by\ Benoit\ Blanchon\ :\ https://github.com/bblanchon/ArduinoJson}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}SPIFFS.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_events_8h}{CTEvents.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00027}00027\ \textcolor{comment}{/***************************\ Files\ ************************************/}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00028}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{00028}}\ \textcolor{preprocessor}{\#define\ CONFIG\_FILE\_PATH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}/config.json"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00029}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{00029}}\ \textcolor{preprocessor}{\#define\ MONITORING\_FILE\_PATH\ \ \ \ \ \ \ \ \ \ \ \ "{}/monitoring.json"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00032}00032\ \textcolor{comment}{/***************************\ Default\ Values\ ************************************/}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00033}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aed73c581e6bbc30c6b8d3809c4c9db6c}{00033}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_PASSWORD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}contacttracer"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00034}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a609992b3748a775dfd4087e531b49e2a}{00034}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_SSID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Hamburger"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00035}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aec277a5053a83171545da7d7b856f2dd}{00035}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_NET\_PASSWORD\ \ \ \ \ \ \ \ \ \ \ \ "{}YoLesKids"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00037}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a52d0a760f4e14cbc43b78f0195aa4f54}{00037}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_TIME\ \ \ \ \ \ \ \ \ 5.0}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00038}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab8d765931e29251d615e430da725cba8}{00038}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_MONITORING\_DISTANCE\ \ \ \ \ 5.0}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00039}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a588e331ae689b5d6ef04e53cf65bc519}{00039}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_TEMPERATURE\_THRESHOLD\ \ \ 40.0}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00041}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3d7b0c691e06b2f1fb06fd5ad02ec676}{00041}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_USER\_STATUS\ \ \ \ \ \ \ \ \ \ \ \ \ "{}HEALTHY"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00045}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{00045}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ std::function<void(JsonDocument\&,\ File\&)>\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00048}00048\ \textcolor{comment}{/***************************\ Configuration\ Variables\ ************************************/}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00049}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{00049}}\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00050}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{00050}}\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00052}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{00052}}\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00053}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{00053}}\ String\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00056}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{00056}}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00058}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{00058}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ 5.0;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00059}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{00059}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ 5.0;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00060}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{00060}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ =\ 40.0;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00072}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{00072}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\&\ readFunction)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00073}00073\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00074}00074\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ de\ monter\ le\ système\ de\ fichiers"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00076}00076\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00078}00078\ \ \ File\ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_READ);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00080}00080\ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ lecture"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00082}00082\ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00083}00083\ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00085}00085\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00087}00087\ \ \ DynamicJsonDocument\ jsonDocument(512);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00088}00088\ \ \ DeserializationError\ error\ =\ deserializeJson(jsonDocument,\ jsonFile);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00090}00090\ \ \ \textcolor{keywordflow}{if}\ (error)\{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ [ERREUR\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00092}00092\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(error.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00093}00093\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}]\ Impossible\ de\ parser\ le\ JSON\ dans\ le\ fichier\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00094}00094\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(jsonFile.name());}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00095}00095\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00097}00097\ \ \ readFunction(jsonDocument,\ jsonFile);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00099}00099\ \ \ jsonFile.close();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00100}00100\ \ \ SPIFFS.end();\ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00112}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{00112}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{FileReadFunction}}\ writeFunction)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00113}00113\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00114}00114\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [fileName,\ writeFunction](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00115}00115\ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00116}00116\ \ \ \ \ jsonFile\ =\ SPIFFS.open(fileName,\ FILE\_WRITE);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !jsonFile\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00119}00119\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'ouvrir\ le\ fichier\ en\ mode\ écriture"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00120}00120\ \ \ \ \ \ \ jsonFile.close();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00121}00121\ \ \ \ \ \ \ SPIFFS.end();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00122}00122\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00126}00126\ \ \ \ \ writeFunction(jsonDocument,\ jsonFile);\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00127}00127\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00129}00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (serializeJson(jsonDocument,\ jsonFile)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00130}00130\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Impossible\ d'écrire\ le\ JSON\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00132}00132\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00134}00134\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00146}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{00146}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00148}00148\ \ \ \textcolor{keywordtype}{bool}\ deviceCredentialsChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00150}00150\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_name,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00151}00151\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00152}00152\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00153}00153\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}\ =\ String(new\_device\_name);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00154}00154\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00156}00156\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_device\_password,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00157}00157\ \ \ \ \ deviceCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00158}00158\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00159}00159\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}\ =\ String(new\_device\_password);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00160}00160\ \ \ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00162}00162\ \ \ \textcolor{keywordflow}{if}\ (\ deviceCredentialsChanged\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00163}00163\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ Nom\ d'appareil\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00164}00164\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouveau\ Mot\ de\ Passe\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00166}00166\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}{InvokeDeviceCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}}.c\_str(),\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00168}00168\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00186}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aa8e54dfc5478bdf456ff3447d0488b21}{00186}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_device\_password\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00188}00188\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [\&new\_device\_name,\ \&new\_device\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00190}00190\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(new\_device\_name,\ new\_device\_password,\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00192}00192\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00209}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{00209}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00210}00210\ \ \ \textcolor{keywordtype}{bool}\ networkCredentialsChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00212}00212\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_ssid,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00213}00213\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00214}00214\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00215}00215\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}\ =\ String(new\_net\_ssid);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00216}00216\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00218}00218\ \ \ \textcolor{keywordflow}{if}\ (\ strcmp(new\_net\_password,\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str())\ !=\ 0\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00219}00219\ \ \ \ \ networkCredentialsChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00220}00220\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00221}00221\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}}\ =\ String(new\_net\_password);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00222}00222\ \ \ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00224}00224\ \ \ \textcolor{keywordflow}{if}\ (\ networkCredentialsChanged\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00225}00225\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ SSID\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00226}00226\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00227}00227\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouveau\ Mot\ de\ Passe\ Réseau\ :\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00228}00228\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00229}00229\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_af3122acf35aec8ec7344c98757eb17b6}{InvokeNetworkCredentialsChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}}.c\_str(),\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00230}00230\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00231}00231\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00246}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aca4d32969813a506087c4c345cce2d08}{00246}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_net\_password\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00248}00248\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_net\_ssid,\ new\_net\_password](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00250}00250\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(new\_net\_ssid,\ new\_net\_password,\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00252}00252\ \ \ \});\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00254}00254\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00269}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{00269}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance,\ \textcolor{keywordtype}{float}\ new\_temperature,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00271}00271\ \ \ \textcolor{keywordtype}{bool}\ monitoringConfigChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00273}00273\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ !=\ new\_time\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00274}00274\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00275}00275\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00276}00276\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}\ =\ new\_time;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00277}00277\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}time"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00279}00279\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ !=\ new\_distance\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00280}00280\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00281}00281\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00282}00282\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}\ =\ new\_distance;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00283}00283\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}distance"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00285}00285\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ !=\ new\_temperature\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00286}00286\ \ \ \ \ monitoringConfigChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00287}00287\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00288}00288\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}\ =\ new\_temperature;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00289}00289\ \ \ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}temperature"{}}]\ =\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00291}00291\ \ \ \textcolor{keywordflow}{if}\ (\ monitoringConfigChanged\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00292}00292\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ temps\ de\ surveillance:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00293}00293\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00294}00294\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouvelle\ distance\ de\ surveillance:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00295}00295\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00296}00296\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}\ |\ Nouvelle\ Temperature\ Seuil:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00297}00297\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00298}00298\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_ad21548f09beb0751e154481f85152d04}{InvokeMonitoringConfigChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00299}00299\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00301}00301\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00316}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aa63035f70f65c53235863f4892bdfcaa}{00316}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(\ \textcolor{keywordtype}{float}\ new\_time,\ \textcolor{keywordtype}{float}\ new\_distance,\ \textcolor{keywordtype}{float}\ new\_temperature\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00318}00318\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_time,\ new\_distance,\ new\_temperature](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00320}00320\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(new\_time,\ new\_distance,\ new\_temperature,\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00322}00322\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00324}00324\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00337}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{00337}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status,\ JsonDocument\&\ jsonDocument\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00339}00339\ \ \ \textcolor{keywordtype}{bool}\ healthStatusChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00341}00341\ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ !=\ new\_health\_status\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00342}00342\ \ \ \ \ healthStatusChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00343}00343\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00344}00344\ \ \ jsonDocument[\textcolor{stringliteral}{"{}status"{}}]\ =\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ :\ new\_health\_status\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}CONTACT"{}}\ :\ \textcolor{stringliteral}{"{}SICK"{}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00345}00345\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ =\ new\_health\_status;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00347}00347\ \ \ \textcolor{keywordflow}{if}\ (\ healthStatusChanged\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00348}00348\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Nouveau\ Status\ de\ Santé:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00349}00349\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ ?\ \textcolor{stringliteral}{"{}Sain"{}}\ :\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}}\ ==\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ ?\ \textcolor{stringliteral}{"{}Cas\ Contact"{}}\ :\ \textcolor{stringliteral}{"{}Malade"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00350}00350\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_ab8d141abb41fc2ce25dea6a3640ae564}{InvokeHealthStatusChangedCallbacks}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00351}00351\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00353}00353\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00366}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_afde09e288059936b2c7813d7a4571d86}{00366}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00368}00368\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [new\_health\_status](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00370}00370\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(new\_health\_status,\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00371}00371\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00372}00372\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00374}00374\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00375}00375\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00385}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{00385}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{display\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00386}00386\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(fileName,\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00387}00387\ \ \ \ \ String\ json\_text;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00388}00388\ \ \ \ \ serializeJsonPretty(jsonDocument,\ json\_text);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00389}00389\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Contenu\ du\ fichier\ "{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00390}00390\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(jsonFile.name());}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00391}00391\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\ :"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00392}00392\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(json\_text);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00393}00393\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00394}00394\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00409}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{00409}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00410}00410\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00411}00411\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\_write\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}},\ [](JsonDocument\&\ jsonDocument,\ File\&\ jsonFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00414}00414\ \ \ \ \ \textcolor{comment}{//\ On\ récupère\ les\ données\ du\ fichier\ de\ configuration\ et\ on\ les\ stocke\ dans\ les\ variables\ globales}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00415}00415\ \ \ \ \ \textcolor{comment}{//\ Si\ une\ donnée\ n'est\ pas\ présente\ dans\ le\ fichier,\ on\ lui\ attribue\ une\ valeur\ par\ défaut}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00418}00418\ \ \ \ \ \textcolor{keyword}{auto}\ json\_name\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}name"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00419}00419\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_name.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00420}00420\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ nom\ de\ device\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00421}00421\ \ \ \ \ \ \ json\_name\ =\ \textcolor{stringliteral}{"{}ContactTracer\ "{}}\ +\ String(random(0xffff),\ HEX);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00422}00422\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00424}00424\ \ \ \ \ \textcolor{keyword}{auto}\ json\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}device"{}}][\textcolor{stringliteral}{"{}password"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00425}00425\ \ \ \ \ if\ (\ json\_password.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00426}00426\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00427}00427\ \ \ \ \ \ \ json\_password\ =\ DEFAULT\_PASSWORD;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00428}00428\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00430}00430\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(json\_name.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ json\_password.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00433}00433\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00434}00434\ \ \ \ \ \textcolor{keyword}{auto}\ json\_status\ =\ jsonDocument[\textcolor{stringliteral}{"{}status"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00435}00435\ \ \ \ \ if\ (\ json\_status.isNull()\ ||\ json\_status\ ==\ \textcolor{stringliteral}{"{}"{}}\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00436}00436\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ statut\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00437}00437\ \ \ \ \ \ \ json\_status\ =\ DEFAULT\_USER\_STATUS;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00438}00438\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00439}00439\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00440}00440\ \ \ \ \ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}}\ new\_health\_status\ =\ json\_status\ ==\ \textcolor{stringliteral}{"{}HEALTHY"{}}\ ?\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}\ :\ json\_status\ ==\ \textcolor{stringliteral}{"{}CONTACT"{}}\ ?\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}\ :\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00442}00442\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}(new\_health\_status,\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00443}00443\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00446}00446\ \ \ \ \ \textcolor{keyword}{auto}\ json\_net\_ssid\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_ssid"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00447}00447\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_net\_ssid.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00448}00448\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ SSID\ NET\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00449}00449\ \ \ \ \ \ \ json\_net\_ssid\ =\ DEFAULT\_NET\_SSID;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00450}00450\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00452}00452\ \ \ \ \ \textcolor{keyword}{auto}\ json\_net\_password\ =\ jsonDocument[\textcolor{stringliteral}{"{}wifi"{}}][\textcolor{stringliteral}{"{}net\_password"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00453}00453\ \ \ \ \ if\ (\ json\_net\_password.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00454}00454\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ mot\ de\ passe\ NET\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00455}00455\ \ \ \ \ \ \ json\_net\_password\ =\ DEFAULT\_NET\_PASSWORD;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00456}00456\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00457}00457\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00458}00458\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(json\_net\_ssid.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ json\_net\_password.as<\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*>(),\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00460}00460\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00461}00461\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00462}00462\ \ \ \ \ \textcolor{keyword}{auto}\ json\_monitoring\_time\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}time"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00463}00463\ \ \ \ \ if\ (\ json\_monitoring\_time.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00464}00464\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ d'intervalle\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00465}00465\ \ \ \ \ \ \ json\_monitoring\_time\ =\ DEFAULT\_MONITORING\_TIME;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00466}00466\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00467}00467\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00468}00468\ \ \ \ \ \textcolor{keyword}{auto}\ json\_monitoring\_distance\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}distance"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00469}00469\ \ \ \ \ if\ (\ json\_monitoring\_distance.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00470}00470\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ distance\ de\ surveillance\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00471}00471\ \ \ \ \ \ \ json\_monitoring\_distance\ =\ DEFAULT\_MONITORING\_DISTANCE;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00472}00472\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00474}00474\ \ \ \ \ \textcolor{keyword}{auto}\ json\_temperature\_threshold\ =\ jsonDocument[\textcolor{stringliteral}{"{}monitoring"{}}][\textcolor{stringliteral}{"{}temperature"{}}];}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00475}00475\ \ \ \ \ if\ (\ json\_temperature\_threshold.isNull()\ )\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00476}00476\ \ \ \ \ \ \ MYDEBUG\_PRINTLN(\textcolor{stringliteral}{"{}-\/SPIFFS\ :\ Pas\ de\ Seuil\ de\ Temperature\ dans\ le\ fichier\ de\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00477}00477\ \ \ \ \ \ \ json\_temperature\_threshold\ =\ DEFAULT\_TEMPERATURE\_THRESHOLD;}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00478}00478\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00479}00479\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00481}00481\ \ \ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(json\_monitoring\_time.as<\textcolor{keywordtype}{float}>(),\ json\_monitoring\_distance.as<\textcolor{keywordtype}{float}>(),\ json\_temperature\_threshold.as<\textcolor{keywordtype}{float}>(),\ jsonDocument);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00483}00483\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00484}00484\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00485}00485\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00486}00486\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00492}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{00492}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filePath)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00493}00493\ \ \ \textcolor{keywordflow}{if}\ (!SPIFFS.begin(\textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00494}00494\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00495}00495\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00496}00496\ \ \ SPIFFS.remove(filePath);}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00497}00497\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00498}00498\ \ \ SPIFFS.end();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00499}00499\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00500}00500\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00506}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{00506}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setupSPIFFS}}()\{}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00507}00507\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00508}00508\ \ \ \textcolor{comment}{//\ SPIFFS.format();\ ///\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Au\ besoin,\ pour\ formatter\ le\ système\ de\ fichiers}}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00510}00510\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
+\DoxyCodeLine{\Hypertarget{_c_t_s_p_i_f_f_s_8h_source_l00511}00511\ \}}
 
 \end{DoxyCode}

@@ -1,13 +1,8 @@
-\hypertarget{_c_t_monitoring_8h}{}\doxysection{CTMonitoring.\+h File Reference}
+\hypertarget{_c_t_monitoring_8h}{}\doxysection{Référence du fichier CTMonitoring.\+h}
 \label{_c_t_monitoring_8h}\index{CTMonitoring.h@{CTMonitoring.h}}
-
-
-Surveillance des Utilisateurs Contact Tracer (CT) à proximité. Lorsque deux utilisateurs CT sont à proximité, ils échangent leurs adresses BT et se surveillent mutuellement. Si l\textquotesingle{}un des deux utilisateurs est malade (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}}), et que le temps d\textquotesingle{}intéraction dépasse le seuil de contact (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}}) l\textquotesingle{}autre est notifié et devient un cas contact.  
-
-
 {\ttfamily \#include \char`\"{}CTSPIFFS.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}CTNTP.\+h\char`\"{}}\newline
-\doxysubsection*{Functions}
+\doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}{become\+\_\+contact\+\_\+if\+\_\+device\+\_\+is\+\_\+sick}} (Json\+Document \&monitoring\+Document, File \&monitoring\+File, const char $\ast$other\+Device\+Address)
@@ -19,12 +14,7 @@ void \mbox{\hyperlink{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}{devi
 Si le temps d\textquotesingle{}exposition est supérieur au seuil de surveillance, l\textquotesingle{}appareil est marqué pour surveillance rapprochée. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-Surveillance des Utilisateurs Contact Tracer (CT) à proximité. Lorsque deux utilisateurs CT sont à proximité, ils échangent leurs adresses BT et se surveillent mutuellement. Si l\textquotesingle{}un des deux utilisateurs est malade (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}}), et que le temps d\textquotesingle{}intéraction dépasse le seuil de contact (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}}) l\textquotesingle{}autre est notifié et devient un cas contact. 
-
-
-
-\doxysubsection{Function Documentation}
+\doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}\label{_c_t_monitoring_8h_afdd6d4678381b4e916a79d45e9a6703e}} 
 \index{CTMonitoring.h@{CTMonitoring.h}!become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}}
 \index{become\_contact\_if\_device\_is\_sick@{become\_contact\_if\_device\_is\_sick}!CTMonitoring.h@{CTMonitoring.h}}
@@ -36,7 +26,7 @@ Surveillance des Utilisateurs Contact Tracer (CT) à proximité. Lorsque deux ut
 Vérifie si l\textquotesingle{}appareil est marqué comme malade dans le fichier de monitoring et met à jour le status de l\textquotesingle{}utilisateur si c\textquotesingle{}est le cas. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em monitoring\+Document} & \\
 \hline
 {\em monitoring\+File} & \\
@@ -44,6 +34,10 @@ Vérifie si l\textquotesingle{}appareil est marqué comme malade dans le fichier
 {\em other\+Device\+Address} & \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_monitoring_8h_source_l00023}{23}} du fichier \mbox{\hyperlink{_c_t_monitoring_8h_source}{CTMonitoring.\+h}}.
+
 \mbox{\Hypertarget{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}\label{_c_t_monitoring_8h_a9c0620d07f42f8309e4fd488ec9b5349}} 
 \index{CTMonitoring.h@{CTMonitoring.h}!device\_interact@{device\_interact}}
 \index{device\_interact@{device\_interact}!CTMonitoring.h@{CTMonitoring.h}}
@@ -56,7 +50,7 @@ Effectue une \char`\"{}interaction\char`\"{} avec un appareil, c\textquotesingle
 Si le temps d\textquotesingle{}exposition est supérieur au seuil de surveillance, l\textquotesingle{}appareil est marqué pour surveillance rapprochée. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em address} & L\textquotesingle{}adresse Bluetooth de l\textquotesingle{}appareil à mettre à jour \\
 \hline
 {\em name} & Le nom de l\textquotesingle{}appareil à mettre à jour (uniquement visuel) \\
@@ -64,6 +58,10 @@ Si le temps d\textquotesingle{}exposition est supérieur au seuil de surveillanc
 {\em last\+\_\+contact} & Le temps de la dernière interaction avec l\textquotesingle{}appareil \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_monitoring_8h_source_l00066}{66}} du fichier \mbox{\hyperlink{_c_t_monitoring_8h_source}{CTMonitoring.\+h}}.
+
 \mbox{\Hypertarget{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}\label{_c_t_monitoring_8h_a8f573b385e7f440e6119242b60955024}} 
 \index{CTMonitoring.h@{CTMonitoring.h}!update\_device\_status@{update\_device\_status}}
 \index{update\_device\_status@{update\_device\_status}!CTMonitoring.h@{CTMonitoring.h}}
@@ -75,9 +73,13 @@ Si le temps d\textquotesingle{}exposition est supérieur au seuil de surveillanc
 Met à jour le status d\textquotesingle{}un appareil dans le fichier de monitoring. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em address} & L\textquotesingle{}adresse Bluetooth de l\textquotesingle{}appareil à mettre à jour \\
 \hline
 {\em status} & Le nouveau status de l\textquotesingle{}appareil (Sain, Cas contact, Malade) \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_monitoring_8h_source_l00040}{40}} du fichier \mbox{\hyperlink{_c_t_monitoring_8h_source}{CTMonitoring.\+h}}.
+

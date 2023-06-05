@@ -1,13 +1,8 @@
-\hypertarget{_c_t_events_8h}{}\doxysection{CTEvents.\+h File Reference}
+\hypertarget{_c_t_events_8h}{}\doxysection{Référence du fichier CTEvents.\+h}
 \label{_c_t_events_8h}\index{CTEvents.h@{CTEvents.h}}
-
-
-CTEvents est un module qui contient les callbacks des événements de l\textquotesingle{}application. Il est possible d\textquotesingle{}ajouter des callbacks pour les événements suivants \+:  
-
-
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-\doxysubsection*{Typedefs}
+\doxysubsection*{Définitions de type}
 \begin{DoxyCompactItemize}
 \item 
 typedef void($\ast$ \mbox{\hyperlink{_c_t_events_8h_ae6a3e8332fa73ffda1fb93b04817f802}{Credentials\+Callback}}) (const char $\ast$name, const char $\ast$password)
@@ -16,7 +11,7 @@ typedef void($\ast$ \mbox{\hyperlink{_c_t_events_8h_a96e39be31b27e3677d44b37a119
 \item 
 typedef void($\ast$ \mbox{\hyperlink{_c_t_events_8h_a470ec3a50d63fd143de8a394f8528c79}{Health\+Callback}}) (\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} status)
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsection*{Énumérations}
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} \{ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}} = 2
@@ -24,7 +19,7 @@ enum \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+
 , \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}} = 0
  \}
 \begin{DoxyCompactList}\small\item\em Enumération des états de santé possibles. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_c_t_events_8h_a22604d8f8e901fe1b2464e9fa2ac0641}{Add\+Device\+Credentials\+Changed\+Callback}} (\mbox{\hyperlink{_c_t_events_8h_ae6a3e8332fa73ffda1fb93b04817f802}{Credentials\+Callback}} callback)
@@ -56,29 +51,26 @@ std\+::vector$<$ \mbox{\hyperlink{_c_t_events_8h_a470ec3a50d63fd143de8a394f8528c
 \begin{DoxyCompactList}\small\item\em Callbacks appelés lors du changement de l\textquotesingle{}état de santé. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-CTEvents est un module qui contient les callbacks des événements de l\textquotesingle{}application. Il est possible d\textquotesingle{}ajouter des callbacks pour les événements suivants \+: 
-
-
-\begin{DoxyItemize}
-\item Changement des identifiants de l\textquotesingle{}appareil (\mbox{\hyperlink{_c_t_events_8h_a75ad50aeb7a689d1d0d8451bf056d267}{on\+Device\+Credentials\+Changed\+Callbacks}})
-\item Changement des identifiants du réseau (\mbox{\hyperlink{_c_t_events_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}{on\+Network\+Credentials\+Changed\+Callbacks}})
-\item Changement de la configuration de surveillance (\mbox{\hyperlink{_c_t_events_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}{on\+Monitoring\+Config\+Changed\+Callbacks}})
-\item Changement de l\textquotesingle{}état de santé (\mbox{\hyperlink{_c_t_events_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}{on\+Health\+Status\+Changed\+Callbacks}}) 
-\end{DoxyItemize}
-
-\doxysubsection{Typedef Documentation}
+\doxysubsection{Documentation des définitions de type}
 \mbox{\Hypertarget{_c_t_events_8h_ae6a3e8332fa73ffda1fb93b04817f802}\label{_c_t_events_8h_ae6a3e8332fa73ffda1fb93b04817f802}} 
 \index{CTEvents.h@{CTEvents.h}!CredentialsCallback@{CredentialsCallback}}
 \index{CredentialsCallback@{CredentialsCallback}!CTEvents.h@{CTEvents.h}}
 \doxysubsubsection{\texorpdfstring{CredentialsCallback}{CredentialsCallback}}
 {\footnotesize\ttfamily typedef void($\ast$ Credentials\+Callback) (const char $\ast$name, const char $\ast$password)}
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00032}{32}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_a470ec3a50d63fd143de8a394f8528c79}\label{_c_t_events_8h_a470ec3a50d63fd143de8a394f8528c79}} 
 \index{CTEvents.h@{CTEvents.h}!HealthCallback@{HealthCallback}}
 \index{HealthCallback@{HealthCallback}!CTEvents.h@{CTEvents.h}}
 \doxysubsubsection{\texorpdfstring{HealthCallback}{HealthCallback}}
 {\footnotesize\ttfamily typedef void($\ast$ Health\+Callback) (\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} status)}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00034}{34}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
 
 \mbox{\Hypertarget{_c_t_events_8h_a96e39be31b27e3677d44b37a119aa5fc}\label{_c_t_events_8h_a96e39be31b27e3677d44b37a119aa5fc}} 
 \index{CTEvents.h@{CTEvents.h}!MonitoringCallback@{MonitoringCallback}}
@@ -88,7 +80,11 @@ CTEvents est un module qui contient les callbacks des événements de l\textquot
 
 
 
-\doxysubsection{Enumeration Type Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00033}{33}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
+
+
+\doxysubsection{Documentation du type de l\textquotesingle{}énumération}
 \mbox{\Hypertarget{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}\label{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}} 
 \index{CTEvents.h@{CTEvents.h}!HealthStatus@{HealthStatus}}
 \index{HealthStatus@{HealthStatus}!CTEvents.h@{CTEvents.h}}
@@ -104,7 +100,7 @@ Enumération des états de santé possibles.
 \item HEALTHY \+: L\textquotesingle{}Utilisateur n\textquotesingle{}a pas été en contact avec une personne malade.
 \item CONTACT \+: L\textquotesingle{}Utilisateur a été en contact avec une personne malade.
 \item SICK \+: L\textquotesingle{}Utilisateur est malade. 
-\end{DoxyItemize}\begin{DoxyEnumFields}{Enumerator}
+\end{DoxyItemize}\begin{DoxyEnumFields}{Valeurs énumérées}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTHY@{HEALTHY}!CTEvents.h@{CTEvents.h}}\index{CTEvents.h@{CTEvents.h}!HEALTHY@{HEALTHY}}}\mbox{\Hypertarget{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}\label{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}} 
 HEALTHY&\\
 \hline
@@ -120,7 +116,11 @@ SICK&\\
 \end{DoxyEnumFields}
 
 
-\doxysubsection{Function Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00026}{26}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
+
+
+\doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{_c_t_events_8h_a22604d8f8e901fe1b2464e9fa2ac0641}\label{_c_t_events_8h_a22604d8f8e901fe1b2464e9fa2ac0641}} 
 \index{CTEvents.h@{CTEvents.h}!AddDeviceCredentialsChangedCallback@{AddDeviceCredentialsChangedCallback}}
 \index{AddDeviceCredentialsChangedCallback@{AddDeviceCredentialsChangedCallback}!CTEvents.h@{CTEvents.h}}
@@ -132,10 +132,14 @@ SICK&\\
 Callbacks appelés lors du changement des identifiants du réseau. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em callback} & Callback à ajouter. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00045}{45}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_a4d1d0c1b448dd04198cd6c375f6a494d}\label{_c_t_events_8h_a4d1d0c1b448dd04198cd6c375f6a494d}} 
 \index{CTEvents.h@{CTEvents.h}!AddHealthStatusChangedCallback@{AddHealthStatusChangedCallback}}
 \index{AddHealthStatusChangedCallback@{AddHealthStatusChangedCallback}!CTEvents.h@{CTEvents.h}}
@@ -147,10 +151,14 @@ Callbacks appelés lors du changement des identifiants du réseau.
 Callbacks appelés lors du changement de l\textquotesingle{}état de santé. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em callback} & Callback à ajouter. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00118}{118}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_accb1e048b0cd2decc56a4e05d10c103f}\label{_c_t_events_8h_accb1e048b0cd2decc56a4e05d10c103f}} 
 \index{CTEvents.h@{CTEvents.h}!AddMonitoringConfigChangedCallback@{AddMonitoringConfigChangedCallback}}
 \index{AddMonitoringConfigChangedCallback@{AddMonitoringConfigChangedCallback}!CTEvents.h@{CTEvents.h}}
@@ -162,10 +170,14 @@ Callbacks appelés lors du changement de l\textquotesingle{}état de santé.
 Callbacks appelés lors du changement de la configuration de surveillance. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em callback} & Callback à ajouter. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00093}{93}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_a3d5d2a1946d191159f8b0464f1433d49}\label{_c_t_events_8h_a3d5d2a1946d191159f8b0464f1433d49}} 
 \index{CTEvents.h@{CTEvents.h}!AddNetworkCredentialsChangedCallback@{AddNetworkCredentialsChangedCallback}}
 \index{AddNetworkCredentialsChangedCallback@{AddNetworkCredentialsChangedCallback}!CTEvents.h@{CTEvents.h}}
@@ -177,10 +189,14 @@ Callbacks appelés lors du changement de la configuration de surveillance.
 Callbacks appelés lors du changement des identifiants du réseau. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em callback} & Callback à ajouter. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00069}{69}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}\label{_c_t_events_8h_a777aa43c1ab074af4ad3bcb3c4e2bea8}} 
 \index{CTEvents.h@{CTEvents.h}!InvokeDeviceCredentialsChangedCallbacks@{InvokeDeviceCredentialsChangedCallbacks}}
 \index{InvokeDeviceCredentialsChangedCallbacks@{InvokeDeviceCredentialsChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -192,12 +208,16 @@ Callbacks appelés lors du changement des identifiants du réseau.
 Appelle tous les callbacks enregistrés lors du changement des identifiants de l\textquotesingle{}appareil. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em name} & La valeur mise à jour du nom de l\textquotesingle{}appareil. \\
 \hline
 {\em password} & La valeur mise à jour du mot de passe de l\textquotesingle{}appareil. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00054}{54}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_ab8d141abb41fc2ce25dea6a3640ae564}\label{_c_t_events_8h_ab8d141abb41fc2ce25dea6a3640ae564}} 
 \index{CTEvents.h@{CTEvents.h}!InvokeHealthStatusChangedCallbacks@{InvokeHealthStatusChangedCallbacks}}
 \index{InvokeHealthStatusChangedCallbacks@{InvokeHealthStatusChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -209,10 +229,14 @@ Appelle tous les callbacks enregistrés lors du changement des identifiants de l
 Appelle tous les callbacks enregistrés lors du changement de l\textquotesingle{}état de santé. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em status} & Valeur mise à jour de l\textquotesingle{}état de santé. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00126}{126}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_ad21548f09beb0751e154481f85152d04}\label{_c_t_events_8h_ad21548f09beb0751e154481f85152d04}} 
 \index{CTEvents.h@{CTEvents.h}!InvokeMonitoringConfigChangedCallbacks@{InvokeMonitoringConfigChangedCallbacks}}
 \index{InvokeMonitoringConfigChangedCallbacks@{InvokeMonitoringConfigChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -224,7 +248,7 @@ Appelle tous les callbacks enregistrés lors du changement de l\textquotesingle{
 Appelle tous les callbacks enregistrés lors du changement de la configuration de surveillance. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em time} & Valeur mise à jour de la durée de surveillance. \\
 \hline
 {\em distance} & Valeur mise à jour de la distance de surveillance. \\
@@ -232,6 +256,10 @@ Appelle tous les callbacks enregistrés lors du changement de la configuration d
 {\em temperature} & Valeur mise à jour de la température Seuil de Maladie. \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00103}{103}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_af3122acf35aec8ec7344c98757eb17b6}\label{_c_t_events_8h_af3122acf35aec8ec7344c98757eb17b6}} 
 \index{CTEvents.h@{CTEvents.h}!InvokeNetworkCredentialsChangedCallbacks@{InvokeNetworkCredentialsChangedCallbacks}}
 \index{InvokeNetworkCredentialsChangedCallbacks@{InvokeNetworkCredentialsChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -243,7 +271,7 @@ Appelle tous les callbacks enregistrés lors du changement de la configuration d
 Appelle tous les callbacks enregistrés lors du changement des identifiants du réseau. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em name} & La valeur mise à jour du nom du réseau (SSID). \\
 \hline
 {\em password} & La valeur mise à jour du mot de passe du réseau. \\
@@ -251,7 +279,11 @@ Appelle tous les callbacks enregistrés lors du changement des identifiants du r
 \end{DoxyParams}
 
 
-\doxysubsection{Variable Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00078}{78}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
+
+
+\doxysubsection{Documentation des variables}
 \mbox{\Hypertarget{_c_t_events_8h_a75ad50aeb7a689d1d0d8451bf056d267}\label{_c_t_events_8h_a75ad50aeb7a689d1d0d8451bf056d267}} 
 \index{CTEvents.h@{CTEvents.h}!onDeviceCredentialsChangedCallbacks@{onDeviceCredentialsChangedCallbacks}}
 \index{onDeviceCredentialsChangedCallbacks@{onDeviceCredentialsChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -261,6 +293,10 @@ Appelle tous les callbacks enregistrés lors du changement des identifiants du r
 
 
 Callbacks appelés lors du changement des identifiants de l\textquotesingle{}appareil. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00039}{39}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
 
 \mbox{\Hypertarget{_c_t_events_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}\label{_c_t_events_8h_a1c0ee0a85d3b421c6deef40d30fe0b30}} 
 \index{CTEvents.h@{CTEvents.h}!onHealthStatusChangedCallbacks@{onHealthStatusChangedCallbacks}}
@@ -272,6 +308,10 @@ Callbacks appelés lors du changement des identifiants de l\textquotesingle{}app
 
 Callbacks appelés lors du changement de l\textquotesingle{}état de santé. 
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00112}{112}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}\label{_c_t_events_8h_a53a1ac7c3b2ab250fb67d1078b1fbf79}} 
 \index{CTEvents.h@{CTEvents.h}!onMonitoringConfigChangedCallbacks@{onMonitoringConfigChangedCallbacks}}
 \index{onMonitoringConfigChangedCallbacks@{onMonitoringConfigChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -282,6 +322,10 @@ Callbacks appelés lors du changement de l\textquotesingle{}état de santé.
 
 Callbacks appelés lors du changement de la configuration de surveillance. 
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00087}{87}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
+
 \mbox{\Hypertarget{_c_t_events_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}\label{_c_t_events_8h_ac3d37fa308a4896ebc16da9aa6fd9f8b}} 
 \index{CTEvents.h@{CTEvents.h}!onNetworkCredentialsChangedCallbacks@{onNetworkCredentialsChangedCallbacks}}
 \index{onNetworkCredentialsChangedCallbacks@{onNetworkCredentialsChangedCallbacks}!CTEvents.h@{CTEvents.h}}
@@ -291,4 +335,8 @@ Callbacks appelés lors du changement de la configuration de surveillance.
 
 
 Callbacks appelés lors du changement des identifiants du réseau. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_events_8h_source_l00063}{63}} du fichier \mbox{\hyperlink{_c_t_events_8h_source}{CTEvents.\+h}}.
 

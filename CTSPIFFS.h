@@ -1,5 +1,4 @@
 /**
- * @file CTSPIFFS.h
  * @brief CTSPIFFS est un module qui permet de d'intéragir avec la mémoire flash SPIFFS du système.
  * Il permet de lire et d'écrire des fichiers JSON.
  * Ce module contient des fonctions utilitaires de lecture et d'écriture de fichiers JSON simples à utiliser.
@@ -15,6 +14,7 @@
  * 
  * @page CTSPIFFS SPIFFS Contact Tracer
  * @ref CTSPIFFS.h
+ * @file CTSPIFFS.h
  */
 
 #pragma once

@@ -1,10 +1,10 @@
 /**
- * @file CTDebug.h
  * @brief CTDebug est un module qui permet d'activer ou de désactiver les messages de debug.
  * Lorsque MYDEBUG est défini, les messages de debug sont affichés sur le port série.
  * 
  * @page CTDebug Debug Contact Tracer
  * @ref CTDebug.h
+ * @file CTDebug.h
  */
 
 #ifdef MYDEBUG

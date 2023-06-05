@@ -1,0 +1,188 @@
+.TH "CTAdafruitIO.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTAdafruitIO.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Adafruit_MQTT\&.h'\fP
+.br
+\fC#include 'Adafruit_MQTT_Client\&.h'\fP
+.br
+\fC#include 'CTTicker\&.h'\fP
+.br
+\fC#include 'CTBLE\&.h'\fP
+.br
+\fC#include 'CTMonitoring\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIO_SERVER\fP   'io\&.adafruit\&.com'"
+.br
+.ti -1c
+.RI "#define \fBIO_SERVERPORT\fP   1883"
+.br
+.ti -1c
+.RI "#define \fBIO_USERNAME\fP   'AxelSeven'"
+.br
+.ti -1c
+.RI "#define \fBIO_KEY\fP   'aio_ABSF03axiYmBxXpX1rPa1FqKA1sF'"
+.br
+.ti -1c
+.RI "#define \fBFEED_FREQ\fP   10"
+.br
+.ti -1c
+.RI "#define \fBPROCESS_PACKETS_MS\fP   10000"
+.br
+.ti -1c
+.RI "#define \fBFEED_HEALTH\fP   '/feeds/health'"
+.br
+.in -1c
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBhealthCallback\fP (char *data, uint16_t len)"
+.br
+.RI "Callback de réception des données de santé
+.br
+Va mettre à jour le statut de l'utilisateur en fonction des données reçues\&. "
+.ti -1c
+.RI "bool \fBconnectAdafruitIO\fP (int cycles=50)"
+.br
+.RI "Connexion au broker Adafruit\&. "
+.ti -1c
+.RI "void \fBsendData\fP ()"
+.br
+.RI "Envoi des données de télémétrie au broker Adafruit\&. "
+.ti -1c
+.RI "void \fBsetupAdafruitIO\fP ()"
+.br
+.ti -1c
+.RI "void \fBloopAdafruitIO\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "WiFiClient \fBclient\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBuiSliderValue\fP =0"
+.br
+.ti -1c
+.RI "Adafruit_MQTT_Publish \fBhealthPublish\fP = Adafruit_MQTT_Publish(&MyAdafruitMqtt, \fBIO_USERNAME\fP \fBFEED_HEALTH\fP)"
+.br
+.ti -1c
+.RI "Adafruit_MQTT_Subscribe \fBhealth\fP = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, \fBIO_USERNAME\fP \fBFEED_HEALTH\fP, MQTT_QOS_1)"
+.br
+.in -1c
+.SH "Documentation des macros"
+.PP 
+.SS "#define FEED_FREQ   10"
+
+.PP
+Définition à la ligne \fB25\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define FEED_HEALTH   '/feeds/health'"
+
+.PP
+Définition à la ligne \fB28\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define IO_KEY   'aio_ABSF03axiYmBxXpX1rPa1FqKA1sF'"
+
+.PP
+Définition à la ligne \fB23\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define IO_SERVER   'io\&.adafruit\&.com'"
+
+.PP
+Définition à la ligne \fB20\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define IO_SERVERPORT   1883"
+
+.PP
+Définition à la ligne \fB21\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define IO_USERNAME   'AxelSeven'"
+
+.PP
+Définition à la ligne \fB22\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "#define PROCESS_PACKETS_MS   10000"
+
+.PP
+Définition à la ligne \fB26\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SH "Documentation des fonctions"
+.PP 
+.SS "bool connectAdafruitIO (int cycles = \fC50\fP)"
+
+.PP
+Connexion au broker Adafruit\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIcycles\fP Nombre de tentatives de connexion 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB75\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "void healthCallback (char * data, uint16_t len)"
+
+.PP
+Callback de réception des données de santé
+.br
+Va mettre à jour le statut de l'utilisateur en fonction des données reçues\&. 
+.PP
+Définition à la ligne \fB48\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "void loopAdafruitIO ()"
+Boucle Adafruit IO
+.IP "\(bu" 2
+Vérification de l'état de la connexion
+.IP "\(bu" 2
+Traitement des messages reçus
+.IP "\(bu" 2
+Maintien de la connexion en vie avec un Ping si on aucun publish télémétrie n'est fait 
+.PP
+
+.PP
+Définition à la ligne \fB160\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "void sendData ()"
+
+.PP
+Envoi des données de télémétrie au broker Adafruit\&. 
+.PP
+Définition à la ligne \fB115\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "void setupAdafruitIO ()"
+Configuration de la connexion au broker Adafruit IO
+.IP "\(bu" 2
+Connexion WiFi
+.IP "\(bu" 2
+Configuration de l'actuateur
+.IP "\(bu" 2
+Configuration des callbacks 
+.PP
+
+.PP
+Définition à la ligne \fB142\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SH "Documentation des variables"
+.PP 
+.SS "Adafruit_MQTT_Client MyAdafruitMqtt & client"
+
+.PP
+Définition à la ligne \fB33\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "Adafruit_MQTT_Subscribe health = Adafruit_MQTT_Subscribe(&MyAdafruitMqtt, \fBIO_USERNAME\fP \fBFEED_HEALTH\fP, MQTT_QOS_1)"
+
+.PP
+Définition à la ligne \fB40\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "Adafruit_MQTT_Publish healthPublish = Adafruit_MQTT_Publish(&MyAdafruitMqtt, \fBIO_USERNAME\fP \fBFEED_HEALTH\fP)"
+
+.PP
+Définition à la ligne \fB39\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SS "uint32_t uiSliderValue =0"
+
+.PP
+Définition à la ligne \fB35\fP du fichier \fBCTAdafruitIO\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

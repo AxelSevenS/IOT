@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "h",
   7: "chs",
   8: "bcdfilmps",
-  9: "abcdlnopsté"
+  9: "abcdlnopstwé"
 };
 
 var indexSectionNames =
@@ -28,14 +28,14 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Data Structures",
-  2: "Files",
-  3: "Functions",
+  0: "Tout",
+  1: "Structures de données",
+  2: "Fichiers",
+  3: "Fonctions",
   4: "Variables",
-  5: "Typedefs",
-  6: "Enumerations",
-  7: "Enumerator",
+  5: "Définitions de type",
+  6: "Énumérations",
+  7: "Valeurs énumérées",
   8: "Macros",
   9: "Pages"
 };

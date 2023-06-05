@@ -1,0 +1,67 @@
+.TH "CTNTP.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTNTP.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <NTPClient\&.h>\fP
+.br
+\fC#include <WiFiUdp\&.h>\fP
+.br
+
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "NTPClient \fBtimeClient\fP (\fBntpUDP\fP)"
+.br
+.ti -1c
+.RI "String \fBgetNTP\fP ()"
+.br
+.RI "Récupère l'heure depuis le serveur NTP\&. "
+.ti -1c
+.RI "void \fBsetupNTP\fP ()"
+.br
+.RI "Initialise le client NTP\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "WiFiUDP \fBntpUDP\fP"
+.br
+.in -1c
+.SH "Documentation des fonctions"
+.PP 
+.SS "String getNTP ()"
+
+.PP
+Récupère l'heure depuis le serveur NTP\&. 
+.PP
+\fBRenvoie\fP
+.RS 4
+String L'heure au format HH:MM:SS\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB24\fP du fichier \fBCTNTP\&.h\fP\&.
+.SS "void setupNTP ()"
+
+.PP
+Initialise le client NTP\&. 
+.PP
+Définition à la ligne \fB33\fP du fichier \fBCTNTP\&.h\fP\&.
+.SS "NTPClient timeClient (\fBntpUDP\fP)"
+
+.SH "Documentation des variables"
+.PP 
+.SS "WiFiUDP ntpUDP"
+
+.PP
+Définition à la ligne \fB16\fP du fichier \fBCTNTP\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

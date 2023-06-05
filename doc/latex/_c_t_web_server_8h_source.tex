@@ -1,305 +1,305 @@
 \hypertarget{_c_t_web_server_8h_source}{}\doxysection{CTWeb\+Server.\+h}
-\mbox{\hyperlink{_c_t_web_server_8h}{Go to the documentation of this file.}}
+\mbox{\hyperlink{_c_t_web_server_8h}{Aller à la documentation de ce fichier.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}WiFi.h"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}AsyncTCP.h"{}}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}ESPAsyncWebServer.h"{}}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSpiffs.h}}"{}}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ AsyncWebServer\ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}(80);}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a77dfbbb5d497ed52138d8896fbf713b5}{handleConfig}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ String\ htmlPage;}
-\DoxyCodeLine{00028\ \ \ htmlPage.reserve(1024);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prevent\ ram\ fragmentation}}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//\ get\_config();}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ htmlPage\ =\ F(}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{stringliteral}{"{}<html\ lang='fr'>"{}}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<head>"{}}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<meta\ charset='UTF-\/8'>"{}}}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</head>"{}}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<body>"{}}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h2>"{}}}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Configuration\ de\ la\ carte\ :\ "{}}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h2>"{}}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/resetConfigSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Réinitialiser\ la\ Configuration'>"{}}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/deviceConfigSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ de\ la\ Carte</h3>"{}}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='name'\ placeholder='Nom\ de\ la\ carte'\ value='\{DEVICE\_NAME\}'>"{}}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ de\ la\ carte'\ value='\{DEVICE\_PASSWORD\}'>"{}}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/netConfigSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ du\ réseau\ WiFi</h3>"{}}}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='ssid'\ placeholder='SSID\ du\ réseau\ WiFi'\ value='\{AP\_SSID\}'>"{}}}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ du\ réseau\ WiFi'\ value='\{AP\_PASSWORD\}'>"{}}}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Se\ Connecter'>"{}}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/monitoringConfigSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Paramètres\ de\ Surveillance</h3>"{}}}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='time'\ placeholder='Période\ de\ surveillance'\ value='\{MONITORING\_TIME\}'>"{}}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='time'>Durée\ de\ Surveillance\ Minimum\ (en\ minutes)</label>"{}}}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='distance'\ placeholder='Distance\ de\ détection'\ value='\{MONITORING\_DISTANCE\}'>"{}}}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='distance'>Distance\ de\ Surveillance\ Maximum\ (en\ mètres)</label>"{}}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='temperature'\ placeholder='Temperature\ Seuil\ de\ Maladie'\ value='\{TEMPERATURE\_THRESHOLD\}'>"{}}}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='temperature'>Temperature\ Seuil\ de\ Maladie\ (en\ °C)</label>"{}}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/updateHealthStateSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>État\ de\ Santé</h3>"{}}}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='HEALTHY'\ name='healthState'\ value='2'>"{}}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='2'>Sain</label>"{}}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='CONTACT'\ name='healthState'\ value='1'>"{}}}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='1'>Cas\ Contact</label>"{}}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='SICK'\ name='healthState'\ value='0'>"{}}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='0'>Malade</label>"{}}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<div>"{}}}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Contact\ Tracer\ Contactés</h3>"{}}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<table>"{}}}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{MONITORED\_DEVICES\}"{}}}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</table>"{}}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/resetMonitoringSubmit'\ method='POST'>"{}}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Réinitialiser\ la\ Surveillance'>"{}}}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</div>"{}}}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</body>"{}}}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
-\DoxyCodeLine{00100\ \ \ );}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}})\ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}:}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='2'"{}},\ \textcolor{stringliteral}{"{}value='2'\ checked"{}});}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}:}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='1'"{}},\ \textcolor{stringliteral}{"{}value='1'\ checked"{}});}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}}:}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='0'"{}},\ \textcolor{stringliteral}{"{}value='0'\ checked"{}});}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00113\ \ \ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ String\ input\_net\_ssid\ =\ request-\/>hasArg(\textcolor{stringliteral}{"{}net\_ssid"{}})\ ?\ request-\/>arg(\textcolor{stringliteral}{"{}net\_ssid"{}})\ :\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{DEVICE\_NAME\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
-\DoxyCodeLine{00118\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{DEVICE\_PASSWORD\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}});}
-\DoxyCodeLine{00119\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_SSID\}"{}},\ input\_net\_ssid);}
-\DoxyCodeLine{00120\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_PASSWORD\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}});}
-\DoxyCodeLine{00121\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORING\_TIME\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}));}
-\DoxyCodeLine{00122\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORING\_DISTANCE\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}));}
-\DoxyCodeLine{00123\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{TEMPERATURE\_THRESHOLD\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}));}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ String\ devices\ =\ F(}
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{stringliteral}{"{}<tr>"{}}}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Addresse</td>"{}}}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Nom</td>"{}}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Temps\ D'exposition</td>"{}}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Surveillé\ de\ Près</td>"{}}}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Santé</td>"{}}}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{stringliteral}{"{}</tr>"{}}}
-\DoxyCodeLine{00134\ \ \ );}
-\DoxyCodeLine{00135\ \ \ }
-\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [\&devices](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \ \ \ \ JsonObject\ monitoredDevices\ =\ monitoringDocument.as<JsonObject>();}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{for}\ (JsonPair\ keyValue\ :\ monitoredDevices)\ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ monitoredAddress\ =\ keyValue.key();}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ monitoredDevice\ =\ keyValue.value();}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \ \ String\ device\ =\ F(}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<tr>"{}}}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{ADDRESS\}</td>"{}}}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{NAME\}</td>"{}}}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{TOTAL\_EXPOSURE\}</td>"{}}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{CLOSE\_MONITORING\}</td>"{}}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{HEALTH\_STATE\}</td>"{}}}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</tr>"{}}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ );}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{ADDRESS\}"{}},\ monitoredAddress.c\_str());}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{NAME\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}name"{}}].as<String>().c\_str());}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{TOTAL\_EXPOSURE\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}total\_exposure"{}}].as<String>().c\_str());}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{CLOSE\_MONITORING\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}close\_monitoring"{}}].as<String>().c\_str());}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{HEALTH\_STATE\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}status"{}}].as<String>().c\_str());}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \ \ devices\ +=\ device;}
-\DoxyCodeLine{00161\ \ \ \ \ \}}
-\DoxyCodeLine{00162\ \ \ \});}
-\DoxyCodeLine{00163\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORED\_DEVICES\}"{}},\ devices);}
-\DoxyCodeLine{00164\ \ \ }
-\DoxyCodeLine{00165\ }
-\DoxyCodeLine{00166\ \ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ htmlPage);}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00168\ \}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00173\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}{handleResetConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}});}
-\DoxyCodeLine{00175\ \ \ }
-\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00179\ \}}
-\DoxyCodeLine{00180\ }
-\DoxyCodeLine{00184\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}{handleResetMonitoringSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}});}
-\DoxyCodeLine{00186\ \ \ }
-\DoxyCodeLine{00187\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
-\DoxyCodeLine{00188\ \ \ }
-\DoxyCodeLine{00189\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00190\ \}}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00195\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}{handleMonitoringConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00196\ }
-\DoxyCodeLine{00197\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
-\DoxyCodeLine{00198\ \ \ \textcolor{keywordtype}{float}\ time\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}time"{}}).c\_str());}
-\DoxyCodeLine{00199\ \ \ \textcolor{keywordtype}{float}\ distance\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}distance"{}}).c\_str());}
-\DoxyCodeLine{00200\ \ \ \textcolor{keywordtype}{float}\ temperature\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}temperature"{}}).c\_str());}
-\DoxyCodeLine{00201\ }
-\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(time,\ distance,\ temperature);}
-\DoxyCodeLine{00203\ }
-\DoxyCodeLine{00204\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00205\ \}}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00210\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}{handleDeviceConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
-\DoxyCodeLine{00213\ \ \ String\ name\ =\ request-\/>arg(\textcolor{stringliteral}{"{}name"{}});}
-\DoxyCodeLine{00214\ \ \ String\ password\ =\ request-\/>arg(\textcolor{stringliteral}{"{}password"{}});}
-\DoxyCodeLine{00215\ }
-\DoxyCodeLine{00216\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(name.c\_str(),\ password.c\_str());}
-\DoxyCodeLine{00217\ \ \ \textcolor{comment}{//\ launch\_access\_point(name.c\_str(),\ password.c\_str());}}
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00220\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00221\ \}}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00226\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}{handleNetConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00227\ }
-\DoxyCodeLine{00228\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
-\DoxyCodeLine{00229\ \ \ String\ ssid\ =\ request-\/>arg(\textcolor{stringliteral}{"{}ssid"{}});}
-\DoxyCodeLine{00230\ \ \ String\ password\ =\ request-\/>arg(\textcolor{stringliteral}{"{}password"{}});}
-\DoxyCodeLine{00231\ }
-\DoxyCodeLine{00232\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(ssid.c\_str(),\ password.c\_str());}
-\DoxyCodeLine{00233\ \ \ \textcolor{comment}{//\ try\_WiFi\_connect(ssid.c\_str(),\ password.c\_str());}}
-\DoxyCodeLine{00234\ \ \ }
-\DoxyCodeLine{00235\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00236\ \}}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00241\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}{handleUpdateHealthStateSubmit}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00242\ }
-\DoxyCodeLine{00243\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
-\DoxyCodeLine{00244\ \ \ String\ value\ =\ request-\/>arg(\textcolor{stringliteral}{"{}healthState"{}});}
-\DoxyCodeLine{00245\ \ \ \textcolor{keywordtype}{int}\ intValue\ =\ value.toInt();}
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00247\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}((\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}})intValue);}
-\DoxyCodeLine{00248\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00249\ \}}
-\DoxyCodeLine{00250\ }
-\DoxyCodeLine{00257\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}{handleScan}}(AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00258\ \ \ }
-\DoxyCodeLine{00259\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ requete\ scan"{}});}
-\DoxyCodeLine{00260\ }
-\DoxyCodeLine{00261\ \ \ \textcolor{comment}{//\ La\ carte\ scanne\ les\ réseaux\ WiFi\ à\ proximité}}
-\DoxyCodeLine{00262\ \ \ \textcolor{keywordtype}{int}\ n\ =\ WiFi.scanNetworks();}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00264\ \ \ \textcolor{comment}{//\ Construction\ de\ la\ page\ HTML\ de\ réponse}}
-\DoxyCodeLine{00265\ \ \ String\ out\ =\ F(}
-\DoxyCodeLine{00266\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
-\DoxyCodeLine{00267\ \ \ \ \ \textcolor{stringliteral}{"{}<html>"{}}}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<head>"{}}}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<meta\ http-\/equiv='refresh'\ content='5'/>"{}}}
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<title>Ynov\ -\/\ Projet\ IoT\ B2</title>"{}}}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<style>"{}}}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}body\ \{\ background-\/color:\ \#cccccc;\ font-\/family:\ Arial,\ Helvetica,\ Sans-\/Serif;\ Color:\ \#000088;\ \}"{}}}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</style>"{}}}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</head>"{}}}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<body>"{}}}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h1>"{}}}
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Page\ de\ Scan"{}}}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h1>"{}}}
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<ul>"{}}}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{NETWORKS\}"{}}}
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</ul>"{}}}
-\DoxyCodeLine{00283\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</body>"{}}}
-\DoxyCodeLine{00284\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
-\DoxyCodeLine{00285\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
-\DoxyCodeLine{00286\ \ \ );}
-\DoxyCodeLine{00287\ }
-\DoxyCodeLine{00288\ \ \ \textcolor{comment}{//\ Intégration\ des\ réseaux\ WiFi\ trouvés\ dans\ la\ page\ HTML}}
-\DoxyCodeLine{00289\ \ \ String\ networks\ =\ \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ 0)\ \{}
-\DoxyCodeLine{00291\ \ \ \ \ networks\ =\ \textcolor{stringliteral}{"{}-\/\ AUCUN\ réseau\ WiFi\ trouvé\ -\/"{}};}
-\DoxyCodeLine{00292\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ String\ ssid\ =\ WiFi.SSID(i);}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ String\ network\ =\ F(}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<li>"{}}}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<a\ href='?net\_ssid=\{SSID\}\&net\_password='>\{SSID\}</a>"{}}}
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</li>"{}}}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ );}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ network.replace(\textcolor{stringliteral}{"{}\{SSID\}"{}},\ ssid);}
-\DoxyCodeLine{00301\ }
-\DoxyCodeLine{00302\ \ \ \ \ \ \ networks\ +=\ network;}
-\DoxyCodeLine{00303\ \ \ \ \ \}}
-\DoxyCodeLine{00304\ \ \ \}}
-\DoxyCodeLine{00305\ }
-\DoxyCodeLine{00306\ \ \ out.replace(\textcolor{stringliteral}{"{}\{NETWORKS\}"{}},\ networks);}
-\DoxyCodeLine{00307\ }
-\DoxyCodeLine{00308\ \ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ out);}
-\DoxyCodeLine{00309\ \}}
-\DoxyCodeLine{00310\ }
-\DoxyCodeLine{00311\ }
-\DoxyCodeLine{00317\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ada2454c68167b49ab4f42817be2b4959}{setupWebServer}}()\{}
-\DoxyCodeLine{00318\ }
-\DoxyCodeLine{00319\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ Démarrage"{}});}
-\DoxyCodeLine{00320\ }
-\DoxyCodeLine{00321\ \ \ \textcolor{comment}{//\ Configuration\ de\ mon\ serveur\ web}}
-\DoxyCodeLine{00322\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/"{}},\ HTTP\_GET,\ [](AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00323\ \ \ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}config"{}});}
-\DoxyCodeLine{00324\ \ \ \});}
-\DoxyCodeLine{00325\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/config"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_c_t_web_server_8h_a77dfbbb5d497ed52138d8896fbf713b5}{handleConfig}});}
-\DoxyCodeLine{00326\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/resetConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}{handleResetConfigSubmit}});}
-\DoxyCodeLine{00327\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/resetMonitoringSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}{handleResetMonitoringSubmit}});}
-\DoxyCodeLine{00328\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/deviceConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}{handleDeviceConfigSubmit}});}
-\DoxyCodeLine{00329\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/monitoringConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}{handleMonitoringConfigSubmit}});}
-\DoxyCodeLine{00330\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/netConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}{handleNetConfigSubmit}});}
-\DoxyCodeLine{00331\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/updateHealthStateSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}{handleUpdateHealthStateSubmit}});}
-\DoxyCodeLine{00332\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/scan"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}{handleScan}});}
-\DoxyCodeLine{00333\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.onNotFound([](AsyncWebServerRequest\ *request)\ \{}
-\DoxyCodeLine{00334\ \ \ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
-\DoxyCodeLine{00335\ \ \ \});}
-\DoxyCodeLine{00336\ }
-\DoxyCodeLine{00337\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.begin();}
-\DoxyCodeLine{00338\ \}}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00340\ }
-\DoxyCodeLine{00341\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{loopWebServer}}(\textcolor{keywordtype}{void})\ \{}
-\DoxyCodeLine{00342\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00010}00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}WiFi.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}AsyncTCP.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}ESPAsyncWebServer.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h}{CTSpiffs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00018}\mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{00018}}\ AsyncWebServer\ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}(80);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00025}\mbox{\hyperlink{_c_t_web_server_8h_a77dfbbb5d497ed52138d8896fbf713b5}{00025}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a77dfbbb5d497ed52138d8896fbf713b5}{handleConfig}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00027}00027\ \ \ String\ htmlPage;}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00028}00028\ \ \ htmlPage.reserve(1024);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prevent\ ram\ fragmentation}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00030}00030\ \ \ \textcolor{comment}{//\ get\_config();}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00033}00033\ \ \ htmlPage\ =\ F(}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00034}00034\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00035}00035\ \ \ \ \ \textcolor{stringliteral}{"{}<html\ lang='fr'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00037}00037\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<head>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<meta\ charset='UTF-\/8'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00039}00039\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</head>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00041}00041\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<body>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h2>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Configuration\ de\ la\ carte\ :\ "{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h2>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/resetConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Réinitialiser\ la\ Configuration'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/deviceConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ de\ la\ Carte</h3>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='name'\ placeholder='Nom\ de\ la\ carte'\ value='\{DEVICE\_NAME\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ de\ la\ carte'\ value='\{DEVICE\_PASSWORD\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/netConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Identifiants\ du\ réseau\ WiFi</h3>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='ssid'\ placeholder='SSID\ du\ réseau\ WiFi'\ value='\{AP\_SSID\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='text'\ name='password'\ placeholder='Password\ du\ réseau\ WiFi'\ value='\{AP\_PASSWORD\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Se\ Connecter'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/monitoringConfigSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Paramètres\ de\ Surveillance</h3>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='time'\ placeholder='Période\ de\ surveillance'\ value='\{MONITORING\_TIME\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='time'>Durée\ de\ Surveillance\ Minimum\ (en\ minutes)</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='distance'\ placeholder='Distance\ de\ détection'\ value='\{MONITORING\_DISTANCE\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='distance'>Distance\ de\ Surveillance\ Maximum\ (en\ mètres)</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='number'\ step='any'\ min='0'\ name='temperature'\ placeholder='Temperature\ Seuil\ de\ Maladie'\ value='\{TEMPERATURE\_THRESHOLD\}'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='temperature'>Temperature\ Seuil\ de\ Maladie\ (en\ °C)</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/updateHealthStateSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>État\ de\ Santé</h3>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='HEALTHY'\ name='healthState'\ value='2'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='2'>Sain</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='CONTACT'\ name='healthState'\ value='1'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='1'>Cas\ Contact</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='radio'\ id='SICK'\ name='healthState'\ value='0'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<label\ for='0'>Malade</label>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Enregistrer'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<div>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h3>Contact\ Tracer\ Contactés</h3>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<table>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{MONITORED\_DEVICES\}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</table>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<form\ action='/resetMonitoringSubmit'\ method='POST'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<input\ type='submit'\ value='Réinitialiser\ la\ Surveillance'>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</form>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</div>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00096}00096\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</body>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00097}00097\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00098}00098\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00099}00099\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00100}00100\ \ \ );}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00102}00102\ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}})\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}:}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00105}00105\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='2'"{}},\ \textcolor{stringliteral}{"{}value='2'\ checked"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00106}00106\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}:}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00108}00108\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='1'"{}},\ \textcolor{stringliteral}{"{}value='1'\ checked"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00109}00109\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}}:}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00111}00111\ \ \ \ \ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}value='0'"{}},\ \textcolor{stringliteral}{"{}value='0'\ checked"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00112}00112\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00113}00113\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00115}00115\ \ \ String\ input\_net\_ssid\ =\ request-\/>hasArg(\textcolor{stringliteral}{"{}net\_ssid"{}})\ ?\ request-\/>arg(\textcolor{stringliteral}{"{}net\_ssid"{}})\ :\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\_ssid}};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00117}00117\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{DEVICE\_NAME\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\_name}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00118}00118\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{DEVICE\_PASSWORD\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\_password}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00119}00119\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_SSID\}"{}},\ input\_net\_ssid);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00120}00120\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{AP\_PASSWORD\}"{}},\ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\_password}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00121}00121\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORING\_TIME\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\_time}}));}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00122}00122\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORING\_DISTANCE\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\_distance}}));}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00123}00123\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{TEMPERATURE\_THRESHOLD\}"{}},\ String(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\_threshold}}));}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00126}00126\ \ \ String\ devices\ =\ F(}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00127}00127\ \ \ \ \ \textcolor{stringliteral}{"{}<tr>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00128}00128\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Addresse</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00129}00129\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Nom</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00130}00130\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Temps\ D'exposition</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00131}00131\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Surveillé\ de\ Près</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00132}00132\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>Santé</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00133}00133\ \ \ \ \ \textcolor{stringliteral}{"{}</tr>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00134}00134\ \ \ );}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00135}00135\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00136}00136\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}},\ [\&devices](JsonDocument\&\ monitoringDocument,\ File\&\ monitoringFile)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00138}00138\ \ \ \ \ JsonObject\ monitoredDevices\ =\ monitoringDocument.as<JsonObject>();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{for}\ (JsonPair\ keyValue\ :\ monitoredDevices)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00142}00142\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ monitoredAddress\ =\ keyValue.key();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00143}00143\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ monitoredDevice\ =\ keyValue.value();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00145}00145\ \ \ \ \ \ \ String\ device\ =\ F(}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<tr>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{ADDRESS\}</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{NAME\}</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{TOTAL\_EXPOSURE\}</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{CLOSE\_MONITORING\}</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<td>\{HEALTH\_STATE\}</td>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</tr>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00153}00153\ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00154}00154\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{ADDRESS\}"{}},\ monitoredAddress.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00155}00155\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{NAME\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}name"{}}].as<String>().c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00156}00156\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{TOTAL\_EXPOSURE\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}total\_exposure"{}}].as<String>().c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00157}00157\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{CLOSE\_MONITORING\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}close\_monitoring"{}}].as<String>().c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00158}00158\ \ \ \ \ \ \ device.replace(\textcolor{stringliteral}{"{}\{HEALTH\_STATE\}"{}},\ monitoredDevice[\textcolor{stringliteral}{"{}status"{}}].as<String>().c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00160}00160\ \ \ \ \ \ \ devices\ +=\ device;}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00161}00161\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00162}00162\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00163}00163\ \ \ htmlPage.replace(\textcolor{stringliteral}{"{}\{MONITORED\_DEVICES\}"{}},\ devices);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00164}00164\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00166}00166\ \ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ htmlPage);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00168}00168\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00173}\mbox{\hyperlink{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}{00173}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}{handleResetConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00174}00174\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00175}00175\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00176}00176\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00178}00178\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00179}00179\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00184}\mbox{\hyperlink{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}{00184}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}{handleResetMonitoringSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00185}00185\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\_file}}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00186}00186\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00187}00187\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\_config}}();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00188}00188\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00189}00189\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00195}\mbox{\hyperlink{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}{00195}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}{handleMonitoringConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00197}00197\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00198}00198\ \ \ \textcolor{keywordtype}{float}\ time\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}time"{}}).c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00199}00199\ \ \ \textcolor{keywordtype}{float}\ distance\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}distance"{}}).c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00200}00200\ \ \ \textcolor{keywordtype}{float}\ temperature\ =\ atof(request-\/>arg(\textcolor{stringliteral}{"{}temperature"{}}).c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00202}00202\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\_monitoring\_config}}(time,\ distance,\ temperature);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00204}00204\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00205}00205\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00210}\mbox{\hyperlink{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}{00210}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}{handleDeviceConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00212}00212\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00213}00213\ \ \ String\ name\ =\ request-\/>arg(\textcolor{stringliteral}{"{}name"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00214}00214\ \ \ String\ password\ =\ request-\/>arg(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00216}00216\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\_device\_config}}(name.c\_str(),\ password.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00217}00217\ \ \ \textcolor{comment}{//\ launch\_access\_point(name.c\_str(),\ password.c\_str());}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00220}00220\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00221}00221\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00226}\mbox{\hyperlink{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}{00226}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}{handleNetConfigSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00228}00228\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00229}00229\ \ \ String\ ssid\ =\ request-\/>arg(\textcolor{stringliteral}{"{}ssid"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00230}00230\ \ \ String\ password\ =\ request-\/>arg(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00232}00232\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\_network\_config}}(ssid.c\_str(),\ password.c\_str());}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00233}00233\ \ \ \textcolor{comment}{//\ try\_WiFi\_connect(ssid.c\_str(),\ password.c\_str());}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00234}00234\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00235}00235\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00236}00236\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00241}\mbox{\hyperlink{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}{00241}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}{handleUpdateHealthStateSubmit}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00243}00243\ \ \ \textcolor{comment}{//\ On\ récupère\ les\ paramètres\ de\ la\ requête}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00244}00244\ \ \ String\ value\ =\ request-\/>arg(\textcolor{stringliteral}{"{}healthState"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00245}00245\ \ \ \textcolor{keywordtype}{int}\ intValue\ =\ value.toInt();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00247}00247\ \ \ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\_health\_status}}((\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{HealthStatus}})intValue);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00248}00248\ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00249}00249\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00257}\mbox{\hyperlink{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}{00257}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}{handleScan}}(AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00258}00258\ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00259}00259\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ requete\ scan"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00261}00261\ \ \ \textcolor{comment}{//\ La\ carte\ scanne\ les\ réseaux\ WiFi\ à\ proximité}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00262}00262\ \ \ \textcolor{keywordtype}{int}\ n\ =\ WiFi.scanNetworks();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00264}00264\ \ \ \textcolor{comment}{//\ Construction\ de\ la\ page\ HTML\ de\ réponse}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00265}00265\ \ \ String\ out\ =\ F(}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00266}00266\ \ \ \ \ \textcolor{stringliteral}{"{}<!DOCTYPE\ HTML>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00267}00267\ \ \ \ \ \textcolor{stringliteral}{"{}<html>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00268}00268\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<head>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<meta\ http-\/equiv='refresh'\ content='5'/>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<title>Ynov\ -\/\ Projet\ IoT\ B2</title>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<style>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}body\ \{\ background-\/color:\ \#cccccc;\ font-\/family:\ Arial,\ Helvetica,\ Sans-\/Serif;\ Color:\ \#000088;\ \}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</style>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00274}00274\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</head>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00275}00275\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<body>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<h1>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Page\ de\ Scan"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</h1>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<br>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<ul>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{NETWORKS\}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</ul>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00283}00283\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</body>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00284}00284\ \ \ \ \ \textcolor{stringliteral}{"{}</html>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00285}00285\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00286}00286\ \ \ );}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00288}00288\ \ \ \textcolor{comment}{//\ Intégration\ des\ réseaux\ WiFi\ trouvés\ dans\ la\ page\ HTML}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00289}00289\ \ \ String\ networks\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00290}00290\ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00291}00291\ \ \ \ \ networks\ =\ \textcolor{stringliteral}{"{}-\/\ AUCUN\ réseau\ WiFi\ trouvé\ -\/"{}};}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00292}00292\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00294}00294\ \ \ \ \ \ \ String\ ssid\ =\ WiFi.SSID(i);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00295}00295\ \ \ \ \ \ \ String\ network\ =\ F(}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00296}00296\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<li>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<a\ href='?net\_ssid=\{SSID\}\&net\_password='>\{SSID\}</a>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00298}00298\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}</li>"{}}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00299}00299\ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00300}00300\ \ \ \ \ \ \ network.replace(\textcolor{stringliteral}{"{}\{SSID\}"{}},\ ssid);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00302}00302\ \ \ \ \ \ \ networks\ +=\ network;}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00303}00303\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00304}00304\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00306}00306\ \ \ out.replace(\textcolor{stringliteral}{"{}\{NETWORKS\}"{}},\ networks);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00308}00308\ \ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/html"{}},\ out);}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00309}00309\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00317}\mbox{\hyperlink{_c_t_web_server_8h_ada2454c68167b49ab4f42817be2b4959}{00317}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ada2454c68167b49ab4f42817be2b4959}{setupWebServer}}()\{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00319}00319\ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}-\/WEBSERVER\ :\ Démarrage"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00321}00321\ \ \ \textcolor{comment}{//\ Configuration\ de\ mon\ serveur\ web}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00322}00322\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/"{}},\ HTTP\_GET,\ [](AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00323}00323\ \ \ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}config"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00324}00324\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00325}00325\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/config"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_c_t_web_server_8h_a77dfbbb5d497ed52138d8896fbf713b5}{handleConfig}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00326}00326\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/resetConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}{handleResetConfigSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00327}00327\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/resetMonitoringSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}{handleResetMonitoringSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00328}00328\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/deviceConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}{handleDeviceConfigSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00329}00329\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/monitoringConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}{handleMonitoringConfigSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00330}00330\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/netConfigSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}{handleNetConfigSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00331}00331\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/updateHealthStateSubmit"{}},\ HTTP\_POST,\ \mbox{\hyperlink{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}{handleUpdateHealthStateSubmit}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00332}00332\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.on(\textcolor{stringliteral}{"{}/scan"{}},\ HTTP\_GET,\ \mbox{\hyperlink{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}{handleScan}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00333}00333\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.onNotFound([](AsyncWebServerRequest\ *request)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00334}00334\ \ \ \ \ request-\/>redirect(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00335}00335\ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00337}00337\ \ \ \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{asyncWebServer}}.begin();}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00338}00338\ \}}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00341}\mbox{\hyperlink{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{00341}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{loopWebServer}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{_c_t_web_server_8h_source_l00342}00342\ \}}
 
 \end{DoxyCode}

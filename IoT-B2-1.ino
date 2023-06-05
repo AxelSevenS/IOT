@@ -3,7 +3,6 @@
 // ------------------------------------------------------------------------------------------------
 // MODULES
 #include "CTDebug.h"        // Debug
-#include "CTDeepSleep.h"    // Deep Sleep
 #include "CTTicker.h"       // Tickers
 #include "CTEvents.h"         // Events
 
@@ -20,8 +19,6 @@
 
 void setup() {
   setupDebug();
-  // setupDeepSleep();
-  // setupTicker();
 
   MYDEBUG_PRINTLN("------------------- SETUP");
   setupSPIFFS();
@@ -44,6 +41,5 @@ void loop() {
   loopAdafruitIO();
   loopOTA();
   updateLED();
-  // getDhtData();
   delay(20);        // Délai pour que le CPU puisse passer à d'éventuelles autres tâches
 }

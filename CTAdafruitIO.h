@@ -1,10 +1,10 @@
 /**
- * @file CTAdafruitIO.h
  * @brief Gestion de la connexion au broker Adafruit IO et des données de télémétrie .
  * Adafruit nous permet de recuperer les états de santé des utilisateurs et de les afficher sur une interface web.
  * 
  * @page AdafruitIO Adafruit IO MQTT
  * @ref CTAdafruitIO.h
+ * @file CTAdafruitIO.h
  */
  
 #pragma once
@@ -19,8 +19,8 @@
 
 #define IO_SERVER         "io.adafruit.com"
 #define IO_SERVERPORT     1883
-#define IO_USERNAME       "feur25"
-#define IO_KEY            "aio_RXfy55Uv98VWiia7sMK1s40v7oGx"
+#define IO_USERNAME       "AxelSeven"
+#define IO_KEY            "aio_ABSF03axiYmBxXpX1rPa1FqKA1sF"
 
 #define FEED_FREQ           10
 #define PROCESS_PACKETS_MS  10000

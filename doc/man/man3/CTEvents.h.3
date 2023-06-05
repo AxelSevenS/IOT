@@ -1,0 +1,272 @@
+.TH "CTEvents.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTEvents.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vector>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+
+.SS "Définitions de type"
+
+.in +1c
+.ti -1c
+.RI "typedef void(* \fBCredentialsCallback\fP) (const char *name, const char *password)"
+.br
+.ti -1c
+.RI "typedef void(* \fBMonitoringCallback\fP) (float time, float distance, float temperature)"
+.br
+.ti -1c
+.RI "typedef void(* \fBHealthCallback\fP) (\fBHealthStatus\fP status)"
+.br
+.in -1c
+.SS "Énumérations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBHealthStatus\fP { \fBHEALTHY\fP = 2, \fBCONTACT\fP = 1, \fBSICK\fP = 0 }"
+.br
+.RI "Enumération des états de santé possibles\&. "
+.in -1c
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBAddDeviceCredentialsChangedCallback\fP (\fBCredentialsCallback\fP callback)"
+.br
+.RI "Callbacks appelés lors du changement des identifiants du réseau\&. "
+.ti -1c
+.RI "void \fBInvokeDeviceCredentialsChangedCallbacks\fP (const char *name, const char *password)"
+.br
+.RI "Appelle tous les callbacks enregistrés lors du changement des identifiants de l'appareil\&. "
+.ti -1c
+.RI "void \fBAddNetworkCredentialsChangedCallback\fP (\fBCredentialsCallback\fP callback)"
+.br
+.RI "Callbacks appelés lors du changement des identifiants du réseau\&. "
+.ti -1c
+.RI "void \fBInvokeNetworkCredentialsChangedCallbacks\fP (const char *name, const char *password)"
+.br
+.RI "Appelle tous les callbacks enregistrés lors du changement des identifiants du réseau\&. "
+.ti -1c
+.RI "void \fBAddMonitoringConfigChangedCallback\fP (\fBMonitoringCallback\fP callback)"
+.br
+.RI "Callbacks appelés lors du changement de la configuration de surveillance\&. "
+.ti -1c
+.RI "void \fBInvokeMonitoringConfigChangedCallbacks\fP (float time, float distance, float temperature)"
+.br
+.RI "Appelle tous les callbacks enregistrés lors du changement de la configuration de surveillance\&. "
+.ti -1c
+.RI "void \fBAddHealthStatusChangedCallback\fP (\fBHealthCallback\fP callback)"
+.br
+.RI "Callbacks appelés lors du changement de l'état de santé\&. "
+.ti -1c
+.RI "void \fBInvokeHealthStatusChangedCallbacks\fP (\fBHealthStatus\fP status)"
+.br
+.RI "Appelle tous les callbacks enregistrés lors du changement de l'état de santé\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBCredentialsCallback\fP > \fBonDeviceCredentialsChangedCallbacks\fP"
+.br
+.RI "Callbacks appelés lors du changement des identifiants de l'appareil\&. "
+.ti -1c
+.RI "std::vector< \fBCredentialsCallback\fP > \fBonNetworkCredentialsChangedCallbacks\fP"
+.br
+.RI "Callbacks appelés lors du changement des identifiants du réseau\&. "
+.ti -1c
+.RI "std::vector< \fBMonitoringCallback\fP > \fBonMonitoringConfigChangedCallbacks\fP"
+.br
+.RI "Callbacks appelés lors du changement de la configuration de surveillance\&. "
+.ti -1c
+.RI "std::vector< \fBHealthCallback\fP > \fBonHealthStatusChangedCallbacks\fP"
+.br
+.RI "Callbacks appelés lors du changement de l'état de santé\&. "
+.in -1c
+.SH "Documentation des définitions de type"
+.PP 
+.SS "typedef void(* CredentialsCallback) (const char *name, const char *password)"
+
+.PP
+Définition à la ligne \fB32\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "typedef void(* HealthCallback) (\fBHealthStatus\fP status)"
+
+.PP
+Définition à la ligne \fB34\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "typedef void(* MonitoringCallback) (float time, float distance, float temperature)"
+
+.PP
+Définition à la ligne \fB33\fP du fichier \fBCTEvents\&.h\fP\&.
+.SH "Documentation du type de l'énumération"
+.PP 
+.SS "enum \fBHealthStatus\fP"
+
+.PP
+Enumération des états de santé possibles\&. 
+.IP "\(bu" 2
+HEALTHY : L'Utilisateur n'a pas été en contact avec une personne malade\&.
+.IP "\(bu" 2
+CONTACT : L'Utilisateur a été en contact avec une personne malade\&.
+.IP "\(bu" 2
+SICK : L'Utilisateur est malade\&. 
+.PP
+
+.PP
+\fBValeurs énumérées\fP
+.in +1c
+.TP
+\fB\fIHEALTHY \fP\fP
+.TP
+\fB\fICONTACT \fP\fP
+.TP
+\fB\fISICK \fP\fP
+.PP
+Définition à la ligne \fB26\fP du fichier \fBCTEvents\&.h\fP\&.
+.SH "Documentation des fonctions"
+.PP 
+.SS "void AddDeviceCredentialsChangedCallback (\fBCredentialsCallback\fP callback)"
+
+.PP
+Callbacks appelés lors du changement des identifiants du réseau\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIcallback\fP Callback à ajouter\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB45\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void AddHealthStatusChangedCallback (\fBHealthCallback\fP callback)"
+
+.PP
+Callbacks appelés lors du changement de l'état de santé\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIcallback\fP Callback à ajouter\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB118\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void AddMonitoringConfigChangedCallback (\fBMonitoringCallback\fP callback)"
+
+.PP
+Callbacks appelés lors du changement de la configuration de surveillance\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIcallback\fP Callback à ajouter\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB93\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void AddNetworkCredentialsChangedCallback (\fBCredentialsCallback\fP callback)"
+
+.PP
+Callbacks appelés lors du changement des identifiants du réseau\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIcallback\fP Callback à ajouter\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB69\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void InvokeDeviceCredentialsChangedCallbacks (const char * name, const char * password)"
+
+.PP
+Appelle tous les callbacks enregistrés lors du changement des identifiants de l'appareil\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIname\fP La valeur mise à jour du nom de l'appareil\&. 
+.br
+\fIpassword\fP La valeur mise à jour du mot de passe de l'appareil\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB54\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void InvokeHealthStatusChangedCallbacks (\fBHealthStatus\fP status)"
+
+.PP
+Appelle tous les callbacks enregistrés lors du changement de l'état de santé\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIstatus\fP Valeur mise à jour de l'état de santé\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB126\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void InvokeMonitoringConfigChangedCallbacks (float time, float distance, float temperature)"
+
+.PP
+Appelle tous les callbacks enregistrés lors du changement de la configuration de surveillance\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fItime\fP Valeur mise à jour de la durée de surveillance\&. 
+.br
+\fIdistance\fP Valeur mise à jour de la distance de surveillance\&. 
+.br
+\fItemperature\fP Valeur mise à jour de la température Seuil de Maladie\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB103\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "void InvokeNetworkCredentialsChangedCallbacks (const char * name, const char * password)"
+
+.PP
+Appelle tous les callbacks enregistrés lors du changement des identifiants du réseau\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIname\fP La valeur mise à jour du nom du réseau (SSID)\&. 
+.br
+\fIpassword\fP La valeur mise à jour du mot de passe du réseau\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB78\fP du fichier \fBCTEvents\&.h\fP\&.
+.SH "Documentation des variables"
+.PP 
+.SS "std::vector<\fBCredentialsCallback\fP> onDeviceCredentialsChangedCallbacks"
+
+.PP
+Callbacks appelés lors du changement des identifiants de l'appareil\&. 
+.PP
+Définition à la ligne \fB39\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "std::vector<\fBHealthCallback\fP> onHealthStatusChangedCallbacks"
+
+.PP
+Callbacks appelés lors du changement de l'état de santé\&. 
+.PP
+Définition à la ligne \fB112\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "std::vector<\fBMonitoringCallback\fP> onMonitoringConfigChangedCallbacks"
+
+.PP
+Callbacks appelés lors du changement de la configuration de surveillance\&. 
+.PP
+Définition à la ligne \fB87\fP du fichier \fBCTEvents\&.h\fP\&.
+.SS "std::vector<\fBCredentialsCallback\fP> onNetworkCredentialsChangedCallbacks"
+
+.PP
+Callbacks appelés lors du changement des identifiants du réseau\&. 
+.PP
+Définition à la ligne \fB63\fP du fichier \fBCTEvents\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

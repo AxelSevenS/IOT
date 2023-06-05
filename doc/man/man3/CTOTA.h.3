@@ -1,0 +1,57 @@
+.TH "CTOTA.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTOTA.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ArduinoOTA\&.h>\fP
+.br
+\fC#include 'CTTicker\&.h'\fP
+.br
+\fC#include 'CTSPIFFS\&.h'\fP
+.br
+
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstart_OTA\fP (const char *hostname, const char *password)"
+.br
+.RI "Démarre le service OTA avec les identifiants passés en paramètres\&. "
+.ti -1c
+.RI "void \fBsetupOTA\fP ()"
+.br
+.ti -1c
+.RI "void \fBloopOTA\fP ()"
+.br
+.in -1c
+.SH "Documentation des fonctions"
+.PP 
+.SS "void loopOTA ()"
+A chaque itération, on verifie si une mise a jour nous est envoyée\&. Si tel est cas, la bibliothèque ArduinoOTA se charge de tout ! 
+.PP
+Définition à la ligne \fB88\fP du fichier \fBCTOTA\&.h\fP\&.
+.SS "void setupOTA ()"
+Configuration et démarrage des services OTA & Remote Debug 
+.PP
+Définition à la ligne \fB53\fP du fichier \fBCTOTA\&.h\fP\&.
+.SS "void start_OTA (const char * hostname, const char * password)"
+
+.PP
+Démarre le service OTA avec les identifiants passés en paramètres\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIhostname\fP Le nom de l'appareil dans l'interface OTA 
+.br
+\fIpassword\fP Le mot de passe de l'appareil dans l'interface OTA 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB37\fP du fichier \fBCTOTA\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

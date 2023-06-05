@@ -1,3 +1,13 @@
+/**
+ * @brief CTWiFI est un module qui contient la logique de connexion au réseau WiFi.
+ * Il permet de créer un point d'accès WiFi pour permettre à l'utilisateur de configurer l'appareil, (@ref CTWebServer)
+ * Ainsi que de se connecter à un réseau WiFi pour envoyer les données de télémétrie.
+ * 
+ * @page CTWiFI WiFi Contact Tracer
+ * @ref CTWiFI.h
+ * @file CTWiFI.h
+ */
+
 #pragma once
 
 #include <WiFi.h>

@@ -1,10 +1,10 @@
 /**
- * @file CTDHT.h
  * @brief CTDHT est un module qui permet de récupérer les données du capteur DHT11.
  * Lorsque la température excède le seuil de température (@ref temperature_threshold), l'appareil est marqué comme malade.
  * 
  * @page CTDHT DHT11 Contact Tracer
  * @ref CTDHT.h
+ * @file CTDHT.h
  */
 
 #include <esp32DHT.h>                     // https://github.com/bertmelis/esp32DHT

@@ -1,9 +1,9 @@
 /**
- * @file CTOTA.h
  * @brief CTOTA est un module qui permet de gérer les mises à jour OTA et le debug à distance.
  * 
  * @page CTOTA Over the Air Contact Tracer
  * @ref CTOTA.h
+ * @file CTOTA.h
  */
 
 #pragma once

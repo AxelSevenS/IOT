@@ -1,0 +1,188 @@
+.TH "CTBLE.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTBLE.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <BLEDevice\&.h>\fP
+.br
+\fC#include <BLEUtils\&.h>\fP
+.br
+\fC#include <BLEServer\&.h>\fP
+.br
+\fC#include 'CTMonitoring\&.h'\fP
+.br
+
+.SS "Structures de données"
+
+.in +1c
+.ti -1c
+.RI "class \fBMyAdvertisedDeviceCallbacks\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSERVICE_UUID\fP   '774320e9\-e25a\-455c\-9230\-b1758c4cfa12'"
+.br
+.ti -1c
+.RI "#define \fBBLE_FREQ\fP   10"
+.br
+.ti -1c
+.RI "#define \fBBLE_SCAN_TIME\fP   5"
+.br
+.in -1c
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstart_BLE_server\fP (const char *\fBdevice_name\fP)"
+.br
+.RI "Démarrage du serveur BLE
+.br
+On remet à zéro le serveur, le service et l'advertising\&. "
+.ti -1c
+.RI "void \fBBLEScan\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetupBLEServer\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetupBLEClient\fP ()"
+.br
+.ti -1c
+.RI "void \fBloopBLEClient\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBBLEScan\fP * \fBpBLEScan\fP"
+.br
+.ti -1c
+.RI "BLEServer * \fBpServer\fP"
+.br
+.ti -1c
+.RI "BLEService * \fBpService\fP"
+.br
+.ti -1c
+.RI "BLEAdvertising * \fBpAdvertising\fP"
+.br
+.ti -1c
+.RI "long \fBBLE_last_scan\fP"
+.br
+.RI "le temps de processeur du dernier scan "
+.in -1c
+.SH "Documentation des macros"
+.PP 
+.SS "#define BLE_FREQ   10"
+
+.PP
+Définition à la ligne \fB25\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "#define BLE_SCAN_TIME   5"
+
+.PP
+Définition à la ligne \fB26\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "#define SERVICE_UUID   '774320e9\-e25a\-455c\-9230\-b1758c4cfa12'"
+
+.PP
+Définition à la ligne \fB23\fP du fichier \fBCTBLE\&.h\fP\&.
+.SH "Documentation des fonctions"
+.PP 
+.SS "void BLEScan ()"
+Scan BLE
+.IP "\(bu" 2
+On lance le scan
+.IP "\(bu" 2
+On récupère les résultats
+.IP "\(bu" 2
+On vide les résultats 
+.PP
+
+.PP
+Définition à la ligne \fB124\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "void loopBLEClient ()"
+Boucle du client BLE
+.IP "\(bu" 2
+On lance le scan 
+.PP
+
+.PP
+Définition à la ligne \fB177\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "void setupBLEClient ()"
+Configuration du client BLE
+.IP "\(bu" 2
+Initialisation de l'objet qui va scanner
+.IP "\(bu" 2
+Association d'un callback
+.IP "\(bu" 2
+Activation du scan 
+.PP
+
+.PP
+Définition à la ligne \fB158\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "void setupBLEServer ()"
+Configuration du serveur BLE
+.IP "\(bu" 2
+Initialisation du serveur
+.IP "\(bu" 2
+Initialisation du service
+.IP "\(bu" 2
+Initialisation de l'advertising 
+.PP
+
+.PP
+Définition à la ligne \fB138\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "void start_BLE_server (const char * device_name)"
+
+.PP
+Démarrage du serveur BLE
+.br
+On remet à zéro le serveur, le service et l'advertising\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIdevice_name\fP Nom du device BLE 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB49\fP du fichier \fBCTBLE\&.h\fP\&.
+.SH "Documentation des variables"
+.PP 
+.SS "long BLE_last_scan"
+
+.PP
+le temps de processeur du dernier scan 
+.PP
+\fBRemarques\fP
+.RS 4
+On utilise cette variable pour augmenter le temps d'interaction avec un device dans le fichier de monitoring 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB41\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "BLEAdvertising* pAdvertising"
+
+.PP
+Définition à la ligne \fB33\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "\fBBLEScan\fP* pBLEScan"
+
+.PP
+Définition à la ligne \fB30\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "BLEServer* pServer"
+
+.PP
+Définition à la ligne \fB31\fP du fichier \fBCTBLE\&.h\fP\&.
+.SS "BLEService* pService"
+
+.PP
+Définition à la ligne \fB32\fP du fichier \fBCTBLE\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

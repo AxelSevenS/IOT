@@ -1,0 +1,638 @@
+.TH "CTSPIFFS.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTSPIFFS.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ArduinoJson\&.h>\fP
+.br
+\fC#include 'SPIFFS\&.h'\fP
+.br
+\fC#include 'CTEvents\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCONFIG_FILE_PATH\fP   '/config\&.json'"
+.br
+.ti -1c
+.RI "#define \fBMONITORING_FILE_PATH\fP   '/monitoring\&.json'"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_PASSWORD\fP   'contacttracer'"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_NET_SSID\fP   'Hamburger'"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_NET_PASSWORD\fP   'YoLesKids'"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_MONITORING_TIME\fP   5\&.0"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_MONITORING_DISTANCE\fP   5\&.0"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_TEMPERATURE_THRESHOLD\fP   40\&.0"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_USER_STATUS\fP   'HEALTHY'"
+.br
+.in -1c
+.SS "Définitions de type"
+
+.in +1c
+.ti -1c
+.RI "typedef const std::function< void(JsonDocument &, File &)> \fBFileReadFunction\fP"
+.br
+.in -1c
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBread_file\fP (const char *fileName, \fBFileReadFunction\fP &readFunction)"
+.br
+.RI "Permet de lire dans un fichier SPIFFS\&.
+.br
+\&. "
+.ti -1c
+.RI "void \fBread_write_file\fP (const char *fileName, \fBFileReadFunction\fP writeFunction)"
+.br
+.RI "Permet de lire et écrire dans un fichier SPIFFS\&.
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_device_config\fP (const char *new_device_name, const char *new_device_password, JsonDocument &jsonDocument)"
+.br
+.RI "Permet de lire et écrire dans un fichier SPIFFS\&.
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_device_config\fP (const char *new_device_name, const char *new_device_password)"
+.br
+.RI "Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d'accès réseau, dont on se sert pour la configurer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_network_config\fP (const char *new_net_ssid, const char *new_net_password, JsonDocument &jsonDocument)"
+.br
+.RI "Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d'accès réseau, dont on se sert pour la configurer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_network_config\fP (const char *new_net_ssid, const char *new_net_password)"
+.br
+.RI "Permet de mettre à jour le SSID et le mot de Passe du point d'accès réseau que va utiliser Le Contact Tracer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&. "
+.ti -1c
+.RI "void \fBupdate_monitoring_config\fP (float new_time, float new_distance, float new_temperature, JsonDocument &jsonDocument)"
+.br
+.RI "Permet de mettre à jour les variables de monitoring\&.
+.br
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_monitoring_config\fP (float new_time, float new_distance, float new_temperature)"
+.br
+.RI "Permet de mettre à jour les variables de monitoring\&.
+.br
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_health_status\fP (\fBHealthStatus\fP new_health_status, JsonDocument &jsonDocument)"
+.br
+.RI "Permet de mettre à jour le Status de Santé de l'Utilisateur\&.
+.br
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBupdate_health_status\fP (\fBHealthStatus\fP new_health_status)"
+.br
+.RI "Permet de mettre à jour le Status de Santé de l'Utilisateur\&.
+.br
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBdisplay_file\fP (const char *fileName)"
+.br
+.RI "Permet d'afficher les contenus du fichier passé en paramètre de façon formattée\&.
+.br
+\&. "
+.ti -1c
+.RI "void \fBget_config\fP ()"
+.br
+.RI "Permet de récupérer les variables de configuration\&.
+.br
+variables de configuration stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+Lors de l'appel de cette fonction, les variables globales sont mises à jour avec les valeurs présentes dans le fichier de configuration\&.
+.br
+
+.br
+\&. "
+.ti -1c
+.RI "void \fBreset_file\fP (const char *filePath)"
+.br
+.RI "Permet de réinitialiser le fichier de configuration\&.
+.br
+\&. "
+.ti -1c
+.RI "void \fBsetupSPIFFS\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "String \fBdevice_name\fP"
+.br
+.ti -1c
+.RI "String \fBdevice_password\fP"
+.br
+.ti -1c
+.RI "String \fBnet_ssid\fP"
+.br
+.ti -1c
+.RI "String \fBnet_password\fP"
+.br
+.ti -1c
+.RI "\fBHealthStatus\fP \fBuser_status\fP = \fBHEALTHY\fP"
+.br
+.ti -1c
+.RI "float \fBmonitoring_time\fP = 5\&.0"
+.br
+.ti -1c
+.RI "float \fBmonitoring_distance\fP = 5\&.0"
+.br
+.ti -1c
+.RI "float \fBtemperature_threshold\fP = 40\&.0"
+.br
+.in -1c
+.SH "Documentation des macros"
+.PP 
+.SS "#define CONFIG_FILE_PATH   '/config\&.json'"
+
+.PP
+Définition à la ligne \fB28\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_MONITORING_DISTANCE   5\&.0"
+
+.PP
+Définition à la ligne \fB38\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_MONITORING_TIME   5\&.0"
+
+.PP
+Définition à la ligne \fB37\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_NET_PASSWORD   'YoLesKids'"
+
+.PP
+Définition à la ligne \fB35\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_NET_SSID   'Hamburger'"
+
+.PP
+Définition à la ligne \fB34\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_PASSWORD   'contacttracer'"
+
+.PP
+Définition à la ligne \fB33\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_TEMPERATURE_THRESHOLD   40\&.0"
+
+.PP
+Définition à la ligne \fB39\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define DEFAULT_USER_STATUS   'HEALTHY'"
+
+.PP
+Définition à la ligne \fB41\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "#define MONITORING_FILE_PATH   '/monitoring\&.json'"
+
+.PP
+Définition à la ligne \fB29\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SH "Documentation des définitions de type"
+.PP 
+.SS "typedef const std::function<void(JsonDocument&, File&)> \fBFileReadFunction\fP"
+
+.PP
+Définition à la ligne \fB45\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SH "Documentation des fonctions"
+.PP 
+.SS "void display_file (const char * fileName)"
+
+.PP
+Permet d'afficher les contenus du fichier passé en paramètre de façon formattée\&.
+.br
+\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction ouvre un document JSON\&. 
+.RE
+.PP
+\fBAvertissement\fP
+.RS 4
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fIfileName\fP 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB385\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void get_config ()"
+
+.PP
+Permet de récupérer les variables de configuration\&.
+.br
+variables de configuration stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+Lors de l'appel de cette fonction, les variables globales sont mises à jour avec les valeurs présentes dans le fichier de configuration\&.
+.br
+
+.br
+\&. Le nom de la carte est alors stocké dans la variable \fBdevice_name\fP;
+.br
+le mot de Passe de la carte est stocké dans \fBdevice_password\fP;
+.br
+le SSID du réseau est stocké dans \fBnet_ssid\fP;
+.br
+le mot de Passe du réseau est stocké dans \fBnet_password\fP;
+.br
+le statut de l'utilisateur est stocké dans \fBuser_status\fP\&. le temps de monitoring est stocké dans \fBmonitoring_time\fP\&. la distance de monitoring est stockée dans \fBmonitoring_distance\fP\&. 
+.PP
+Définition à la ligne \fB409\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void read_file (const char * fileName, \fBFileReadFunction\fP & readFunction)"
+
+.PP
+Permet de lire dans un fichier SPIFFS\&.
+.br
+\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Le fichier est ouvert en mode lecture\&.
+.br
+Les contenus du fichier sont passés à la fonction readFunction sous forme de JsonDocument\&.
+.br
+ 
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fIreadFunction\fP La fonction qui va lire dans le fichier de config\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB72\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void read_write_file (const char * fileName, \fBFileReadFunction\fP writeFunction)"
+
+.PP
+Permet de lire et écrire dans un fichier SPIFFS\&.
+.br
+\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Le fichier est ouvert en mode lecture et écriture\&.
+.br
+Les contenus du fichier sont passés à la fonction writeFunction sous forme de JsonDocument\&.
+.br
+ 
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fIfileName\fP Le nom du fichier à lire et écrire\&. 
+.br
+\fIwriteFunction\fP La fonction qui va écrire dans le fichier de config\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB112\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void reset_file (const char * filePath)"
+
+.PP
+Permet de réinitialiser le fichier de configuration\&.
+.br
+\&. Cette fonction supprime le fichier de configuration présent dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.PP
+Définition à la ligne \fB492\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void setupSPIFFS ()"
+Configuration du système de fichiers SPIFFS
+.IP "\(bu" 2
+Formatage du système de fichiers (OPTIONNEL)
+.IP "\(bu" 2
+Lecture du fichier de configuration 
+.PP
+
+.PP
+Définition à la ligne \fB506\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_device_config (const char * new_device_name, const char * new_device_password)"
+
+.PP
+Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d'accès réseau, dont on se sert pour la configurer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le SSID est alors stocké dans la variable \fBdevice_name\fP;
+.br
+et le mot de Passe dans \fBdevice_password\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction ouvre un document JSON\&. 
+.RE
+.PP
+\fBAvertissement\fP
+.RS 4
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_device_name\fP Le nouveau que la carte va utiliser pour son Access Point et son OTA\&. 
+.br
+\fInew_device_password\fP Le nouveau mot de Passe que la carte va utiliser pour son Access Point et son OTA\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB186\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_device_config (const char * new_device_name, const char * new_device_password, JsonDocument & jsonDocument)"
+
+.PP
+Permet de lire et écrire dans un fichier SPIFFS\&.
+.br
+\&. 
+.PP
+\fBRemarques\fP
+.RS 4
+Le fichier est ouvert en mode lecture et écriture\&.
+.br
+Les contenus du fichier sont passés à la fonction writeFunction sous forme de JsonDocument\&.
+.br
+ 
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_device_name\fP Le nouveau nom de l'appareil\&. 
+.br
+\fInew_device_password\fP Le nouveau mot de passe de l'appareil\&. 
+.br
+\fIjsonDocument\fP Le document JSON à écrire dans le fichier de configuration\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB146\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_health_status (\fBHealthStatus\fP new_health_status)"
+
+.PP
+Permet de mettre à jour le Status de Santé de l'Utilisateur\&.
+.br
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le Status de Santé est alors stocké dans la variable \fBuser_status\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction ouvre un document JSON\&. 
+.RE
+.PP
+\fBAvertissement\fP
+.RS 4
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_health_status\fP Le nouveau Status de Santé de l'Utilisateur\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB366\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_health_status (\fBHealthStatus\fP new_health_status, JsonDocument & jsonDocument)"
+
+.PP
+Permet de mettre à jour le Status de Santé de l'Utilisateur\&.
+.br
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le Status de Santé est alors stocké dans la variable \fBuser_status\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction n'ouvre pas de document JSON, elle utilise celui passé en paramètre\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_health_status\fP Le nouveau Status de Santé de l'Utilisateur\&. 
+.br
+\fIjsonDocument\fP Le document JSON qui contient les données de Surveillance\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB337\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_monitoring_config (float new_time, float new_distance, float new_temperature)"
+
+.PP
+Permet de mettre à jour les variables de monitoring\&.
+.br
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le temps de monitoring est alors stocké dans la variable \fBmonitoring_time\fP;
+.br
+et la distance de monitoring dans \fBmonitoring_distance\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction ouvre un document JSON\&. 
+.RE
+.PP
+\fBAvertissement\fP
+.RS 4
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_time\fP Le nouveau temps de monitoring\&. 
+.br
+\fInew_distance\fP La nouvelle distance de monitoring\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB316\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_monitoring_config (float new_time, float new_distance, float new_temperature, JsonDocument & jsonDocument)"
+
+.PP
+Permet de mettre à jour les variables de monitoring\&.
+.br
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le temps de monitoring est alors stocké dans la variable \fBmonitoring_time\fP;
+.br
+et la distance de monitoring dans \fBmonitoring_distance\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction n'ouvre pas de document JSON, elle utilise celui passé en paramètre\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_time\fP Le nouveau temps de monitoring\&. 
+.br
+\fInew_distance\fP La nouvelle distance de monitoring\&. 
+.br
+\fIjsonDocument\fP Le document JSON qui contient les données de Surveillance\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB269\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_network_config (const char * new_net_ssid, const char * new_net_password)"
+
+.PP
+Permet de mettre à jour le SSID et le mot de Passe du point d'accès réseau que va utiliser Le Contact Tracer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&. Le SSID est alors stocké dans la variable \fBnet_ssid\fP;
+.br
+et le mot de Passe dans \fBnet_password\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction ouvre un document JSON\&. 
+.RE
+.PP
+\fBAvertissement\fP
+.RS 4
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_net_ssid\fP Le nouveau SSID réseau que la carte va utiliser\&. 
+.br
+\fInew_net_password\fP Le nouveau mot de Passe réseau que la carte va utiliser 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB246\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "void update_network_config (const char * new_net_ssid, const char * new_net_password, JsonDocument & jsonDocument)"
+
+.PP
+Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d'accès réseau, dont on se sert pour la configurer\&.
+.br
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte\&.
+.br
+
+.br
+\&. Le SSID est alors stocké dans la variable \fBdevice_name\fP;
+.br
+et le mot de Passe dans \fBdevice_password\fP\&.
+.PP
+\fBRemarques\fP
+.RS 4
+Cette fonction n'ouvre pas de document JSON, elle utilise celui passé en paramètre\&.
+.RE
+.PP
+\fBParamètres\fP
+.RS 4
+\fInew_device_name\fP Le nouveau que la carte va utiliser pour son Access Point et son OTA\&. 
+.br
+\fInew_device_password\fP Le nouveau mot de Passe que la carte va utiliser pour son Access Point et son OTA\&. 
+.br
+\fIjsonDocument\fP Le document JSON qui contient la configuration Réseau\&. 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB209\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SH "Documentation des variables"
+.PP 
+.SS "String device_name"
+
+.PP
+Définition à la ligne \fB49\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "String device_password"
+
+.PP
+Définition à la ligne \fB50\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "float monitoring_distance = 5\&.0"
+
+.PP
+Définition à la ligne \fB59\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "float monitoring_time = 5\&.0"
+
+.PP
+Définition à la ligne \fB58\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "String net_password"
+
+.PP
+Définition à la ligne \fB53\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "String net_ssid"
+
+.PP
+Définition à la ligne \fB52\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "float temperature_threshold = 40\&.0"
+
+.PP
+Définition à la ligne \fB60\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SS "\fBHealthStatus\fP user_status = \fBHEALTHY\fP"
+
+.PP
+Définition à la ligne \fB56\fP du fichier \fBCTSPIFFS\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

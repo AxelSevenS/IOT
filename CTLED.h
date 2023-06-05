@@ -1,5 +1,4 @@
 /**
- * @file CTLED.h
  * @brief CTLED est un module qui sert à gérer la LED de l'appareil.
  * Lorsque l'Utilisateur est en bonne santé, la LED est allumée en permanence.
  * Lorsque l'Utilisateur est en contact avec une personne malade, la LED fluctue en luminosité de façon sinusoidale.
@@ -7,6 +6,7 @@
  * 
  * @page CTLED LED d'indications Contact Tracer
  * @ref CTLED.h
+ * @file CTLED.h
  */
 
 #define LED_PIN    23                  // PIN + de la LED

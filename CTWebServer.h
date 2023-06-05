@@ -1,10 +1,10 @@
 /**
- * @file CTWebServer.h
  * @brief CTWebServer est un module qui contient la configuration du serveur web de l'application; son implémentation ainsi que le système de Portail Captif.
  * Le Portail Captif permet de configurer l'appareil en se connectant à son point d'accès réseau.
  * 
  * @page CTWebServer Portail Captif Contact Tracer
  * @ref CTWebServer.h
+ * @file CTWebServer.h
  */
 
 #pragma once

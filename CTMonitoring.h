@@ -1,11 +1,11 @@
 /**
- * @file CTMonitoring.h
  * @brief Surveillance des Utilisateurs Contact Tracer (CT) à proximité.
  * Lorsque deux utilisateurs CT sont à proximité, ils échangent leurs adresses BT et se surveillent mutuellement.
  * Si l'un des deux utilisateurs est malade (@ref user_status), et que le temps d'intéraction dépasse le seuil de contact (@ref monitoring_time) l'autre est notifié et devient un cas contact.
  * 
  * @page CTMonitoring Contact Tracer Surveillance
  * @ref CTMonitoring.h
+ * @file CTMonitoring.h
  */
 
 #pragma once

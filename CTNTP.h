@@ -1,10 +1,10 @@
 /**
- * @file CTNTP.h
  * @brief CTNTP est un module qui permet de récupérer l'heure depuis un serveur NTP.
  * Cette heure est utilisée pour l'horodatage des interactions avec d'autres appareils.
  * 
  * @page CTNTP NTP Contact Tracer
  * @ref CTNTP.h
+ * @file CTNTP.h
  */
 
 #pragma once

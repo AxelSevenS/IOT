@@ -1,0 +1,85 @@
+.TH "CTLED.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTLED.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBLED_PIN\fP   23"
+.br
+.in -1c
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetupLED\fP ()"
+.br
+.RI "Initialise la LED\&. "
+.ti -1c
+.RI "void \fBupdateLED\fP ()"
+.br
+.RI "Met à jour la LED en fonction de l'état de santé de l'Utilisateur\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBPWMRANGE\fP = 256"
+.br
+.ti -1c
+.RI "int \fBcurrent_power\fP = 0"
+.br
+.ti -1c
+.RI "bool \fBcrescendo\fP = true"
+.br
+.in -1c
+.SH "Documentation des macros"
+.PP 
+.SS "#define LED_PIN   23"
+
+.PP
+Définition à la ligne \fB12\fP du fichier \fBCTLED\&.h\fP\&.
+.SH "Documentation des fonctions"
+.PP 
+.SS "void setupLED ()"
+
+.PP
+Initialise la LED\&. 
+.PP
+Définition à la ligne \fB22\fP du fichier \fBCTLED\&.h\fP\&.
+.SS "void updateLED ()"
+
+.PP
+Met à jour la LED en fonction de l'état de santé de l'Utilisateur\&. 
+.IP "\(bu" 2
+HEALTHY : La LED est allumée en permanence\&.
+.IP "\(bu" 2
+CONTACT : La LED fluctue en luminosité de façon sinusoidale\&.
+.IP "\(bu" 2
+SICK : La LED clignote\&. 
+.PP
+
+.PP
+Définition à la ligne \fB32\fP du fichier \fBCTLED\&.h\fP\&.
+.SH "Documentation des variables"
+.PP 
+.SS "bool crescendo = true"
+
+.PP
+Définition à la ligne \fB17\fP du fichier \fBCTLED\&.h\fP\&.
+.SS "int current_power = 0"
+
+.PP
+Définition à la ligne \fB16\fP du fichier \fBCTLED\&.h\fP\&.
+.SS "int PWMRANGE = 256"
+
+.PP
+Définition à la ligne \fB14\fP du fichier \fBCTLED\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

@@ -38,20 +38,21 @@ var NAVTREE =
     [ "SPIFFS Contact Tracer", "_c_t_s_p_i_f_f_s.html", null ],
     [ "Ticker Contact Tracer", "_c_t_ticker.html", null ],
     [ "Portail Captif Contact Tracer", "_c_t_web_server.html", null ],
-    [ "Data Structures", "annotated.html", [
-      [ "Data Structures", "annotated.html", "annotated_dup" ],
-      [ "Data Structure Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+    [ "WiFi Contact Tracer", "_c_t_wi_f_i.html", null ],
+    [ "Structures de données", "annotated.html", [
+      [ "Structures de données", "annotated.html", "annotated_dup" ],
+      [ "Index des structures de données", "classes.html", null ],
+      [ "Hiérarchie des classes", "hierarchy.html", "hierarchy" ]
     ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "Globals", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
+    [ "Fichiers", "files.html", [
+      [ "Liste des fichiers", "files.html", "files_dup" ],
+      [ "Variables globale", "globals.html", [
+        [ "Tout", "globals.html", null ],
+        [ "Fonctions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
-        [ "Typedefs", "globals_type.html", null ],
-        [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
+        [ "Définitions de type", "globals_type.html", null ],
+        [ "Énumérations", "globals_enum.html", null ],
+        [ "Valeurs énumérées", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -63,5 +64,5 @@ var NAVTREEINDEX =
 "_adafruit_i_o.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';
+var SYNCOFFMSG = 'cliquez pour activer la synchronisation du panel';

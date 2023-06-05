@@ -1,15 +1,10 @@
-\hypertarget{_c_t_web_server_8h}{}\doxysection{CTWeb\+Server.\+h File Reference}
+\hypertarget{_c_t_web_server_8h}{}\doxysection{Référence du fichier CTWeb\+Server.\+h}
 \label{_c_t_web_server_8h}\index{CTWebServer.h@{CTWebServer.h}}
-
-
-CTWeb\+Server est un module qui contient la configuration du serveur web de l\textquotesingle{}application; son implémentation ainsi que le système de Portail Captif. Le Portail Captif permet de configurer l\textquotesingle{}appareil en se connectant à son point d\textquotesingle{}accès réseau.  
-
-
 {\ttfamily \#include \char`\"{}Wi\+Fi.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Async\+TCP.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ESPAsync\+Web\+Server.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}CTSpiffs.\+h\char`\"{}}\newline
-\doxysubsection*{Functions}
+\doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
 Async\+Web\+Server \mbox{\hyperlink{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}{async\+Web\+Server}} (80)
@@ -36,12 +31,7 @@ void \mbox{\hyperlink{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}{loop
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-CTWeb\+Server est un module qui contient la configuration du serveur web de l\textquotesingle{}application; son implémentation ainsi que le système de Portail Captif. Le Portail Captif permet de configurer l\textquotesingle{}appareil en se connectant à son point d\textquotesingle{}accès réseau. 
-
-
-
-\doxysubsection{Function Documentation}
+\doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}\label{_c_t_web_server_8h_aa7b03f054995740ccb1d130950095519}} 
 \index{CTWebServer.h@{CTWebServer.h}!asyncWebServer@{asyncWebServer}}
 \index{asyncWebServer@{asyncWebServer}!CTWebServer.h@{CTWebServer.h}}
@@ -58,9 +48,13 @@ CTWeb\+Server est un module qui contient la configuration du serveur web de l\te
 
 Traitement de la page de configuration. 
 
-\begin{DoxyRemark}{Remarks}
+\begin{DoxyRemark}{Remarques}
 Cette page permet de configurer les identifiants de la carte, du point d\textquotesingle{}accès réseau, du système de surveillance, de réinitialiser la configuration et de renseigner son état de santé 
 \end{DoxyRemark}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00025}{25}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+
 \mbox{\Hypertarget{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}\label{_c_t_web_server_8h_af942c9306f2008b9c445e0f14cbe728c}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleDeviceConfigSubmit@{handleDeviceConfigSubmit}}
 \index{handleDeviceConfigSubmit@{handleDeviceConfigSubmit}!CTWebServer.h@{CTWebServer.h}}
@@ -70,6 +64,10 @@ Cette page permet de configurer les identifiants de la carte, du point d\textquo
 
 
 Traitement de la demande de configuration des identifiants de la carte. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00210}{210}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
 
 \mbox{\Hypertarget{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}\label{_c_t_web_server_8h_a06904e9249729337d98e3c02231b1506}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleMonitoringConfigSubmit@{handleMonitoringConfigSubmit}}
@@ -81,6 +79,10 @@ Traitement de la demande de configuration des identifiants de la carte.
 
 Traitement de la demande de configuration du système de surveillance. 
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00195}{195}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+
 \mbox{\Hypertarget{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}\label{_c_t_web_server_8h_a274d6ab818c17d26c94d0b53e36ad520}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleNetConfigSubmit@{handleNetConfigSubmit}}
 \index{handleNetConfigSubmit@{handleNetConfigSubmit}!CTWebServer.h@{CTWebServer.h}}
@@ -90,6 +92,10 @@ Traitement de la demande de configuration du système de surveillance.
 
 
 Traitement de la demande de configuration des identifiants du réseau Wi\+Fi. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00226}{226}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
 
 \mbox{\Hypertarget{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}\label{_c_t_web_server_8h_ae31ae4e5bc08673720104467f7c6f372}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleResetConfigSubmit@{handleResetConfigSubmit}}
@@ -101,6 +107,10 @@ Traitement de la demande de configuration des identifiants du réseau Wi\+Fi.
 
 Traitement de la demande de réinitialisation de la configuration. 
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00173}{173}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+
 \mbox{\Hypertarget{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}\label{_c_t_web_server_8h_aab4ca3b7f0ab04d08319dd6f2f99e94a}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleResetMonitoringSubmit@{handleResetMonitoringSubmit}}
 \index{handleResetMonitoringSubmit@{handleResetMonitoringSubmit}!CTWebServer.h@{CTWebServer.h}}
@@ -110,6 +120,10 @@ Traitement de la demande de réinitialisation de la configuration.
 
 
 Traitement de la demande de réinitialisation de la surveillance. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00184}{184}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
 
 \mbox{\Hypertarget{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}\label{_c_t_web_server_8h_af702735762ac3830ffef4a71180334f4}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleScan@{handleScan}}
@@ -121,9 +135,13 @@ Traitement de la demande de réinitialisation de la surveillance.
 
 Traitement de la page de scan des réseaux Wi\+Fi. 
 
-\begin{DoxyRemark}{Remarks}
+\begin{DoxyRemark}{Remarques}
 Cette fonction est appelée à chaque rafraichissement de la page\textbackslash{} lorsqu\textquotesingle{}on clique sur le SSID du réseau Wi\+Fi auquel on souhaite se connecter, on est redirigé vers la page de configuration du réseau Wi\+Fi avec le SSID pré-\/rempli 
 \end{DoxyRemark}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00257}{257}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+
 \mbox{\Hypertarget{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}\label{_c_t_web_server_8h_a6e964e4ab406fc431b223f08b7311da2}} 
 \index{CTWebServer.h@{CTWebServer.h}!handleUpdateHealthStateSubmit@{handleUpdateHealthStateSubmit}}
 \index{handleUpdateHealthStateSubmit@{handleUpdateHealthStateSubmit}!CTWebServer.h@{CTWebServer.h}}
@@ -134,11 +152,19 @@ Cette fonction est appelée à chaque rafraichissement de la page\textbackslash{
 
 Traitement de la demande de configuration de l\textquotesingle{}état de santé 
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00241}{241}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+
 \mbox{\Hypertarget{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}\label{_c_t_web_server_8h_ae040ebaeb1ac270338b353774da70ec6}} 
 \index{CTWebServer.h@{CTWebServer.h}!loopWebServer@{loopWebServer}}
 \index{loopWebServer@{loopWebServer}!CTWebServer.h@{CTWebServer.h}}
 \doxysubsubsection{\texorpdfstring{loopWebServer()}{loopWebServer()}}
 {\footnotesize\ttfamily void loop\+Web\+Server (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00341}{341}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
 
 \mbox{\Hypertarget{_c_t_web_server_8h_ada2454c68167b49ab4f42817be2b4959}\label{_c_t_web_server_8h_ada2454c68167b49ab4f42817be2b4959}} 
 \index{CTWebServer.h@{CTWebServer.h}!setupWebServer@{setupWebServer}}
@@ -151,3 +177,6 @@ Configuration du serveur web
 \item Définition des routes
 \item Démarrage du serveur 
 \end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_web_server_8h_source_l00317}{317}} du fichier \mbox{\hyperlink{_c_t_web_server_8h_source}{CTWeb\+Server.\+h}}.
+

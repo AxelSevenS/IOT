@@ -1,8 +1,8 @@
-\hypertarget{_c_t_wi_fi_8h}{}\doxysection{CTWi\+Fi.\+h File Reference}
+\hypertarget{_c_t_wi_fi_8h}{}\doxysection{Référence du fichier CTWi\+Fi.\+h}
 \label{_c_t_wi_fi_8h}\index{CTWiFi.h@{CTWiFi.h}}
 {\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
 {\ttfamily \#include $<$Ticker.\+h$>$}\newline
-\doxysubsection*{Functions}
+\doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}{launch\+\_\+access\+\_\+point}} (const char $\ast$ssid, const char $\ast$password)
@@ -30,7 +30,7 @@ bool \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\+\_\+l
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
+\doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{_c_t_wi_fi_8h_aba7acb281ac9938c1d6ea74cb0ff28b7}\label{_c_t_wi_fi_8h_aba7acb281ac9938c1d6ea74cb0ff28b7}} 
 \index{CTWiFi.h@{CTWiFi.h}!check\_AP\_state@{check\_AP\_state}}
 \index{check\_AP\_state@{check\_AP\_state}!CTWiFi.h@{CTWiFi.h}}
@@ -42,11 +42,15 @@ bool \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\+\_\+l
 Vérifie l\textquotesingle{}état du point d\textquotesingle{}accès réseau du Contact Tracer; si il n\textquotesingle{}est pas démarré, il le démarre.~\newline
  Pour ceci, on utilise \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\+\_\+launched}}. En conséquence, on peut changer la valeur de \mbox{\hyperlink{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}{ap\+\_\+launched}} pour forcer un redémarrage de l\textquotesingle{}Access Point. 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 true lorsque le Point d\textquotesingle{}accès est déjà démarré et ne redémarre donc pas. 
 
 false lorsque le Point d\textquotesingle{}accès n\textquotesingle{}est pas démarré et par conséquent, démarre. 
 \end{DoxyReturn}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00052}{52}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
 \mbox{\Hypertarget{_c_t_wi_fi_8h_a4e5b01da019ba4bd3017834f0a6bb112}\label{_c_t_wi_fi_8h_a4e5b01da019ba4bd3017834f0a6bb112}} 
 \index{CTWiFi.h@{CTWiFi.h}!check\_WiFi\_connection@{check\_WiFi\_connection}}
 \index{check\_WiFi\_connection@{check\_WiFi\_connection}!CTWiFi.h@{CTWiFi.h}}
@@ -58,11 +62,15 @@ false lorsque le Point d\textquotesingle{}accès n\textquotesingle{}est pas dém
 Vérifie l\textquotesingle{}état du Point d\textquotesingle{}accès réseau du Contact Tracer; si il n\textquotesingle{}est pas connecté, il tente de se connecter.~\newline
 . 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 true lorsque le Contact Tracer est déjà connecté au Point d\textquotesingle{}accès et ne fait donc rien. 
 
 false lorsque le Contact Tracer n\textquotesingle{}a pas réussi à se connecter. 
 \end{DoxyReturn}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00110}{110}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
 \mbox{\Hypertarget{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}\label{_c_t_wi_fi_8h_a6e1ad9bcb459e5f63213d33e746137d2}} 
 \index{CTWiFi.h@{CTWiFi.h}!connect\_WiFi\_network@{connect\_WiFi\_network}}
 \index{connect\_WiFi\_network@{connect\_WiFi\_network}!CTWiFi.h@{CTWiFi.h}}
@@ -74,7 +82,7 @@ false lorsque le Contact Tracer n\textquotesingle{}a pas réussi à se connecter
 connect\+\_\+\+Wifi\+\_\+network est une fonction qui sert à se connecter au Access point \char`\"{}\+Hamburger\char`\"{} avec l\textquotesingle{}esp 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em ssid} & id de connexion \\
 \hline
 {\em password} & mot de passe de l\textquotesingle{}ap \\
@@ -82,11 +90,15 @@ connect\+\_\+\+Wifi\+\_\+network est une fonction qui sert à se connecter au Ac
 {\em cycles} & nombres de tentatives de check de la connexion\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 true lorsque la connexion est réussie 
 
 false lorsque la connexion est échouée 
 \end{DoxyReturn}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00077}{77}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
 \mbox{\Hypertarget{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}\label{_c_t_wi_fi_8h_a06e6d1fdb84edff554b1c4722c9a774a}} 
 \index{CTWiFi.h@{CTWiFi.h}!launch\_access\_point@{launch\_access\_point}}
 \index{launch\_access\_point@{launch\_access\_point}!CTWiFi.h@{CTWiFi.h}}
@@ -99,12 +111,16 @@ launch\+\_\+acces\+\_\+point permet de créer un point d\textquotesingle{}accés
  
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em ssid} & Nom du point d\textquotesingle{}accés de l\textquotesingle{}esp \\
 \hline
 {\em password} & Mot de passe de ce dernier \\
 \hline
 \end{DoxyParams}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00026}{26}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
 \mbox{\Hypertarget{_c_t_wi_fi_8h_ad2a97dbe5f144cd247e3b15c6af7c767}\label{_c_t_wi_fi_8h_ad2a97dbe5f144cd247e3b15c6af7c767}} 
 \index{CTWiFi.h@{CTWiFi.h}!setupWiFi@{setupWiFi}}
 \index{setupWiFi@{setupWiFi}!CTWiFi.h@{CTWiFi.h}}
@@ -115,7 +131,11 @@ Configuration du wifi de l\textquotesingle{}esp
 \begin{DoxyItemize}
 \item Mode AP + Station
 \item Connexion au réseau 
-\end{DoxyItemize}\mbox{\Hypertarget{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}\label{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}} 
+\end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00160}{160}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
+\mbox{\Hypertarget{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}\label{_c_t_wi_fi_8h_a9375bbc4ef4686014ba29a6976043914}} 
 \index{CTWiFi.h@{CTWiFi.h}!try\_WiFi\_connect@{try\_WiFi\_connect}}
 \index{try\_WiFi\_connect@{try\_WiFi\_connect}!CTWiFi.h@{CTWiFi.h}}
 \doxysubsubsection{\texorpdfstring{try\_WiFi\_connect()}{try\_WiFi\_connect()}}
@@ -127,17 +147,21 @@ Tente de se connecter au réseau Wi\+Fi avec les identifiants fournis en paramè
 Si la connexion échoue, le Contact Tracer se reconnecte au réseau Wi\+Fi configuré dans le fichier de configuration. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em ssid} & Le nom du réseau Wi\+Fi \\
 \hline
 {\em password} & Le mot de passe du réseau Wi\+Fi\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 true lorsque la connexion est réussie
 
 false lorsque la connexion est échouée 
 \end{DoxyReturn}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00133}{133}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
 \mbox{\Hypertarget{_c_t_wi_fi_8h_aab0860be730eccbf7b6ffee4b3f1ccde}\label{_c_t_wi_fi_8h_aab0860be730eccbf7b6ffee4b3f1ccde}} 
 \index{CTWiFi.h@{CTWiFi.h}!WiFiTicker@{WiFiTicker}}
 \index{WiFiTicker@{WiFiTicker}!CTWiFi.h@{CTWiFi.h}}
@@ -146,10 +170,18 @@ false lorsque la connexion est échouée
 
 
 
-\doxysubsection{Variable Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00151}{151}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
+
+
+
+\doxysubsection{Documentation des variables}
 \mbox{\Hypertarget{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}\label{_c_t_wi_fi_8h_a26d672abfebc2e411431d712c7a3a2a5}} 
 \index{CTWiFi.h@{CTWiFi.h}!ap\_launched@{ap\_launched}}
 \index{ap\_launched@{ap\_launched}!CTWiFi.h@{CTWiFi.h}}
 \doxysubsubsection{\texorpdfstring{ap\_launched}{ap\_launched}}
 {\footnotesize\ttfamily bool ap\+\_\+launched = false}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_wi_fi_8h_source_l00017}{17}} du fichier \mbox{\hyperlink{_c_t_wi_fi_8h_source}{CTWi\+Fi.\+h}}.
 

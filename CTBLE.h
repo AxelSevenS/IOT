@@ -1,11 +1,11 @@
 /**
- * @file CTBLE.h
  * @brief CTBLE est un module qui permet de scanner les appareils BLE à proximité et d'interagir avec eux.
  *  Il pourra detecter et calculer la distance entre un esp et un autre.
  *  Il pourra aussi envoyer des informations à un esp à proximité.
  * 
  * @page CTBLE Bluetooth Low Energy
  * @ref CTBLE.h
+ * @file CTBLE.h
  */
  
 #pragma once

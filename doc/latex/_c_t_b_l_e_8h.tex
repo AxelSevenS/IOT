@@ -1,15 +1,10 @@
-\hypertarget{_c_t_b_l_e_8h}{}\doxysection{CTBLE.\+h File Reference}
+\hypertarget{_c_t_b_l_e_8h}{}\doxysection{Référence du fichier CTBLE.\+h}
 \label{_c_t_b_l_e_8h}\index{CTBLE.h@{CTBLE.h}}
-
-
-CTBLE est un module qui permet de scanner les appareils BLE à proximité et d\textquotesingle{}interagir avec eux. Il pourra detecter et calculer la distance entre un esp et un autre. Il pourra aussi envoyer des informations à un esp à proximité.  
-
-
 {\ttfamily \#include $<$BLEDevice.\+h$>$}\newline
 {\ttfamily \#include $<$BLEUtils.\+h$>$}\newline
 {\ttfamily \#include $<$BLEServer.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}CTMonitoring.\+h\char`\"{}}\newline
-\doxysubsection*{Data Structures}
+\doxysubsection*{Structures de données}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_my_advertised_device_callbacks}{My\+Advertised\+Device\+Callbacks}}
@@ -23,7 +18,7 @@ class \mbox{\hyperlink{class_my_advertised_device_callbacks}{My\+Advertised\+Dev
 \item 
 \#define \mbox{\hyperlink{_c_t_b_l_e_8h_a7d0fce2820b99d4d2818bf0c58f65fcb}{BLE\+\_\+\+SCAN\+\_\+\+TIME}}~5
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}{start\+\_\+\+BLE\+\_\+server}} (const char $\ast$\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}})
@@ -52,23 +47,26 @@ long \mbox{\hyperlink{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}{BLE\+\_\+
 \begin{DoxyCompactList}\small\item\em le temps de processeur du dernier scan \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-CTBLE est un module qui permet de scanner les appareils BLE à proximité et d\textquotesingle{}interagir avec eux. Il pourra detecter et calculer la distance entre un esp et un autre. Il pourra aussi envoyer des informations à un esp à proximité. 
-
-
-
-\doxysubsection{Macro Definition Documentation}
+\doxysubsection{Documentation des macros}
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a936965fe84a8b0072cdcde6f52afe26d}\label{_c_t_b_l_e_8h_a936965fe84a8b0072cdcde6f52afe26d}} 
 \index{CTBLE.h@{CTBLE.h}!BLE\_FREQ@{BLE\_FREQ}}
 \index{BLE\_FREQ@{BLE\_FREQ}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{BLE\_FREQ}{BLE\_FREQ}}
 {\footnotesize\ttfamily \#define BLE\+\_\+\+FREQ~10}
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00025}{25}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a7d0fce2820b99d4d2818bf0c58f65fcb}\label{_c_t_b_l_e_8h_a7d0fce2820b99d4d2818bf0c58f65fcb}} 
 \index{CTBLE.h@{CTBLE.h}!BLE\_SCAN\_TIME@{BLE\_SCAN\_TIME}}
 \index{BLE\_SCAN\_TIME@{BLE\_SCAN\_TIME}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{BLE\_SCAN\_TIME}{BLE\_SCAN\_TIME}}
 {\footnotesize\ttfamily \#define BLE\+\_\+\+SCAN\+\_\+\+TIME~5}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00026}{26}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
 
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a445125ee8c34695376c85f10b38844d6}\label{_c_t_b_l_e_8h_a445125ee8c34695376c85f10b38844d6}} 
 \index{CTBLE.h@{CTBLE.h}!SERVICE\_UUID@{SERVICE\_UUID}}
@@ -78,7 +76,11 @@ CTBLE est un module qui permet de scanner les appareils BLE à proximité et d\t
 
 
 
-\doxysubsection{Function Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00023}{23}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+
+
+\doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}\label{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}} 
 \index{CTBLE.h@{CTBLE.h}!BLEScan@{BLEScan}}
 \index{BLEScan@{BLEScan}!CTBLE.h@{CTBLE.h}}
@@ -90,7 +92,11 @@ Scan BLE
 \item On lance le scan
 \item On récupère les résultats
 \item On vide les résultats 
-\end{DoxyItemize}\mbox{\Hypertarget{_c_t_b_l_e_8h_ab639259f1b5cebfe4d21689af80aabe8}\label{_c_t_b_l_e_8h_ab639259f1b5cebfe4d21689af80aabe8}} 
+\end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00124}{124}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+\mbox{\Hypertarget{_c_t_b_l_e_8h_ab639259f1b5cebfe4d21689af80aabe8}\label{_c_t_b_l_e_8h_ab639259f1b5cebfe4d21689af80aabe8}} 
 \index{CTBLE.h@{CTBLE.h}!loopBLEClient@{loopBLEClient}}
 \index{loopBLEClient@{loopBLEClient}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{loopBLEClient()}{loopBLEClient()}}
@@ -99,7 +105,11 @@ Scan BLE
 Boucle du client BLE
 \begin{DoxyItemize}
 \item On lance le scan 
-\end{DoxyItemize}\mbox{\Hypertarget{_c_t_b_l_e_8h_a6893deddb9ac5085c42040e53d9f8095}\label{_c_t_b_l_e_8h_a6893deddb9ac5085c42040e53d9f8095}} 
+\end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00177}{177}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+\mbox{\Hypertarget{_c_t_b_l_e_8h_a6893deddb9ac5085c42040e53d9f8095}\label{_c_t_b_l_e_8h_a6893deddb9ac5085c42040e53d9f8095}} 
 \index{CTBLE.h@{CTBLE.h}!setupBLEClient@{setupBLEClient}}
 \index{setupBLEClient@{setupBLEClient}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{setupBLEClient()}{setupBLEClient()}}
@@ -110,7 +120,11 @@ Configuration du client BLE
 \item Initialisation de l\textquotesingle{}objet qui va scanner
 \item Association d\textquotesingle{}un callback
 \item Activation du scan 
-\end{DoxyItemize}\mbox{\Hypertarget{_c_t_b_l_e_8h_a9f20df24b485bb3f7d2ae06c5de40e7b}\label{_c_t_b_l_e_8h_a9f20df24b485bb3f7d2ae06c5de40e7b}} 
+\end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00158}{158}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+\mbox{\Hypertarget{_c_t_b_l_e_8h_a9f20df24b485bb3f7d2ae06c5de40e7b}\label{_c_t_b_l_e_8h_a9f20df24b485bb3f7d2ae06c5de40e7b}} 
 \index{CTBLE.h@{CTBLE.h}!setupBLEServer@{setupBLEServer}}
 \index{setupBLEServer@{setupBLEServer}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{setupBLEServer()}{setupBLEServer()}}
@@ -121,7 +135,11 @@ Configuration du serveur BLE
 \item Initialisation du serveur
 \item Initialisation du service
 \item Initialisation de l\textquotesingle{}advertising 
-\end{DoxyItemize}\mbox{\Hypertarget{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}\label{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}} 
+\end{DoxyItemize}
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00138}{138}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+\mbox{\Hypertarget{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}\label{_c_t_b_l_e_8h_a01870b8bac3f7b72d625afa7bae99eb8}} 
 \index{CTBLE.h@{CTBLE.h}!start\_BLE\_server@{start\_BLE\_server}}
 \index{start\_BLE\_server@{start\_BLE\_server}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{start\_BLE\_server()}{start\_BLE\_server()}}
@@ -133,13 +151,17 @@ Démarrage du serveur BLE~\newline
 On remet à zéro le serveur, le service et l\textquotesingle{}advertising. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Paramètres}
 {\em device\+\_\+name} & Nom du device BLE \\
 \hline
 \end{DoxyParams}
 
 
-\doxysubsection{Variable Documentation}
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00049}{49}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
+
+
+\doxysubsection{Documentation des variables}
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}\label{_c_t_b_l_e_8h_a8d527d58c820a6cbaf6c70164779e278}} 
 \index{CTBLE.h@{CTBLE.h}!BLE\_last\_scan@{BLE\_last\_scan}}
 \index{BLE\_last\_scan@{BLE\_last\_scan}!CTBLE.h@{CTBLE.h}}
@@ -150,14 +172,22 @@ On remet à zéro le serveur, le service et l\textquotesingle{}advertising.
 
 le temps de processeur du dernier scan 
 
-\begin{DoxyRemark}{Remarks}
+\begin{DoxyRemark}{Remarques}
 On utilise cette variable pour augmenter le temps d\textquotesingle{}interaction avec un device dans le fichier de monitoring 
 \end{DoxyRemark}
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00041}{41}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
 \mbox{\Hypertarget{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}\label{_c_t_b_l_e_8h_aef19c878eb0d5b04266f9d8547e9826d}} 
 \index{CTBLE.h@{CTBLE.h}!pAdvertising@{pAdvertising}}
 \index{pAdvertising@{pAdvertising}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{pAdvertising}{pAdvertising}}
 {\footnotesize\ttfamily BLEAdvertising$\ast$ p\+Advertising}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00033}{33}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
 
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}\label{_c_t_b_l_e_8h_a1ce77ae701158c43388018dce073e344}} 
 \index{CTBLE.h@{CTBLE.h}!pBLEScan@{pBLEScan}}
@@ -165,15 +195,27 @@ On utilise cette variable pour augmenter le temps d\textquotesingle{}interaction
 \doxysubsubsection{\texorpdfstring{pBLEScan}{pBLEScan}}
 {\footnotesize\ttfamily \mbox{\hyperlink{_c_t_b_l_e_8h_a52464e8a494355347a08207aca8fe5f0}{BLEScan}}$\ast$ p\+BLEScan}
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00030}{30}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
 \mbox{\Hypertarget{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}\label{_c_t_b_l_e_8h_ac871c365764e0411a3c3806439b2b19d}} 
 \index{CTBLE.h@{CTBLE.h}!pServer@{pServer}}
 \index{pServer@{pServer}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{pServer}{pServer}}
 {\footnotesize\ttfamily BLEServer$\ast$ p\+Server}
 
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00031}{31}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
+
 \mbox{\Hypertarget{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}\label{_c_t_b_l_e_8h_a338cd275ef7429f95be973866946853e}} 
 \index{CTBLE.h@{CTBLE.h}!pService@{pService}}
 \index{pService@{pService}!CTBLE.h@{CTBLE.h}}
 \doxysubsubsection{\texorpdfstring{pService}{pService}}
 {\footnotesize\ttfamily BLEService$\ast$ p\+Service}
+
+
+
+Définition à la ligne \mbox{\hyperlink{_c_t_b_l_e_8h_source_l00032}{32}} du fichier \mbox{\hyperlink{_c_t_b_l_e_8h_source}{CTBLE.\+h}}.
 

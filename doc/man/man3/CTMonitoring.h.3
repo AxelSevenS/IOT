@@ -1,0 +1,87 @@
+.TH "CTMonitoring.h" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTMonitoring.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'CTSPIFFS\&.h'\fP
+.br
+\fC#include 'CTNTP\&.h'\fP
+.br
+
+.SS "Fonctions"
+
+.in +1c
+.ti -1c
+.RI "void \fBbecome_contact_if_device_is_sick\fP (JsonDocument &monitoringDocument, File &monitoringFile, const char *otherDeviceAddress)"
+.br
+.RI "Vérifie si l'appareil est marqué comme malade dans le fichier de monitoring et met à jour le status de l'utilisateur si c'est le cas\&. "
+.ti -1c
+.RI "void \fBupdate_device_status\fP (const char *address, const char *status)"
+.br
+.RI "Met à jour le status d'un appareil dans le fichier de monitoring\&. "
+.ti -1c
+.RI "void \fBdevice_interact\fP (const char *address, const char *name, long last_contact)"
+.br
+.RI "Effectue une 'interaction' avec un appareil, c'est à dire met à jour son nom, son temps d'exposition et son statut dans le fichier de surveillance
+.br
+Si le temps d'exposition est supérieur au seuil de surveillance, l'appareil est marqué pour surveillance rapprochée\&. "
+.in -1c
+.SH "Documentation des fonctions"
+.PP 
+.SS "void become_contact_if_device_is_sick (JsonDocument & monitoringDocument, File & monitoringFile, const char * otherDeviceAddress)"
+
+.PP
+Vérifie si l'appareil est marqué comme malade dans le fichier de monitoring et met à jour le status de l'utilisateur si c'est le cas\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fImonitoringDocument\fP 
+.br
+\fImonitoringFile\fP 
+.br
+\fIotherDeviceAddress\fP 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB23\fP du fichier \fBCTMonitoring\&.h\fP\&.
+.SS "void device_interact (const char * address, const char * name, long last_contact)"
+
+.PP
+Effectue une 'interaction' avec un appareil, c'est à dire met à jour son nom, son temps d'exposition et son statut dans le fichier de surveillance
+.br
+Si le temps d'exposition est supérieur au seuil de surveillance, l'appareil est marqué pour surveillance rapprochée\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIaddress\fP L'adresse Bluetooth de l'appareil à mettre à jour 
+.br
+\fIname\fP Le nom de l'appareil à mettre à jour (uniquement visuel) 
+.br
+\fIlast_contact\fP Le temps de la dernière interaction avec l'appareil 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB66\fP du fichier \fBCTMonitoring\&.h\fP\&.
+.SS "void update_device_status (const char * address, const char * status)"
+
+.PP
+Met à jour le status d'un appareil dans le fichier de monitoring\&. 
+.PP
+\fBParamètres\fP
+.RS 4
+\fIaddress\fP L'adresse Bluetooth de l'appareil à mettre à jour 
+.br
+\fIstatus\fP Le nouveau status de l'appareil (Sain, Cas contact, Malade) 
+.RE
+.PP
+
+.PP
+Définition à la ligne \fB40\fP du fichier \fBCTMonitoring\&.h\fP\&.
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

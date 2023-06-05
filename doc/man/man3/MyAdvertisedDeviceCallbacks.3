@@ -1,0 +1,19 @@
+.TH "MyAdvertisedDeviceCallbacks" 3 "Lundi 5 Juin 2023" "Trio d'Hommes Forts" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MyAdvertisedDeviceCallbacks
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <CTBLE\&.h>\fP
+.SH "Description détaillée"
+.PP 
+Callback quand un device BLE est détecté\&. Dans notre cas, on vérifie si son service UUID est celui que nous recherchons\&. Si c'est le cas, on récupère son nom et le niveau de puissance (RSSI) qui nous permet de calculer une distance approximative On éffectue ensuite une interaction avec le device 
+.PP
+Définition à la ligne \fB86\fP du fichier \fBCTBLE\&.h\fP\&.
+
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Trio d'Hommes Forts à partir du code source\&.

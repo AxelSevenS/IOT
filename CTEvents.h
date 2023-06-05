@@ -1,5 +1,4 @@
 /**
- * @file CTEvents.h
  * @brief CTEvents est un module qui contient les callbacks des événements de l'application.
  * Il est possible d'ajouter des callbacks pour les événements suivants :
  * - Changement des identifiants de l'appareil (@ref onDeviceCredentialsChangedCallbacks)
@@ -9,6 +8,7 @@
  * 
  * @page CTEvents Événements de l'application Contact Tracer
  * @ref CTEvents.h
+ * @file CTEvents.h
  */
 
 #pragma once
