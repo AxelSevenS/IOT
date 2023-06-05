@@ -1,0 +1,69 @@
+\hypertarget{_c_t_n_t_p_8h}{}\doxysection{CTNTP.\+h File Reference}
+\label{_c_t_n_t_p_8h}\index{CTNTP.h@{CTNTP.h}}
+
+
+CTNTP est un module qui permet de récupérer l\textquotesingle{}heure depuis un serveur NTP. Cette heure est utilisée pour l\textquotesingle{}horodatage des interactions avec d\textquotesingle{}autres appareils.  
+
+
+{\ttfamily \#include $<$NTPClient.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi\+Udp.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+NTPClient \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{time\+Client}} (\mbox{\hyperlink{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntp\+UDP}})
+\item 
+String \mbox{\hyperlink{_c_t_n_t_p_8h_a437abe825d8553b896c44a7e540ffcc0}{get\+NTP}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}heure depuis le serveur NTP. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_n_t_p_8h_a2d775f102c7281e9a8349eb5891433d1}{setup\+NTP}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le client NTP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Wi\+Fi\+UDP \mbox{\hyperlink{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntp\+UDP}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CTNTP est un module qui permet de récupérer l\textquotesingle{}heure depuis un serveur NTP. Cette heure est utilisée pour l\textquotesingle{}horodatage des interactions avec d\textquotesingle{}autres appareils. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_n_t_p_8h_a437abe825d8553b896c44a7e540ffcc0}\label{_c_t_n_t_p_8h_a437abe825d8553b896c44a7e540ffcc0}} 
+\index{CTNTP.h@{CTNTP.h}!getNTP@{getNTP}}
+\index{getNTP@{getNTP}!CTNTP.h@{CTNTP.h}}
+\doxysubsubsection{\texorpdfstring{getNTP()}{getNTP()}}
+{\footnotesize\ttfamily String get\+NTP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Récupère l\textquotesingle{}heure depuis le serveur NTP. 
+
+\begin{DoxyReturn}{Returns}
+String L\textquotesingle{}heure au format HH\+:\+MM\+:SS. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_c_t_n_t_p_8h_a2d775f102c7281e9a8349eb5891433d1}\label{_c_t_n_t_p_8h_a2d775f102c7281e9a8349eb5891433d1}} 
+\index{CTNTP.h@{CTNTP.h}!setupNTP@{setupNTP}}
+\index{setupNTP@{setupNTP}!CTNTP.h@{CTNTP.h}}
+\doxysubsubsection{\texorpdfstring{setupNTP()}{setupNTP()}}
+{\footnotesize\ttfamily void setup\+NTP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le client NTP. 
+
+\mbox{\Hypertarget{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}\label{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}} 
+\index{CTNTP.h@{CTNTP.h}!timeClient@{timeClient}}
+\index{timeClient@{timeClient}!CTNTP.h@{CTNTP.h}}
+\doxysubsubsection{\texorpdfstring{timeClient()}{timeClient()}}
+{\footnotesize\ttfamily NTPClient time\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntp\+UDP}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}\label{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}} 
+\index{CTNTP.h@{CTNTP.h}!ntpUDP@{ntpUDP}}
+\index{ntpUDP@{ntpUDP}!CTNTP.h@{CTNTP.h}}
+\doxysubsubsection{\texorpdfstring{ntpUDP}{ntpUDP}}
+{\footnotesize\ttfamily Wi\+Fi\+UDP ntp\+UDP}
+

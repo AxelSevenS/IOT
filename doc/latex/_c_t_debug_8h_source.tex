@@ -1,0 +1,26 @@
+\hypertarget{_c_t_debug_8h_source}{}\doxysection{CTDebug.\+h}
+\mbox{\hyperlink{_c_t_debug_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ MYDEBUG}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINT(x)\ \ \ \ \ Serial.print\ (x)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTDEC(x)\ \ Serial.print\ (x,\ DEC)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTHEX(x)\ \ Serial.print\ (x,\ HEX)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTLN(x)\ \ \ Serial.println\ (x)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTF\ \ \ \ Serial.printf}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINT(x)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTDEC(x)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTHEX(x)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTLN(x)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \#define\ MYDEBUG\_PRINTF(x)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_debug_8h_a5ded0afaa418d4d5328c95bb82f4f5fb}{setupDebug}}()\{}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifdef\ MYDEBUG\ }}
+\DoxyCodeLine{00029\ \ \ Serial.begin(230400);}
+\DoxyCodeLine{00030\ \ \ Serial.println(\textcolor{stringliteral}{"{}Ouverture\ du\ port\ série"{}});}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ \ }}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}

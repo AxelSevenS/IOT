@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['safe_0',['SAFE',['../_my_adafruit_i_o_8h.html#a51cc5d61d45bf71507aceec544ad1667aa3a9adacc85c180950255762543c88ac',1,'MyAdafruitIO.h']]]
+  ['sick_0',['SICK',['../_c_t_events_8h.html#a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c',1,'CTEvents.h']]]
 ];

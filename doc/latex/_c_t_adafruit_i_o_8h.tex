@@ -1,0 +1,192 @@
+\hypertarget{_c_t_adafruit_i_o_8h}{}\doxysection{CTAdafruit\+IO.\+h File Reference}
+\label{_c_t_adafruit_i_o_8h}\index{CTAdafruitIO.h@{CTAdafruitIO.h}}
+
+
+Gestion de la connexion au broker Adafruit IO et des données de télémétrie . Adafruit nous permet de recuperer les états de santé des utilisateurs et de les afficher sur une interface web.  
+
+
+{\ttfamily \#include \char`\"{}Adafruit\+\_\+\+MQTT.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Adafruit\+\_\+\+MQTT\+\_\+\+Client.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTTicker.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTBLE.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTMonitoring.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_aa448b06fc30ff8f397a9de01b53d29ba}{IO\+\_\+\+SERVER}}~\char`\"{}io.\+adafruit.\+com\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a1a1097e8e3bc4621d7a168018df5fac9}{IO\+\_\+\+SERVERPORT}}~1883
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\+\_\+\+USERNAME}}~\char`\"{}feur25\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a2379b5675f95d4d8c7e0a273b4d6f07c}{IO\+\_\+\+KEY}}~\char`\"{}aio\+\_\+\+RXfy55\+Uv98\+VWiia7s\+MK1s40v7o\+Gx\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ab3a3c16d29fe1a9d97e6948e2b6c2db9}{FEED\+\_\+\+FREQ}}~10
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ac9ccb08ce364bafa0c0bfaf3b2b2bd38}{PROCESS\+\_\+\+PACKETS\+\_\+\+MS}}~10000
+\item 
+\#define \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\+\_\+\+HEALTH}}~\char`\"{}/feeds/health\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a10c4e1f88c3e2d8d6c660ae18cefa0a8}{health\+Callback}} (char $\ast$data, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Callback de réception des données de santé~\newline
+Va mettre à jour le statut de l\textquotesingle{}utilisateur en fonction des données reçues. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}{connect\+Adafruit\+IO}} (int cycles=50)
+\begin{DoxyCompactList}\small\item\em Connexion au broker Adafruit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a95b1b253ee46df6a93285803cf1f3370}{send\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Envoi des données de télémétrie au broker Adafruit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a2bd8fd38c73deae3c895f6b385a48d46}{setup\+Adafruit\+IO}} ()
+\item 
+void \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a60adf60c8e35331ff6104bcc69158c1b}{loop\+Adafruit\+IO}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Wi\+Fi\+Client \mbox{\hyperlink{_c_t_adafruit_i_o_8h_abb9eff2964ef905b08e636f0bf58e442}{client}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a244d12ee1babb263a43de149b60bb70d}{ui\+Slider\+Value}} =0
+\item 
+Adafruit\+\_\+\+MQTT\+\_\+\+Publish \mbox{\hyperlink{_c_t_adafruit_i_o_8h_a8f04cbcb66ca1238589fe7aa79d6e13a}{health\+Publish}} = Adafruit\+\_\+\+MQTT\+\_\+\+Publish(\&My\+Adafruit\+Mqtt, \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\+\_\+\+USERNAME}} \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\+\_\+\+HEALTH}})
+\item 
+Adafruit\+\_\+\+MQTT\+\_\+\+Subscribe \mbox{\hyperlink{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}{health}} = Adafruit\+\_\+\+MQTT\+\_\+\+Subscribe(\&My\+Adafruit\+Mqtt, \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\+\_\+\+USERNAME}} \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\+\_\+\+HEALTH}}, MQTT\+\_\+\+QOS\+\_\+1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestion de la connexion au broker Adafruit IO et des données de télémétrie . Adafruit nous permet de recuperer les états de santé des utilisateurs et de les afficher sur une interface web. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_ab3a3c16d29fe1a9d97e6948e2b6c2db9}\label{_c_t_adafruit_i_o_8h_ab3a3c16d29fe1a9d97e6948e2b6c2db9}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!FEED\_FREQ@{FEED\_FREQ}}
+\index{FEED\_FREQ@{FEED\_FREQ}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{FEED\_FREQ}{FEED\_FREQ}}
+{\footnotesize\ttfamily \#define FEED\+\_\+\+FREQ~10}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}\label{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!FEED\_HEALTH@{FEED\_HEALTH}}
+\index{FEED\_HEALTH@{FEED\_HEALTH}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{FEED\_HEALTH}{FEED\_HEALTH}}
+{\footnotesize\ttfamily \#define FEED\+\_\+\+HEALTH~\char`\"{}/feeds/health\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a2379b5675f95d4d8c7e0a273b4d6f07c}\label{_c_t_adafruit_i_o_8h_a2379b5675f95d4d8c7e0a273b4d6f07c}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!IO\_KEY@{IO\_KEY}}
+\index{IO\_KEY@{IO\_KEY}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{IO\_KEY}{IO\_KEY}}
+{\footnotesize\ttfamily \#define IO\+\_\+\+KEY~\char`\"{}aio\+\_\+\+RXfy55\+Uv98\+VWiia7s\+MK1s40v7o\+Gx\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_aa448b06fc30ff8f397a9de01b53d29ba}\label{_c_t_adafruit_i_o_8h_aa448b06fc30ff8f397a9de01b53d29ba}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!IO\_SERVER@{IO\_SERVER}}
+\index{IO\_SERVER@{IO\_SERVER}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{IO\_SERVER}{IO\_SERVER}}
+{\footnotesize\ttfamily \#define IO\+\_\+\+SERVER~\char`\"{}io.\+adafruit.\+com\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a1a1097e8e3bc4621d7a168018df5fac9}\label{_c_t_adafruit_i_o_8h_a1a1097e8e3bc4621d7a168018df5fac9}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!IO\_SERVERPORT@{IO\_SERVERPORT}}
+\index{IO\_SERVERPORT@{IO\_SERVERPORT}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{IO\_SERVERPORT}{IO\_SERVERPORT}}
+{\footnotesize\ttfamily \#define IO\+\_\+\+SERVERPORT~1883}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}\label{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!IO\_USERNAME@{IO\_USERNAME}}
+\index{IO\_USERNAME@{IO\_USERNAME}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{IO\_USERNAME}{IO\_USERNAME}}
+{\footnotesize\ttfamily \#define IO\+\_\+\+USERNAME~\char`\"{}feur25\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_ac9ccb08ce364bafa0c0bfaf3b2b2bd38}\label{_c_t_adafruit_i_o_8h_ac9ccb08ce364bafa0c0bfaf3b2b2bd38}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!PROCESS\_PACKETS\_MS@{PROCESS\_PACKETS\_MS}}
+\index{PROCESS\_PACKETS\_MS@{PROCESS\_PACKETS\_MS}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{PROCESS\_PACKETS\_MS}{PROCESS\_PACKETS\_MS}}
+{\footnotesize\ttfamily \#define PROCESS\+\_\+\+PACKETS\+\_\+\+MS~10000}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}\label{_c_t_adafruit_i_o_8h_a0426ee21694225335a1e3913d08b8caf}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!connectAdafruitIO@{connectAdafruitIO}}
+\index{connectAdafruitIO@{connectAdafruitIO}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{connectAdafruitIO()}{connectAdafruitIO()}}
+{\footnotesize\ttfamily bool connect\+Adafruit\+IO (\begin{DoxyParamCaption}\item[{int}]{cycles = {\ttfamily 50} }\end{DoxyParamCaption})}
+
+
+
+Connexion au broker Adafruit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cycles} & Nombre de tentatives de connexion \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a10c4e1f88c3e2d8d6c660ae18cefa0a8}\label{_c_t_adafruit_i_o_8h_a10c4e1f88c3e2d8d6c660ae18cefa0a8}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!healthCallback@{healthCallback}}
+\index{healthCallback@{healthCallback}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{healthCallback()}{healthCallback()}}
+{\footnotesize\ttfamily void health\+Callback (\begin{DoxyParamCaption}\item[{char $\ast$}]{data,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Callback de réception des données de santé~\newline
+Va mettre à jour le statut de l\textquotesingle{}utilisateur en fonction des données reçues. 
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a60adf60c8e35331ff6104bcc69158c1b}\label{_c_t_adafruit_i_o_8h_a60adf60c8e35331ff6104bcc69158c1b}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!loopAdafruitIO@{loopAdafruitIO}}
+\index{loopAdafruitIO@{loopAdafruitIO}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{loopAdafruitIO()}{loopAdafruitIO()}}
+{\footnotesize\ttfamily void loop\+Adafruit\+IO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Boucle Adafruit IO
+\begin{DoxyItemize}
+\item Vérification de l\textquotesingle{}état de la connexion
+\item Traitement des messages reçus
+\item Maintien de la connexion en vie avec un Ping si on aucun publish télémétrie n\textquotesingle{}est fait 
+\end{DoxyItemize}\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a95b1b253ee46df6a93285803cf1f3370}\label{_c_t_adafruit_i_o_8h_a95b1b253ee46df6a93285803cf1f3370}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!sendData@{sendData}}
+\index{sendData@{sendData}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{sendData()}{sendData()}}
+{\footnotesize\ttfamily void send\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Envoi des données de télémétrie au broker Adafruit. 
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a2bd8fd38c73deae3c895f6b385a48d46}\label{_c_t_adafruit_i_o_8h_a2bd8fd38c73deae3c895f6b385a48d46}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!setupAdafruitIO@{setupAdafruitIO}}
+\index{setupAdafruitIO@{setupAdafruitIO}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{setupAdafruitIO()}{setupAdafruitIO()}}
+{\footnotesize\ttfamily void setup\+Adafruit\+IO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configuration de la connexion au broker Adafruit IO
+\begin{DoxyItemize}
+\item Connexion Wi\+Fi
+\item Configuration de l\textquotesingle{}actuateur
+\item Configuration des callbacks 
+\end{DoxyItemize}
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_abb9eff2964ef905b08e636f0bf58e442}\label{_c_t_adafruit_i_o_8h_abb9eff2964ef905b08e636f0bf58e442}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!client@{client}}
+\index{client@{client}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+MQTT\+\_\+\+Client My\+Adafruit\+Mqtt \& client}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}\label{_c_t_adafruit_i_o_8h_adef07b46d4eefc1c8653b18a49577724}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!health@{health}}
+\index{health@{health}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+MQTT\+\_\+\+Subscribe health = Adafruit\+\_\+\+MQTT\+\_\+\+Subscribe(\&My\+Adafruit\+Mqtt, \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\+\_\+\+USERNAME}} \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\+\_\+\+HEALTH}}, MQTT\+\_\+\+QOS\+\_\+1)}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a8f04cbcb66ca1238589fe7aa79d6e13a}\label{_c_t_adafruit_i_o_8h_a8f04cbcb66ca1238589fe7aa79d6e13a}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!healthPublish@{healthPublish}}
+\index{healthPublish@{healthPublish}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{healthPublish}{healthPublish}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+MQTT\+\_\+\+Publish health\+Publish = Adafruit\+\_\+\+MQTT\+\_\+\+Publish(\&My\+Adafruit\+Mqtt, \mbox{\hyperlink{_c_t_adafruit_i_o_8h_ae089db567f4b6f5a7c8437c6ec461403}{IO\+\_\+\+USERNAME}} \mbox{\hyperlink{_c_t_adafruit_i_o_8h_af03ed071fa2ecc760379bca12951d2be}{FEED\+\_\+\+HEALTH}})}
+
+\mbox{\Hypertarget{_c_t_adafruit_i_o_8h_a244d12ee1babb263a43de149b60bb70d}\label{_c_t_adafruit_i_o_8h_a244d12ee1babb263a43de149b60bb70d}} 
+\index{CTAdafruitIO.h@{CTAdafruitIO.h}!uiSliderValue@{uiSliderValue}}
+\index{uiSliderValue@{uiSliderValue}!CTAdafruitIO.h@{CTAdafruitIO.h}}
+\doxysubsubsection{\texorpdfstring{uiSliderValue}{uiSliderValue}}
+{\footnotesize\ttfamily uint32\+\_\+t ui\+Slider\+Value =0}
+

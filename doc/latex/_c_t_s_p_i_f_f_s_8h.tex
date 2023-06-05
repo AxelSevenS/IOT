@@ -1,0 +1,574 @@
+\hypertarget{_c_t_s_p_i_f_f_s_8h}{}\doxysection{CTSPIFFS.\+h File Reference}
+\label{_c_t_s_p_i_f_f_s_8h}\index{CTSPIFFS.h@{CTSPIFFS.h}}
+
+
+CTSPIFFS est un module qui permet de d\textquotesingle{}intéragir avec la mémoire flash SPIFFS du système. Il permet de lire et d\textquotesingle{}écrire des fichiers JSON. Ce module contient des fonctions utilitaires de lecture et d\textquotesingle{}écriture de fichiers JSON simples à utiliser. En utilisant ce module, il est possible de modifier les différentes variables globales système \+:  
+
+
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}SPIFFS.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}CTEvents.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}{CONFIG\+\_\+\+FILE\+\_\+\+PATH}}~\char`\"{}/config.\+json\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}{MONITORING\+\_\+\+FILE\+\_\+\+PATH}}~\char`\"{}/monitoring.\+json\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aed73c581e6bbc30c6b8d3809c4c9db6c}{DEFAULT\+\_\+\+PASSWORD}}~\char`\"{}contacttracer\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a609992b3748a775dfd4087e531b49e2a}{DEFAULT\+\_\+\+NET\+\_\+\+SSID}}~\char`\"{}Hamburger\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aec277a5053a83171545da7d7b856f2dd}{DEFAULT\+\_\+\+NET\+\_\+\+PASSWORD}}~\char`\"{}Yo\+Les\+Kids\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a52d0a760f4e14cbc43b78f0195aa4f54}{DEFAULT\+\_\+\+MONITORING\+\_\+\+TIME}}~5.\+0
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab8d765931e29251d615e430da725cba8}{DEFAULT\+\_\+\+MONITORING\+\_\+\+DISTANCE}}~5.\+0
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a588e331ae689b5d6ef04e53cf65bc519}{DEFAULT\+\_\+\+TEMPERATURE\+\_\+\+THRESHOLD}}~40.\+0
+\item 
+\#define \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a3d7b0c691e06b2f1fb06fd5ad02ec676}{DEFAULT\+\_\+\+USER\+\_\+\+STATUS}}~\char`\"{}HEALTHY\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef const std\+::function$<$ void(Json\+Document \&, File \&)$>$ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}{read\+\_\+file}} (const char $\ast$file\+Name, \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} \&read\+Function)
+\begin{DoxyCompactList}\small\item\em Permet de lire dans un fichier SPIFFS.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}{read\+\_\+write\+\_\+file}} (const char $\ast$file\+Name, \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} write\+Function)
+\begin{DoxyCompactList}\small\item\em Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}{update\+\_\+device\+\_\+config}} (const char $\ast$new\+\_\+device\+\_\+name, const char $\ast$new\+\_\+device\+\_\+password, Json\+Document \&json\+Document)
+\begin{DoxyCompactList}\small\item\em Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aa8e54dfc5478bdf456ff3447d0488b21}{update\+\_\+device\+\_\+config}} (const char $\ast$new\+\_\+device\+\_\+name, const char $\ast$new\+\_\+device\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d\textquotesingle{}accès réseau, dont on se sert pour la configurer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}{update\+\_\+network\+\_\+config}} (const char $\ast$new\+\_\+net\+\_\+ssid, const char $\ast$new\+\_\+net\+\_\+password, Json\+Document \&json\+Document)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d\textquotesingle{}accès réseau, dont on se sert pour la configurer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aca4d32969813a506087c4c345cce2d08}{update\+\_\+network\+\_\+config}} (const char $\ast$new\+\_\+net\+\_\+ssid, const char $\ast$new\+\_\+net\+\_\+password)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour le SSID et le mot de Passe du point d\textquotesingle{}accès réseau que va utiliser Le Contact Tracer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}{update\+\_\+monitoring\+\_\+config}} (float new\+\_\+time, float new\+\_\+distance, float new\+\_\+temperature, Json\+Document \&json\+Document)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_aa63035f70f65c53235863f4892bdfcaa}{update\+\_\+monitoring\+\_\+config}} (float new\+\_\+time, float new\+\_\+distance, float new\+\_\+temperature)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}{update\+\_\+health\+\_\+status}} (\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} new\+\_\+health\+\_\+status, Json\+Document \&json\+Document)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour le Status de Santé de l\textquotesingle{}Utilisateur.~\newline
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_afde09e288059936b2c7813d7a4571d86}{update\+\_\+health\+\_\+status}} (\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} new\+\_\+health\+\_\+status)
+\begin{DoxyCompactList}\small\item\em Permet de mettre à jour le Status de Santé de l\textquotesingle{}Utilisateur.~\newline
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}{display\+\_\+file}} (const char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}afficher les contenus du fichier passé en paramètre de façon formattée.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}{get\+\_\+config}} ()
+\begin{DoxyCompactList}\small\item\em Permet de récupérer les variables de configuration.~\newline
+variables de configuration stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+Lors de l\textquotesingle{}appel de cette fonction, les variables globales sont mises à jour avec les valeurs présentes dans le fichier de configuration.~\newline
+~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}{reset\+\_\+file}} (const char $\ast$file\+Path)
+\begin{DoxyCompactList}\small\item\em Permet de réinitialiser le fichier de configuration.~\newline
+. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}{setup\+SPIFFS}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}}
+\item 
+String \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\+\_\+password}}
+\item 
+String \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\+\_\+ssid}}
+\item 
+String \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\+\_\+password}}
+\item 
+\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}} = \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}
+\item 
+float \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}} = 5.\+0
+\item 
+float \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}} = 5.\+0
+\item 
+float \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\+\_\+threshold}} = 40.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CTSPIFFS est un module qui permet de d\textquotesingle{}intéragir avec la mémoire flash SPIFFS du système. Il permet de lire et d\textquotesingle{}écrire des fichiers JSON. Ce module contient des fonctions utilitaires de lecture et d\textquotesingle{}écriture de fichiers JSON simples à utiliser. En utilisant ce module, il est possible de modifier les différentes variables globales système \+: 
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}} \+: Le nom de l\textquotesingle{}appareil
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\+\_\+password}} \+: Le mot de passe de l\textquotesingle{}appareil
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\+\_\+ssid}} \+: Le nom du réseau Wi\+Fi
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\+\_\+password}} \+: Le mot de passe du réseau Wi\+Fi
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}} \+: Le temps de surveillance
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}} \+: La distance de surveillance
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}} \+: L\textquotesingle{}état de santé de l\textquotesingle{}utilisateur
+\item \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\+\_\+threshold}} \+: Le seuil de température 
+\end{DoxyItemize}
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}\label{_c_t_s_p_i_f_f_s_8h_a3b34123ca1532b57b18493ad8d27d3ea}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!CONFIG\_FILE\_PATH@{CONFIG\_FILE\_PATH}}
+\index{CONFIG\_FILE\_PATH@{CONFIG\_FILE\_PATH}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_FILE\_PATH}{CONFIG\_FILE\_PATH}}
+{\footnotesize\ttfamily \#define CONFIG\+\_\+\+FILE\+\_\+\+PATH~\char`\"{}/config.\+json\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ab8d765931e29251d615e430da725cba8}\label{_c_t_s_p_i_f_f_s_8h_ab8d765931e29251d615e430da725cba8}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_MONITORING\_DISTANCE@{DEFAULT\_MONITORING\_DISTANCE}}
+\index{DEFAULT\_MONITORING\_DISTANCE@{DEFAULT\_MONITORING\_DISTANCE}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MONITORING\_DISTANCE}{DEFAULT\_MONITORING\_DISTANCE}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MONITORING\+\_\+\+DISTANCE~5.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a52d0a760f4e14cbc43b78f0195aa4f54}\label{_c_t_s_p_i_f_f_s_8h_a52d0a760f4e14cbc43b78f0195aa4f54}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_MONITORING\_TIME@{DEFAULT\_MONITORING\_TIME}}
+\index{DEFAULT\_MONITORING\_TIME@{DEFAULT\_MONITORING\_TIME}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MONITORING\_TIME}{DEFAULT\_MONITORING\_TIME}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MONITORING\+\_\+\+TIME~5.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_aec277a5053a83171545da7d7b856f2dd}\label{_c_t_s_p_i_f_f_s_8h_aec277a5053a83171545da7d7b856f2dd}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_NET\_PASSWORD@{DEFAULT\_NET\_PASSWORD}}
+\index{DEFAULT\_NET\_PASSWORD@{DEFAULT\_NET\_PASSWORD}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_NET\_PASSWORD}{DEFAULT\_NET\_PASSWORD}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+NET\+\_\+\+PASSWORD~\char`\"{}Yo\+Les\+Kids\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a609992b3748a775dfd4087e531b49e2a}\label{_c_t_s_p_i_f_f_s_8h_a609992b3748a775dfd4087e531b49e2a}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_NET\_SSID@{DEFAULT\_NET\_SSID}}
+\index{DEFAULT\_NET\_SSID@{DEFAULT\_NET\_SSID}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_NET\_SSID}{DEFAULT\_NET\_SSID}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+NET\+\_\+\+SSID~\char`\"{}Hamburger\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_aed73c581e6bbc30c6b8d3809c4c9db6c}\label{_c_t_s_p_i_f_f_s_8h_aed73c581e6bbc30c6b8d3809c4c9db6c}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_PASSWORD@{DEFAULT\_PASSWORD}}
+\index{DEFAULT\_PASSWORD@{DEFAULT\_PASSWORD}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_PASSWORD}{DEFAULT\_PASSWORD}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+PASSWORD~\char`\"{}contacttracer\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a588e331ae689b5d6ef04e53cf65bc519}\label{_c_t_s_p_i_f_f_s_8h_a588e331ae689b5d6ef04e53cf65bc519}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_TEMPERATURE\_THRESHOLD@{DEFAULT\_TEMPERATURE\_THRESHOLD}}
+\index{DEFAULT\_TEMPERATURE\_THRESHOLD@{DEFAULT\_TEMPERATURE\_THRESHOLD}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_TEMPERATURE\_THRESHOLD}{DEFAULT\_TEMPERATURE\_THRESHOLD}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+TEMPERATURE\+\_\+\+THRESHOLD~40.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a3d7b0c691e06b2f1fb06fd5ad02ec676}\label{_c_t_s_p_i_f_f_s_8h_a3d7b0c691e06b2f1fb06fd5ad02ec676}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!DEFAULT\_USER\_STATUS@{DEFAULT\_USER\_STATUS}}
+\index{DEFAULT\_USER\_STATUS@{DEFAULT\_USER\_STATUS}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_USER\_STATUS}{DEFAULT\_USER\_STATUS}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+USER\+\_\+\+STATUS~\char`\"{}HEALTHY\char`\"{}}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}\label{_c_t_s_p_i_f_f_s_8h_a933da68cd083941c80a7418829fbc225}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!MONITORING\_FILE\_PATH@{MONITORING\_FILE\_PATH}}
+\index{MONITORING\_FILE\_PATH@{MONITORING\_FILE\_PATH}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{MONITORING\_FILE\_PATH}{MONITORING\_FILE\_PATH}}
+{\footnotesize\ttfamily \#define MONITORING\+\_\+\+FILE\+\_\+\+PATH~\char`\"{}/monitoring.\+json\char`\"{}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}\label{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!FileReadFunction@{FileReadFunction}}
+\index{FileReadFunction@{FileReadFunction}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{FileReadFunction}{FileReadFunction}}
+{\footnotesize\ttfamily typedef const std\+::function$<$void(Json\+Document\&, File\&)$>$ \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}\label{_c_t_s_p_i_f_f_s_8h_a26c65ccbfa4a080200fc77f320a5de1f}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!display\_file@{display\_file}}
+\index{display\_file@{display\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{display\_file()}{display\_file()}}
+{\footnotesize\ttfamily void display\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Permet d\textquotesingle{}afficher les contenus du fichier passé en paramètre de façon formattée.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}\label{_c_t_s_p_i_f_f_s_8h_a4ed82e40af93b81d6fcc92a9778ef289}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!get\_config@{get\_config}}
+\index{get\_config@{get\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{get\_config()}{get\_config()}}
+{\footnotesize\ttfamily void get\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Permet de récupérer les variables de configuration.~\newline
+variables de configuration stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+Lors de l\textquotesingle{}appel de cette fonction, les variables globales sont mises à jour avec les valeurs présentes dans le fichier de configuration.~\newline
+~\newline
+. 
+
+Le nom de la carte est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}};~\newline
+le mot de Passe de la carte est stocké dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\+\_\+password}};~\newline
+le SSID du réseau est stocké dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\+\_\+ssid}};~\newline
+le mot de Passe du réseau est stocké dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\+\_\+password}};~\newline
+le statut de l\textquotesingle{}utilisateur est stocké dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}}. le temps de monitoring est stocké dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}}. la distance de monitoring est stockée dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}}. \mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}\label{_c_t_s_p_i_f_f_s_8h_a39fd0f11f322eee62ec68ea8b943a3b0}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!read\_file@{read\_file}}
+\index{read\_file@{read\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{read\_file()}{read\_file()}}
+{\footnotesize\ttfamily void read\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name,  }\item[{\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}} \&}]{read\+Function }\end{DoxyParamCaption})}
+
+
+
+Permet de lire dans un fichier SPIFFS.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Le fichier est ouvert en mode lecture.~\newline
+Les contenus du fichier sont passés à la fonction read\+Function sous forme de Json\+Document.~\newline
+ 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em read\+Function} & La fonction qui va lire dans le fichier de config. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}\label{_c_t_s_p_i_f_f_s_8h_a9ef2b136ef02f28bef1a20eba7e875c7}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!read\_write\_file@{read\_write\_file}}
+\index{read\_write\_file@{read\_write\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{read\_write\_file()}{read\_write\_file()}}
+{\footnotesize\ttfamily void read\+\_\+write\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name,  }\item[{\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_adf37fa59a9595435b19eaa9e9866c091}{File\+Read\+Function}}}]{write\+Function }\end{DoxyParamCaption})}
+
+
+
+Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Le fichier est ouvert en mode lecture et écriture.~\newline
+Les contenus du fichier sont passés à la fonction write\+Function sous forme de Json\+Document.~\newline
+ 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & Le nom du fichier à lire et écrire. \\
+\hline
+{\em write\+Function} & La fonction qui va écrire dans le fichier de config. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}\label{_c_t_s_p_i_f_f_s_8h_ab6fbcd645daba57cb879da18e7fd7e72}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!reset\_file@{reset\_file}}
+\index{reset\_file@{reset\_file}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{reset\_file()}{reset\_file()}}
+{\footnotesize\ttfamily void reset\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Permet de réinitialiser le fichier de configuration.~\newline
+. 
+
+Cette fonction supprime le fichier de configuration présent dans la mémoire (SPIFFS) de la carte.~\newline
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}\label{_c_t_s_p_i_f_f_s_8h_a6a049be6f9bb76559a22d9f655d60830}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!setupSPIFFS@{setupSPIFFS}}
+\index{setupSPIFFS@{setupSPIFFS}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{setupSPIFFS()}{setupSPIFFS()}}
+{\footnotesize\ttfamily void setup\+SPIFFS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configuration du système de fichiers SPIFFS
+\begin{DoxyItemize}
+\item Formatage du système de fichiers (OPTIONNEL)
+\item Lecture du fichier de configuration 
+\end{DoxyItemize}\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_aa8e54dfc5478bdf456ff3447d0488b21}\label{_c_t_s_p_i_f_f_s_8h_aa8e54dfc5478bdf456ff3447d0488b21}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_device\_config@{update\_device\_config}}
+\index{update\_device\_config@{update\_device\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_device\_config()}{update\_device\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void update\+\_\+device\+\_\+config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{new\+\_\+device\+\_\+name,  }\item[{const char $\ast$}]{new\+\_\+device\+\_\+password }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d\textquotesingle{}accès réseau, dont on se sert pour la configurer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le SSID est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}};~\newline
+et le mot de Passe dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\+\_\+password}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+device\+\_\+name} & Le nouveau que la carte va utiliser pour son Access Point et son OTA. \\
+\hline
+{\em new\+\_\+device\+\_\+password} & Le nouveau mot de Passe que la carte va utiliser pour son Access Point et son OTA. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}\label{_c_t_s_p_i_f_f_s_8h_a9f9180f5ce51df7ec1d8b13eb43c21c3}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_device\_config@{update\_device\_config}}
+\index{update\_device\_config@{update\_device\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_device\_config()}{update\_device\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void update\+\_\+device\+\_\+config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{new\+\_\+device\+\_\+name,  }\item[{const char $\ast$}]{new\+\_\+device\+\_\+password,  }\item[{Json\+Document \&}]{json\+Document }\end{DoxyParamCaption})}
+
+
+
+Permet de lire et écrire dans un fichier SPIFFS.~\newline
+. 
+
+\begin{DoxyRemark}{Remarks}
+Le fichier est ouvert en mode lecture et écriture.~\newline
+Les contenus du fichier sont passés à la fonction write\+Function sous forme de Json\+Document.~\newline
+ 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+device\+\_\+name} & Le nouveau nom de l\textquotesingle{}appareil. \\
+\hline
+{\em new\+\_\+device\+\_\+password} & Le nouveau mot de passe de l\textquotesingle{}appareil. \\
+\hline
+{\em json\+Document} & Le document JSON à écrire dans le fichier de configuration. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_afde09e288059936b2c7813d7a4571d86}\label{_c_t_s_p_i_f_f_s_8h_afde09e288059936b2c7813d7a4571d86}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_health\_status@{update\_health\_status}}
+\index{update\_health\_status@{update\_health\_status}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_health\_status()}{update\_health\_status()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void update\+\_\+health\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}}}]{new\+\_\+health\+\_\+status }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour le Status de Santé de l\textquotesingle{}Utilisateur.~\newline
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le Status de Santé est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+health\+\_\+status} & Le nouveau Status de Santé de l\textquotesingle{}Utilisateur. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}\label{_c_t_s_p_i_f_f_s_8h_a784bb1e56b3944a8e081a1f09e27c275}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_health\_status@{update\_health\_status}}
+\index{update\_health\_status@{update\_health\_status}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_health\_status()}{update\_health\_status()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void update\+\_\+health\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}}}]{new\+\_\+health\+\_\+status,  }\item[{Json\+Document \&}]{json\+Document }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour le Status de Santé de l\textquotesingle{}Utilisateur.~\newline
+Le nouveau Status est stocké dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le Status de Santé est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\+\_\+status}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction n\textquotesingle{}ouvre pas de document JSON, elle utilise celui passé en paramètre.
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+health\+\_\+status} & Le nouveau Status de Santé de l\textquotesingle{}Utilisateur. \\
+\hline
+{\em json\+Document} & Le document JSON qui contient les données de Surveillance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_aa63035f70f65c53235863f4892bdfcaa}\label{_c_t_s_p_i_f_f_s_8h_aa63035f70f65c53235863f4892bdfcaa}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_monitoring\_config@{update\_monitoring\_config}}
+\index{update\_monitoring\_config@{update\_monitoring\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_monitoring\_config()}{update\_monitoring\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void update\+\_\+monitoring\+\_\+config (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+time,  }\item[{float}]{new\+\_\+distance,  }\item[{float}]{new\+\_\+temperature }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le temps de monitoring est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}};~\newline
+et la distance de monitoring dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & Le nouveau temps de monitoring. \\
+\hline
+{\em new\+\_\+distance} & La nouvelle distance de monitoring. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}\label{_c_t_s_p_i_f_f_s_8h_a549f4cea355000131a8d5ba4ff37009d}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_monitoring\_config@{update\_monitoring\_config}}
+\index{update\_monitoring\_config@{update\_monitoring\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_monitoring\_config()}{update\_monitoring\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void update\+\_\+monitoring\+\_\+config (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+time,  }\item[{float}]{new\+\_\+distance,  }\item[{float}]{new\+\_\+temperature,  }\item[{Json\+Document \&}]{json\+Document }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour les variables de monitoring.~\newline
+Les nouvelles variables sont stockées dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le temps de monitoring est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}{monitoring\+\_\+time}};~\newline
+et la distance de monitoring dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}{monitoring\+\_\+distance}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction n\textquotesingle{}ouvre pas de document JSON, elle utilise celui passé en paramètre.
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & Le nouveau temps de monitoring. \\
+\hline
+{\em new\+\_\+distance} & La nouvelle distance de monitoring. \\
+\hline
+{\em json\+Document} & Le document JSON qui contient les données de Surveillance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_aca4d32969813a506087c4c345cce2d08}\label{_c_t_s_p_i_f_f_s_8h_aca4d32969813a506087c4c345cce2d08}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_network\_config@{update\_network\_config}}
+\index{update\_network\_config@{update\_network\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_network\_config()}{update\_network\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void update\+\_\+network\+\_\+config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{new\+\_\+net\+\_\+ssid,  }\item[{const char $\ast$}]{new\+\_\+net\+\_\+password }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour le SSID et le mot de Passe du point d\textquotesingle{}accès réseau que va utiliser Le Contact Tracer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte. 
+
+Le SSID est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}{net\+\_\+ssid}};~\newline
+et le mot de Passe dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}{net\+\_\+password}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction ouvre un document JSON. 
+\end{DoxyRemark}
+\begin{DoxyWarning}{Warning}
+NE PAS UTILISER CETTE FONCTION AVEC UN DOCUMENT JSON DEJA OUVERT.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+net\+\_\+ssid} & Le nouveau SSID réseau que la carte va utiliser. \\
+\hline
+{\em new\+\_\+net\+\_\+password} & Le nouveau mot de Passe réseau que la carte va utiliser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}\label{_c_t_s_p_i_f_f_s_8h_a0818f8b7b3afc3198771a51eb82e9bb5}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!update\_network\_config@{update\_network\_config}}
+\index{update\_network\_config@{update\_network\_config}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{update\_network\_config()}{update\_network\_config()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void update\+\_\+network\+\_\+config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{new\+\_\+net\+\_\+ssid,  }\item[{const char $\ast$}]{new\+\_\+net\+\_\+password,  }\item[{Json\+Document \&}]{json\+Document }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre à jour le SSID et le mot de Passe de la Contact Tracer, en tant que point d\textquotesingle{}accès réseau, dont on se sert pour la configurer.~\newline
+Les nouveaux identifiants sont stockés dans la mémoire (SPIFFS) de la carte.~\newline
+~\newline
+. 
+
+Le SSID est alors stocké dans la variable \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}{device\+\_\+name}};~\newline
+et le mot de Passe dans \mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}{device\+\_\+password}}.
+
+\begin{DoxyRemark}{Remarks}
+Cette fonction n\textquotesingle{}ouvre pas de document JSON, elle utilise celui passé en paramètre.
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+device\+\_\+name} & Le nouveau que la carte va utiliser pour son Access Point et son OTA. \\
+\hline
+{\em new\+\_\+device\+\_\+password} & Le nouveau mot de Passe que la carte va utiliser pour son Access Point et son OTA. \\
+\hline
+{\em json\+Document} & Le document JSON qui contient la configuration Réseau. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}\label{_c_t_s_p_i_f_f_s_8h_a8dfd96f6f709ce443636ca56e0cfadcf}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!device\_name@{device\_name}}
+\index{device\_name@{device\_name}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{device\_name}{device\_name}}
+{\footnotesize\ttfamily String device\+\_\+name}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}\label{_c_t_s_p_i_f_f_s_8h_ad8b7cc350ecbeeb4996d0e2151d9ecd7}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!device\_password@{device\_password}}
+\index{device\_password@{device\_password}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{device\_password}{device\_password}}
+{\footnotesize\ttfamily String device\+\_\+password}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}\label{_c_t_s_p_i_f_f_s_8h_ac7331f24861797ee5765f93fc9fa0a5b}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!monitoring\_distance@{monitoring\_distance}}
+\index{monitoring\_distance@{monitoring\_distance}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{monitoring\_distance}{monitoring\_distance}}
+{\footnotesize\ttfamily float monitoring\+\_\+distance = 5.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}\label{_c_t_s_p_i_f_f_s_8h_a2e5f1885229558ed3301244352309fb7}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!monitoring\_time@{monitoring\_time}}
+\index{monitoring\_time@{monitoring\_time}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{monitoring\_time}{monitoring\_time}}
+{\footnotesize\ttfamily float monitoring\+\_\+time = 5.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}\label{_c_t_s_p_i_f_f_s_8h_af6ef0046248df12325414b15f6563307}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!net\_password@{net\_password}}
+\index{net\_password@{net\_password}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{net\_password}{net\_password}}
+{\footnotesize\ttfamily String net\+\_\+password}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}\label{_c_t_s_p_i_f_f_s_8h_ad26538ba868015b0ad8e7063d725ac10}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!net\_ssid@{net\_ssid}}
+\index{net\_ssid@{net\_ssid}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{net\_ssid}{net\_ssid}}
+{\footnotesize\ttfamily String net\+\_\+ssid}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}\label{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!temperature\_threshold@{temperature\_threshold}}
+\index{temperature\_threshold@{temperature\_threshold}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{temperature\_threshold}{temperature\_threshold}}
+{\footnotesize\ttfamily float temperature\+\_\+threshold = 40.\+0}
+
+\mbox{\Hypertarget{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}\label{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}} 
+\index{CTSPIFFS.h@{CTSPIFFS.h}!user\_status@{user\_status}}
+\index{user\_status@{user\_status}!CTSPIFFS.h@{CTSPIFFS.h}}
+\doxysubsubsection{\texorpdfstring{user\_status}{user\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58}{Health\+Status}} user\+\_\+status = \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}}
+

@@ -1,0 +1,26 @@
+\hypertarget{_c_t_d_h_t_8h_source}{}\doxysection{CTDHT.\+h}
+\mbox{\hyperlink{_c_t_d_h_t_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <esp32DHT.h>}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ https://github.com/bertmelis/esp32DHT}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ DHT\_PIN\ \ \ \ 33}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ DHT\_TYPE\ \ \ DHT11}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ DHT11\ \mbox{\hyperlink{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}{CTDHT}};}
+\DoxyCodeLine{00016\ uint32\_t\ \mbox{\hyperlink{_c_t_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delayMS}}\ =\ 5000;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_d_h_t_8h_a3c3531d948930555e462c56d4a1541be}{setupDhtSensor}}()\ \{}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}{CTDHT}}.setup(\mbox{\hyperlink{_c_t_d_h_t_8h_a661d236dd49f3aef3a2cf46cf6a1405e}{DHT\_PIN}});}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}{CTDHT}}.onData([](\textcolor{keywordtype}{float}\ temperature,\ \textcolor{keywordtype}{float}\ humidity)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ ["{}});}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(temperature);}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}°C]\ température\ !"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(\textcolor{stringliteral}{"{}-\/DHT\ :\ ["{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\_PRINT}}(humidity);}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}\%]\ humidité\ !"{}});}
+\DoxyCodeLine{00031\ \ \ \});}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}

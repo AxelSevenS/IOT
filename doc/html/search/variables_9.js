@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pblescan_0',['pBLEScan',['../_my_b_l_e_8h.html#a1ce77ae701158c43388018dce073e344',1,'MyBLE.h']]],
-  ['pwmrange_1',['PWMRANGE',['../_my_l_e_d_8h.html#a9689ee76f76c9a1e4e91f5ec19160ac8',1,'MyLED.h']]]
+  ['temperature_5fthreshold_0',['temperature_threshold',['../_c_t_s_p_i_f_f_s_8h.html#a0037b5d48f54912d2dbe7da71d80e7c6',1,'CTSPIFFS.h']]]
 ];

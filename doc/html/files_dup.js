@@ -1,18 +1,16 @@
 var files_dup =
 [
-    [ "Documentation.h", "_documentation_8h.html", null ],
-    [ "MyAdafruitIO.h", "_my_adafruit_i_o_8h.html", "_my_adafruit_i_o_8h" ],
-    [ "MyBLE.h", "_my_b_l_e_8h.html", "_my_b_l_e_8h" ],
-    [ "MyCore0.h", "_my_core0_8h.html", "_my_core0_8h" ],
-    [ "MyDebug.h", "_my_debug_8h.html", "_my_debug_8h" ],
-    [ "MyDeepSleep.h", "_my_deep_sleep_8h.html", "_my_deep_sleep_8h" ],
-    [ "MyDHT.h", "_my_d_h_t_8h.html", "_my_d_h_t_8h" ],
-    [ "MyLED.h", "_my_l_e_d_8h.html", "_my_l_e_d_8h" ],
-    [ "MyNTP.h", "_my_n_t_p_8h.html", "_my_n_t_p_8h" ],
-    [ "MyOTA.h", "_my_o_t_a_8h.html", "_my_o_t_a_8h" ],
-    [ "MySPIFFS.h", "_my_s_p_i_f_f_s_8h.html", "_my_s_p_i_f_f_s_8h" ],
-    [ "MyTicker.h", "_my_ticker_8h.html", "_my_ticker_8h" ],
-    [ "MywaketoReality.cpp", "_mywaketo_reality_8cpp.html", null ],
-    [ "MyWebServer.h", "_my_web_server_8h.html", "_my_web_server_8h" ],
-    [ "MyWiFi.h", "_my_wi_fi_8h.html", "_my_wi_fi_8h" ]
+    [ "CTAdafruitIO.h", "_c_t_adafruit_i_o_8h.html", "_c_t_adafruit_i_o_8h" ],
+    [ "CTBLE.h", "_c_t_b_l_e_8h.html", "_c_t_b_l_e_8h" ],
+    [ "CTDebug.h", "_c_t_debug_8h.html", "_c_t_debug_8h" ],
+    [ "CTDHT.h", "_c_t_d_h_t_8h.html", "_c_t_d_h_t_8h" ],
+    [ "CTEvents.h", "_c_t_events_8h.html", "_c_t_events_8h" ],
+    [ "CTLED.h", "_c_t_l_e_d_8h.html", "_c_t_l_e_d_8h" ],
+    [ "CTMonitoring.h", "_c_t_monitoring_8h.html", "_c_t_monitoring_8h" ],
+    [ "CTNTP.h", "_c_t_n_t_p_8h.html", "_c_t_n_t_p_8h" ],
+    [ "CTOTA.h", "_c_t_o_t_a_8h.html", "_c_t_o_t_a_8h" ],
+    [ "CTSPIFFS.h", "_c_t_s_p_i_f_f_s_8h.html", "_c_t_s_p_i_f_f_s_8h" ],
+    [ "CTTicker.h", "_c_t_ticker_8h.html", "_c_t_ticker_8h" ],
+    [ "CTWebServer.h", "_c_t_web_server_8h.html", "_c_t_web_server_8h" ],
+    [ "CTWiFi.h", "_c_t_wi_fi_8h.html", "_c_t_wi_fi_8h" ]
 ];

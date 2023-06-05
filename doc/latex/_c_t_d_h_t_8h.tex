@@ -1,0 +1,75 @@
+\hypertarget{_c_t_d_h_t_8h}{}\doxysection{CTDHT.\+h File Reference}
+\label{_c_t_d_h_t_8h}\index{CTDHT.h@{CTDHT.h}}
+
+
+CTDHT est un module qui permet de récupérer les données du capteur DHT11. Lorsque la température excède le seuil de température (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\+\_\+threshold}}), l\textquotesingle{}appareil est marqué comme malade.  
+
+
+{\ttfamily \#include $<$esp32\+DHT.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_t_d_h_t_8h_a661d236dd49f3aef3a2cf46cf6a1405e}{DHT\+\_\+\+PIN}}~33
+\item 
+\#define \mbox{\hyperlink{_c_t_d_h_t_8h_abfae246a91df54e807874aa8680beccb}{DHT\+\_\+\+TYPE}}~DHT11
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_d_h_t_8h_a3c3531d948930555e462c56d4a1541be}{setup\+Dht\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le capteur DHT11. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+DHT11 \mbox{\hyperlink{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}{CTDHT}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_c_t_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}{delay\+MS}} = 5000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CTDHT est un module qui permet de récupérer les données du capteur DHT11. Lorsque la température excède le seuil de température (\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_a0037b5d48f54912d2dbe7da71d80e7c6}{temperature\+\_\+threshold}}), l\textquotesingle{}appareil est marqué comme malade. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_c_t_d_h_t_8h_a661d236dd49f3aef3a2cf46cf6a1405e}\label{_c_t_d_h_t_8h_a661d236dd49f3aef3a2cf46cf6a1405e}} 
+\index{CTDHT.h@{CTDHT.h}!DHT\_PIN@{DHT\_PIN}}
+\index{DHT\_PIN@{DHT\_PIN}!CTDHT.h@{CTDHT.h}}
+\doxysubsubsection{\texorpdfstring{DHT\_PIN}{DHT\_PIN}}
+{\footnotesize\ttfamily \#define DHT\+\_\+\+PIN~33}
+
+\mbox{\Hypertarget{_c_t_d_h_t_8h_abfae246a91df54e807874aa8680beccb}\label{_c_t_d_h_t_8h_abfae246a91df54e807874aa8680beccb}} 
+\index{CTDHT.h@{CTDHT.h}!DHT\_TYPE@{DHT\_TYPE}}
+\index{DHT\_TYPE@{DHT\_TYPE}!CTDHT.h@{CTDHT.h}}
+\doxysubsubsection{\texorpdfstring{DHT\_TYPE}{DHT\_TYPE}}
+{\footnotesize\ttfamily \#define DHT\+\_\+\+TYPE~DHT11}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_d_h_t_8h_a3c3531d948930555e462c56d4a1541be}\label{_c_t_d_h_t_8h_a3c3531d948930555e462c56d4a1541be}} 
+\index{CTDHT.h@{CTDHT.h}!setupDhtSensor@{setupDhtSensor}}
+\index{setupDhtSensor@{setupDhtSensor}!CTDHT.h@{CTDHT.h}}
+\doxysubsubsection{\texorpdfstring{setupDhtSensor()}{setupDhtSensor()}}
+{\footnotesize\ttfamily void setup\+Dht\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le capteur DHT11. 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}\label{_c_t_d_h_t_8h_a4869c1472be6d6f06b73f5b10690e550}} 
+\index{CTDHT.h@{CTDHT.h}!CTDHT@{CTDHT}}
+\index{CTDHT@{CTDHT}!CTDHT.h@{CTDHT.h}}
+\doxysubsubsection{\texorpdfstring{CTDHT}{CTDHT}}
+{\footnotesize\ttfamily DHT11 CTDHT}
+
+\mbox{\Hypertarget{_c_t_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}\label{_c_t_d_h_t_8h_a2a9fec03258233e351f904b67c9bb1af}} 
+\index{CTDHT.h@{CTDHT.h}!delayMS@{delayMS}}
+\index{delayMS@{delayMS}!CTDHT.h@{CTDHT.h}}
+\doxysubsubsection{\texorpdfstring{delayMS}{delayMS}}
+{\footnotesize\ttfamily uint32\+\_\+t delay\+MS = 5000}
+

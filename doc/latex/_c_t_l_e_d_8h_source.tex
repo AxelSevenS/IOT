@@ -1,0 +1,36 @@
+\hypertarget{_c_t_l_e_d_8h_source}{}\doxysection{CTLED.\+h}
+\mbox{\hyperlink{_c_t_l_e_d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ LED\_PIN\ \ \ \ 23\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ PIN\ +\ de\ la\ LED}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_l_e_d_8h_a9689ee76f76c9a1e4e91f5ec19160ac8}{PWMRANGE}}\ =\ 256;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ =\ 0;}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_c_t_l_e_d_8h_ad4bdf214920ab6f71083e675d5f9d297}{crescendo}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_l_e_d_8h_a769d1dacfe53490335b09588ec128c5a}{setupLED}}()\ \{}
+\DoxyCodeLine{00023\ \ \ pinMode(\mbox{\hyperlink{_c_t_l_e_d_8h_ab4553be4db9860d940f81d7447173b2f}{LED\_PIN}},\ OUTPUT);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_l_e_d_8h_ae3cd990fcc0a33dbb3859f27a1390e38}{updateLED}}()\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{_c_t_s_p_i_f_f_s_8h_af62606a4cab2472ff56d785a56edbac6}{user\_status}})\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a4f422642e89860d7e0d982b72dc1a34b}{HEALTHY}}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ =\ HIGH;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58a6f7d7c84f5e891c3d7b4b588cd628b7e}{CONTACT}}:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ ==\ 0\ ||\ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ ==\ \mbox{\hyperlink{_c_t_l_e_d_8h_a9689ee76f76c9a1e4e91f5ec19160ac8}{PWMRANGE}}\ )\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_l_e_d_8h_ad4bdf214920ab6f71083e675d5f9d297}{crescendo}}\ =\ !\mbox{\hyperlink{_c_t_l_e_d_8h_ad4bdf214920ab6f71083e675d5f9d297}{crescendo}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ +=\ \mbox{\hyperlink{_c_t_l_e_d_8h_ad4bdf214920ab6f71083e675d5f9d297}{crescendo}}\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_c_t_events_8h_a4ddb4f7797ccbbedd952a44642846d58aa5fe2cc11d43142c3cea9fb7375c0d1c}{SICK}}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ =\ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}}\ ==\ \mbox{\hyperlink{_c_t_l_e_d_8h_a9689ee76f76c9a1e4e91f5ec19160ac8}{PWMRANGE}}\ ?\ 0\ :\ \mbox{\hyperlink{_c_t_l_e_d_8h_a9689ee76f76c9a1e4e91f5ec19160ac8}{PWMRANGE}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ digitalWrite(\mbox{\hyperlink{_c_t_l_e_d_8h_ab4553be4db9860d940f81d7447173b2f}{LED\_PIN}},\ \mbox{\hyperlink{_c_t_l_e_d_8h_a1c81d707c6ddaa6ac326e1d9f6771127}{current\_power}});}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}

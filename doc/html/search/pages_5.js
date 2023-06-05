@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['network_20time_20protocol_20_28ntp_29_0',['Network Time Protocol (NTP)',['../ntp.html',1,'']]]
+  ['ntp_20contact_20tracer_0',['NTP Contact Tracer',['../_c_t_n_t_p.html',1,'']]]
 ];

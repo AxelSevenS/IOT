@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['us_5fto_5fs_5ffactor_0',['uS_TO_S_FACTOR',['../_my_deep_sleep_8h.html#a628c12ff2a1ac4b14a41f021723b2558',1,'MyDeepSleep.h']]]
+  ['service_5fuuid_0',['SERVICE_UUID',['../_c_t_b_l_e_8h.html#a445125ee8c34695376c85f10b38844d6',1,'CTBLE.h']]]
 ];

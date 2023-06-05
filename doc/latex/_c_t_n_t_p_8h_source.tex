@@ -1,0 +1,30 @@
+\hypertarget{_c_t_n_t_p_8h_source}{}\doxysection{CTNTP.\+h}
+\mbox{\hyperlink{_c_t_n_t_p_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <NTPClient.h>}\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//https://github.com/arduino-\/libraries/NTPClient}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <WiFiUdp.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ WiFiUDP\ \mbox{\hyperlink{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntpUDP}};}
+\DoxyCodeLine{00017\ NTPClient\ \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{timeClient}}(\mbox{\hyperlink{_c_t_n_t_p_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntpUDP}});}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ String\ \mbox{\hyperlink{_c_t_n_t_p_8h_a437abe825d8553b896c44a7e540ffcc0}{getNTP}}()\{}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{timeClient}}.update();}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{timeClient}}.getFormattedTime();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_t_n_t_p_8h_a2d775f102c7281e9a8349eb5891433d1}{setupNTP}}()\{}
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ On\ a\ besoin\ d'une\ connexion\ à\ Internet\ !}}
+\DoxyCodeLine{00035\ \ \ \textcolor{comment}{//\ if\ (WiFi.status()\ !=\ WL\_CONNECTED)\{}}
+\DoxyCodeLine{00036\ \ \ \textcolor{comment}{//\ \ \ setupWiFi();}}
+\DoxyCodeLine{00037\ \ \ \textcolor{comment}{//\ \}\ \ }}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{timeClient}}.begin();}
+\DoxyCodeLine{00039\ \ \ \textcolor{comment}{//\ Nous\ avons\ 1h\ de\ décalage\ avec\ le\ méridien\ de\ Greenwich\ (Greenwich\ Meridian\ Time\ :\ GMT).}}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{_c_t_n_t_p_8h_a88e5d548d87de5bf811e50e939140823}{timeClient}}.setTimeOffset(3600);}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}

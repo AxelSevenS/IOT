@@ -1,0 +1,76 @@
+\hypertarget{_c_t_debug_8h}{}\doxysection{CTDebug.\+h File Reference}
+\label{_c_t_debug_8h}\index{CTDebug.h@{CTDebug.h}}
+
+
+CTDebug est un module qui permet d\textquotesingle{}activer ou de désactiver les messages de debug. Lorsque MYDEBUG est défini, les messages de debug sont affichés sur le port série.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}{MYDEBUG\+\_\+\+PRINT}}(x)
+\item 
+\#define \mbox{\hyperlink{_c_t_debug_8h_a07bd3992fd57d2148be60fde6ebb9799}{MYDEBUG\+\_\+\+PRINTDEC}}(x)
+\item 
+\#define \mbox{\hyperlink{_c_t_debug_8h_a3d8e5039b667c955733bee43c669f014}{MYDEBUG\+\_\+\+PRINTHEX}}(x)
+\item 
+\#define \mbox{\hyperlink{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}{MYDEBUG\+\_\+\+PRINTLN}}(x)
+\item 
+\#define \mbox{\hyperlink{_c_t_debug_8h_a4eca408d5b2f9358eb72ba9f1b004589}{MYDEBUG\+\_\+\+PRINTF}}(x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_t_debug_8h_a5ded0afaa418d4d5328c95bb82f4f5fb}{setup\+Debug}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui permet d\textquotesingle{}initialiser le port série pour le debug. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CTDebug est un module qui permet d\textquotesingle{}activer ou de désactiver les messages de debug. Lorsque MYDEBUG est défini, les messages de debug sont affichés sur le port série. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}\label{_c_t_debug_8h_a6551348c963ff72de879c179ce1f1a86}} 
+\index{CTDebug.h@{CTDebug.h}!MYDEBUG\_PRINT@{MYDEBUG\_PRINT}}
+\index{MYDEBUG\_PRINT@{MYDEBUG\_PRINT}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{MYDEBUG\_PRINT}{MYDEBUG\_PRINT}}
+{\footnotesize\ttfamily \#define MYDEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_debug_8h_a07bd3992fd57d2148be60fde6ebb9799}\label{_c_t_debug_8h_a07bd3992fd57d2148be60fde6ebb9799}} 
+\index{CTDebug.h@{CTDebug.h}!MYDEBUG\_PRINTDEC@{MYDEBUG\_PRINTDEC}}
+\index{MYDEBUG\_PRINTDEC@{MYDEBUG\_PRINTDEC}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{MYDEBUG\_PRINTDEC}{MYDEBUG\_PRINTDEC}}
+{\footnotesize\ttfamily \#define MYDEBUG\+\_\+\+PRINTDEC(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_debug_8h_a4eca408d5b2f9358eb72ba9f1b004589}\label{_c_t_debug_8h_a4eca408d5b2f9358eb72ba9f1b004589}} 
+\index{CTDebug.h@{CTDebug.h}!MYDEBUG\_PRINTF@{MYDEBUG\_PRINTF}}
+\index{MYDEBUG\_PRINTF@{MYDEBUG\_PRINTF}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{MYDEBUG\_PRINTF}{MYDEBUG\_PRINTF}}
+{\footnotesize\ttfamily \#define MYDEBUG\+\_\+\+PRINTF(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_debug_8h_a3d8e5039b667c955733bee43c669f014}\label{_c_t_debug_8h_a3d8e5039b667c955733bee43c669f014}} 
+\index{CTDebug.h@{CTDebug.h}!MYDEBUG\_PRINTHEX@{MYDEBUG\_PRINTHEX}}
+\index{MYDEBUG\_PRINTHEX@{MYDEBUG\_PRINTHEX}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{MYDEBUG\_PRINTHEX}{MYDEBUG\_PRINTHEX}}
+{\footnotesize\ttfamily \#define MYDEBUG\+\_\+\+PRINTHEX(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}\label{_c_t_debug_8h_ad1163597277388424d1b42c909a1be64}} 
+\index{CTDebug.h@{CTDebug.h}!MYDEBUG\_PRINTLN@{MYDEBUG\_PRINTLN}}
+\index{MYDEBUG\_PRINTLN@{MYDEBUG\_PRINTLN}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{MYDEBUG\_PRINTLN}{MYDEBUG\_PRINTLN}}
+{\footnotesize\ttfamily \#define MYDEBUG\+\_\+\+PRINTLN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_c_t_debug_8h_a5ded0afaa418d4d5328c95bb82f4f5fb}\label{_c_t_debug_8h_a5ded0afaa418d4d5328c95bb82f4f5fb}} 
+\index{CTDebug.h@{CTDebug.h}!setupDebug@{setupDebug}}
+\index{setupDebug@{setupDebug}!CTDebug.h@{CTDebug.h}}
+\doxysubsubsection{\texorpdfstring{setupDebug()}{setupDebug()}}
+{\footnotesize\ttfamily void setup\+Debug (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui permet d\textquotesingle{}initialiser le port série pour le debug. 
+

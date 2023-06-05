@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['monwebserveur_0',['monWebServeur',['../_my_web_server_8h.html#af977ed1be5e6ba1bf56aaaf72457c4e0',1,'MyWebServer.h']]],
-  ['mydht_1',['myDht',['../_my_d_h_t_8h.html#af2a78c24e7015e72b04cfef932f1c073',1,'MyDHT.h']]]
+  ['get_5fconfig_0',['get_config',['../_c_t_s_p_i_f_f_s_8h.html#a4ed82e40af93b81d6fcc92a9778ef289',1,'CTSPIFFS.h']]],
+  ['getntp_1',['getNTP',['../_c_t_n_t_p_8h.html#a437abe825d8553b896c44a7e540ffcc0',1,'CTNTP.h']]]
 ];
